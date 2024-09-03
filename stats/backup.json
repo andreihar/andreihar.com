@@ -24,6 +24,10 @@
 			"likes": 0,
 			"views": 0
 		},
+		"taibun": {
+			"likes": 0,
+			"views": 0
+		},
 		"nct": {
 			"likes": 0,
 			"views": 0
@@ -51,14 +55,10 @@
 		"footy-ai": {
 			"likes": 0,
 			"views": 0
-		},
-		"taibun": {
-			"likes": 0,
-			"views": 0
 		}
 	},
 	"blogs": {
-		"dragons-freedom-and-mods-the-secrets-behind-skyrims-timelessness": {
+		"dragons-freedom-and-mods": {
 			"likes": 0,
 			"views": 0
 		}
