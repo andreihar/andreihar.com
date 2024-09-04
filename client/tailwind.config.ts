@@ -15,6 +15,7 @@ const config: Config = {
       },
       colors: {
         primary: {
+          DEFAULT: 'rgb(234 47 83 / <alpha-value>)',
           50: 'rgb(255 233 240 / <alpha-value>)',
           100: 'rgb(254 211 219 / <alpha-value>)',
           200: 'rgb(247 164 180 / <alpha-value>)',

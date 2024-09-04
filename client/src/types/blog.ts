@@ -3,6 +3,11 @@ export type Blog = {
 	title: string;
 	description: string;
 	published: string;
-	time: number;
-	tags: string[];
+	time?: number;
+	tags?: string[];
+	team?: number;
+	builtW?: string[];
+	github?: string;
+	website?: string;
+	video?: string;
 };
