@@ -21,7 +21,7 @@ export const getPostBySlug = async (id: string, type: string) => {
 	// Remove frontmatter from fileContent
 	const contentWithoutFrontmatter = fileContent.replace(/^---[\s\S]*?---/, '').trim();
 
-	const meta: Blog = { ...frontmatter, id: id };
+	const meta: Blog = { ...frontmatter, id: id, published: new Date(frontmatter.published) };
 
 	// Create MdxRender component
 	const MdxRender = () => (

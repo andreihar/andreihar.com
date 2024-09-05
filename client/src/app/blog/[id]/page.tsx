@@ -1,26 +1,62 @@
 import { getPostBySlug } from '@/lib/mdx';
+import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
 import BlogComponent from '@/components/BlogComponent';
 
 const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
   const { meta, source } = await getPostBySlug(params.id ?? '', 'blog');
+  const { id, title, description, published, time, tags, team, builtW, github, website, video } = meta;
 
   return (
     <>
-      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[450px]" style={{ backgroundImage: `url(https://miro.medium.com/v2/1*oJZaHzxUAtD8Lp87MHDs8w.jpeg)` }}>
-        <div className="absolute inset-0 bg-black bg-opacity-50">
-          <div className="flex justify-center items-end h-full pt-20 pb-5">
-            <div className="text-white uppercase">
-              <h1 className="mb-3">{meta.title}</h1>
-              <h4 className="mb-3">{meta.description}</h4>
-            </div>
+      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(https://miro.medium.com/v2/1*oJZaHzxUAtD8Lp87MHDs8w.jpeg)` }}>
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="relative p-8 mt-[80px]">
+          <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
+            <p className="text-sm text-gray-400">{tags?.join(', ')}</p>
+            <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
+            <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
+            <p className="text-sm text-gray-300 flex flex-wrap items-center">
+              {time && (
+                <span className="inline-flex items-center gap-1">
+                  <HiOutlineClock className="inline-block text-base" />
+                  {`${time} min`}
+                  <span className="mx-2">━</span>
+                </span>
+              )}
+              <span className="inline-flex items-center gap-1">
+                <HiOutlineEye className="inline-block text-base" />
+                {`5,123 views`}
+              </span>
+              <span className="mx-2">━</span>
+              <span className="inline-flex items-center gap-1">
+                <HiOutlineThumbUp className="inline-block text-base" />
+                {`5,123 likes`}
+              </span>
+            </p>
           </div>
         </div>
       </div>
-      <main>
-        <div className='container prose'>
-          {source}
+      <section className="max-w-[1100px] px-4 mx-auto mt-16 transition-colors">
+        <div className="my-5">
+          <p className="text-base text-gray-500 dark:text-gray-400">
+            {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
+            <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
+            <strong>by Andrei Harbachov</strong>
+          </p>
         </div>
-      </main>
+        <hr className='dark:border-gray-600 mb-6' />
+        <main className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
+          <article className='break-words whitespace-normal mx-auto mt-4 w-full'>
+            {source}
+          </article>
+          <aside className='py-4'>
+            <div className='sticky top-36'>
+              {/* <TableOfContents
+              />*/}
+            </div>
+          </aside>
+        </main>
+      </section>
     </>
   );
 };

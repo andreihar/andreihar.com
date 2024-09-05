@@ -27,7 +27,7 @@ const config: Config = {
           800: 'rgb(187 10 49 / <alpha-value>)',
           900: 'rgb(164 0 41 / <alpha-value>)',
         },
-        dark: '#0e1111',
+        dark: '#0e0e0e',
       },
     },
   },

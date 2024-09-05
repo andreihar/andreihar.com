@@ -2,7 +2,7 @@ export type Blog = {
 	id: string;
 	title: string;
 	description: string;
-	published: string;
+	published: Date;
 	time?: number;
 	tags?: string[];
 	team?: number;
