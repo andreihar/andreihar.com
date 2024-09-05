@@ -1,5 +1,5 @@
 {
-	"projects": {
+	"project": {
 		"howl": {
 			"likes": 0,
 			"views": 0
@@ -57,7 +57,7 @@
 			"views": 0
 		}
 	},
-	"blogs": {
+	"blog": {
 		"dragons-freedom-and-mods": {
 			"likes": 0,
 			"views": 0

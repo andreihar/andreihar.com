@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import json, os
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 def load_data():
     if os.path.exists('backup.json'):
