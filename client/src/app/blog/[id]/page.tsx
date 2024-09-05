@@ -1,6 +1,10 @@
 import { getPostBySlug } from '@/lib/mdx';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
 import BlogComponent from '@/components/BlogComponent';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import MDXComponents from '@/components/MDXComponents';
+import TableOfContents from '@/components/TableOfContents';
+import StorageImg from '@/components/StorageImg';
 
 const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
   const { meta, source } = await getPostBySlug(params.id ?? '', 'blog');
@@ -8,8 +12,8 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
 
   return (
     <>
-      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(https://miro.medium.com/v2/1*oJZaHzxUAtD8Lp87MHDs8w.jpeg)` }}>
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, id: 'theodorusclarence/projects/hexcape/hexcape-banner_xdulxw', width: 1000, alt: 'Banner' })})` }}>
+        <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
             <p className="text-sm text-gray-400">{tags?.join(', ')}</p>
@@ -44,15 +48,14 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
             <strong>by Andrei Harbachov</strong>
           </p>
         </div>
-        <hr className='dark:border-gray-600 mb-6' />
-        <main className='lg:grid lg:grid-cols-[auto,250px] lg:gap-8'>
+        <hr className='dark:border-gray-600' />
+        <main className='lg:grid lg:grid-cols-[auto,250px] lg:gap-10 my-6'>
           <article className='break-words whitespace-normal mx-auto mt-4 w-full'>
-            {source}
+            <MDXRemote source={source} components={MDXComponents} />
           </article>
           <aside className='py-4'>
             <div className='sticky top-36'>
-              {/* <TableOfContents
-              />*/}
+              <TableOfContents />
             </div>
           </aside>
         </main>

@@ -1,51 +1,34 @@
-import Image from 'next/image';
+import React from 'react';
 
 type StorageImgType = {
   id: string;
-  height: string | number;
-  width: string | number;
+  header?: boolean;
+  height?: string | number;
+  width?: string | number;
   alt: string;
   title?: string;
   className?: string;
-  aspect?: {
-    width: number;
-    height: number;
-  };
 } & React.ComponentPropsWithoutRef<'figure'>;
 
-export default function StorageImg({ id, height, width, alt, title, className = '', style, aspect, ...rest }: StorageImgType) {
-  width = +width;
-  height = +height;
+export default function StorageImg({ id, header, height, width, alt, title, className = '', style, ...rest }: StorageImgType) {
   const cloudName = 'theodorusclarence';
-  const aspectRatio = aspect ? aspect.height / aspect.width : height / width;
   const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload`;
-  const transformations = aspect ? `,c_fill,ar_${aspect.width}:${aspect.height},w_${width}` : '';
-  const RESIZE_MAX_WIDTH = 1000;
-  const resizedToMaxWidth = width >= RESIZE_MAX_WIDTH;
+
+  let imageUrl = baseUrl;
+  if (width)
+    imageUrl += `/w_${width}`;
+  if (height)
+    imageUrl += `/h_${height}`;
+  imageUrl += `/c_fill/${id}`;
+
+  if (header) {
+    return imageUrl;
+  }
 
   return (
-    <figure className={`${className} overflow-hidden rounded shadow dark:shadow-none ${width <= 800 ? 'mx-auto w-full' : ''}`} style={{ maxWidth: width <= 800 ? width : undefined, ...style }} {...rest}>
-      <div style={{ position: 'relative', height: 0, paddingTop: `${aspectRatio * 100}%` }} className='img-blur'>
-        <style jsx>{`
-          .img-blur::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            filter: blur(20px);
-            z-index: 0;
-            background-image: url(${`${baseUrl}/e_blur:1000,q_1${transformations}/${id}`});
-            background-position: center center;
-            background-size: 100%;
-          }
-        `}</style>
-        <div className='absolute left-0 top-0'>
-          <Image src={`${baseUrl}${transformations}/${id}`} alt={alt} title={title || alt}
-            width={resizedToMaxWidth ? Math.min(width, RESIZE_MAX_WIDTH) : width}
-            height={resizedToMaxWidth ? (RESIZE_MAX_WIDTH * height) / width : height}
-          />
-        </div>
-      </div>
-      {title && <figcaption className="text-center mt-2">{title}</figcaption>}
+    <figure className={`${className} mx-auto max-w-full mb-8 overflow-hidden rounded`} style={{ maxWidth: width || 'auto', ...style }} {...rest}>
+      <img src={imageUrl} alt={alt} title={title || alt} width={width} height={height} className="shadow-md dark:shadow-none rounded" />
+      {title && <figcaption className="text-center mt-2 text-lg font-bold text-gray-800 dark:text-gray-200">{title}</figcaption>}
     </figure>
   );
 }

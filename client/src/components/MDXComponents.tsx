@@ -1,12 +1,21 @@
 import React from 'react';
+import StorageImg from './StorageImg';
+import dynamic from 'next/dynamic';
+
+const generateId = (text: string): string => {
+  return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+};
 
 const MDXComponents = {
-  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 className="text-4xl font-bold py-3" {...props} />
-  ),
-  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="text-3xl font-semibold py-2" {...props} />
-  ),
+  StorageImg,
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = generateId(props.children as string);
+    return <h1 id={id} className="text-4xl font-bold py-3" {...props} />;
+  },
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = generateId(props.children as string);
+    return <h2 id={id} className="text-3xl font-semibold py-2" {...props} />;
+  },
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3 className="text-2xl font-medium py-2" {...props} />
   ),
