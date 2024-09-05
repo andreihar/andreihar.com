@@ -1,6 +1,5 @@
-import React from 'react';
+import { Children, cloneElement, isValidElement } from 'react';
 import StorageImg from './StorageImg';
-import dynamic from 'next/dynamic';
 
 const generateId = (text: string): string => {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
@@ -9,12 +8,10 @@ const generateId = (text: string): string => {
 const MDXComponents = {
   StorageImg,
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
-    const id = generateId(props.children as string);
-    return <h1 id={id} className="text-4xl font-bold py-3" {...props} />;
+    return <h1 id={generateId(props.children as string)} className="text-4xl font-bold py-3" {...props} />;
   },
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
-    const id = generateId(props.children as string);
-    return <h2 id={id} className="text-3xl font-semibold py-2" {...props} />;
+    return <h2 id={generateId(props.children as string)} className="text-3xl font-semibold py-2" {...props} />;
   },
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3 className="text-2xl font-medium py-2" {...props} />
@@ -23,7 +20,7 @@ const MDXComponents = {
     <p className="text-lg leading-loose mb-8" {...props} />
   ),
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a className="text-primary font-bold relative inline-block underline-slide transition-colors duration-300 ease-in-out" {...props} />
+    <a className="text-primary font-bold relative inline-block underline-slide transition-colors duration-300 ease-in-out" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }} {...props} />
   ),
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <img className="mx-auto max-w-full mb-8" {...props} />
@@ -39,8 +36,8 @@ const MDXComponents = {
   ),
   li: (props: React.LiHTMLAttributes<HTMLLIElement>) => (
     <li>
-      {React.Children.map(props.children, child =>
-        React.isValidElement(child) ? React.cloneElement(child as React.ReactElement<any>, { className: `${child.props.className || ''} text-lg leading-loose mb-4` }) : child
+      {Children.map(props.children, child =>
+        isValidElement(child) ? cloneElement(child as React.ReactElement<any>, { className: `${child.props.className || ''} text-lg leading-loose mb-4` }) : child
       )}
     </li>
   ),
