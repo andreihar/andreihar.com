@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
 
   return (
     <ViewsAndLikesProvider type="blog" id={id}>
-      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, blog: true, id: `${id}/banner`, width: 1000, alt: 'Banner' })})` }}>
+      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, blog: true, id: `${id}/banner`, alt: `Banner of ${title}` })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
