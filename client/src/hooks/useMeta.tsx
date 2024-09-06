@@ -10,7 +10,7 @@ interface UseMetaReturn {
 }
 
 const useMeta = (): UseMetaReturn => {
-  const backendUrl = 'http://127.0.0.1:5000';
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   const getStats = async (category: string, name: string): Promise<Stats> => {
     try {

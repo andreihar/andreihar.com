@@ -14,7 +14,7 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
 
   return (
     <ViewsAndLikesProvider type="project" id={id}>
-      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, id: 'theodorusclarence/projects/hexcape/hexcape-banner_xdulxw', width: 1000, alt: 'Banner' })})` }}>
+      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, id: `${id}/banner`, width: 1000, alt: 'Banner' })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
@@ -38,16 +38,24 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
         <div className="my-5 flex justify-between items-center">
           <p className="text-base text-gray-500 dark:text-gray-400">
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
-            <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
-            <a href={github} className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
-              <SiGithub className="inline-block text-base align-middle" />
-              <span className="align-middle">Repository</span>
-            </a>
-            <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
-            <a href={website} className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
-              <HiLink className="inline-block text-base align-middle" />
-              <span className="align-middle">Live Demo</span>
-            </a>
+            {github && (
+              <>
+                <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
+                <a href={github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
+                  <SiGithub className="inline-block text-base align-middle" />
+                  <span className="align-middle">Repository</span>
+                </a>
+              </>
+            )}
+            {website && (
+              <>
+                <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
+                <a href={website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
+                  <HiLink className="inline-block text-base align-middle" />
+                  <span className="align-middle">Live Demo</span>
+                </a>
+              </>
+            )}
           </p>
           <LikeButton />
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 
 type StorageImgType = {
   id: string;
+  blog?: boolean;
   header?: boolean;
   height?: string | number;
   width?: string | number;
@@ -10,8 +11,8 @@ type StorageImgType = {
   className?: string;
 } & React.ComponentPropsWithoutRef<'figure'>;
 
-export default function StorageImg({ id, header, height, width, alt, title, className = '', style, ...rest }: StorageImgType) {
-  const cloudName = 'theodorusclarence';
+export default function StorageImg({ id, blog, header, height, width, alt, title, className = '', style, ...rest }: StorageImgType) {
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
   const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload`;
 
   let imageUrl = baseUrl;
@@ -19,7 +20,7 @@ export default function StorageImg({ id, header, height, width, alt, title, clas
     imageUrl += `/w_${width}`;
   if (height)
     imageUrl += `/h_${height}`;
-  imageUrl += `/c_fill/${id}`;
+  imageUrl += `/c_fill${blog ? '/blog' : '/project'}/${id}`;
 
   if (header) {
     return imageUrl;

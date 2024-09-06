@@ -79,7 +79,7 @@ const ViewsAndLikesCounters: React.FC = () => {
 };
 
 const LikeButton: React.FC = () => {
-  const { setLikes, type, id } = useViewsAndLikes();
+  const { likes, setLikes, type, id } = useViewsAndLikes();
   const { updateLike } = useMeta();
   const [fillPercentage, setFillPercentage] = useState(0);
   const likeKey = `${type}-${id}-likes`;
@@ -95,8 +95,8 @@ const LikeButton: React.FC = () => {
     if (typeof window !== 'undefined') {
       const currentLikes = parseInt(localStorage.getItem(likeKey) || '0', 10);
       if (currentLikes < 5) {
-        const updatedStats = await updateLike(type, id);
-        setLikes(updatedStats.likes);
+        await updateLike(type, id);
+        setLikes(likes + 1);
         localStorage.setItem(likeKey, (currentLikes + 1).toString());
         setFillPercentage(((currentLikes + 1) / 5) * 100);
       }
