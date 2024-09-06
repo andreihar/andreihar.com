@@ -7,3 +7,53 @@ builtW:
   - matlab
 github: 'https://github.com/andreihar/ar-homographies'
 ---
+
+# Project Overview
+
+AR Homographies focuses on applying planar homographies to create Augmented Reality experiences by overlaying images onto specific regions in another image or video. The project uses feature detection, matching, and transformation techniques to achieve accurate and interactive AR content.
+
+# Objective and Vision
+
+The AR Homographies project aims to demonstrate the practical application of planar homographies in enhancing real-world visuals with virtual content. By overlaying a source image or video onto a target object within another image or video, the project showcases how AR technology can be used to blend virtual and real elements seamlessly. The vision is to create a tool that allows users to visualise and interact with augmented elements in real time, transforming everyday images and videos with interactive visual effects.
+
+# Tools and Technologies
+
+- **MATLAB**: Used for implementing the feature detection, homography computation, and AR application. It provides the tools for processing and visualising the image transformations.
+
+# Key Features
+
+## Feature Detection and Matching
+
+The project uses MATLAB’s built-in FAST feature detector and BRIEF descriptor to identify and match key feature points between images. This process is crucial for establishing correspondences between the source and target images, ensuring accurate alignment for the homography transformation.
+
+## Homography Computation
+
+Homography Computation involves mapping points from one image to another to overlay the source image onto the target. This is achieved using the Direct Linear Transform method and Singular Value Decomposition to compute the homography matrix, which aligns the images based on established correspondences.
+
+## Homography Normalisation
+
+To enhance numerical stability, the project incorporates Homography Normalisation. This process involves translating and scaling coordinates before computing the homography and then denormalizing the result. It improves the accuracy and robustness of the homography estimation.
+
+## RANSAC Algorithm
+
+The RANSAC algorithm is used to robustly estimate the homography matrix in the presence of noise and outliers. By selecting random subsets of point correspondences and computing the homography for each subset, RANSAC identifies the transformation with the most inliers, ensuring a stable and accurate final homography matrix.
+
+## Augmented Reality Application
+
+The AR Application integrates all previous steps to project images or video frames onto a target object within another video. It demonstrates the practical use of planar homographies in creating interactive AR experiences by warping the source content in real time to align with the target object.
+
+## App
+
+The project includes a MATLAB app designed using App Designer. The app allows users to select source and target images, create or load masks, and define offsets for placing the source image on the target. It provides an intuitive interface for visualising the blending results and exporting the final image.
+
+# Challenges Faced and Solutions
+
+During the development of AR Homographies, the primary challenge was working with MATLAB’s image processing capabilities and ensuring accurate feature matching and homography computation. As a solo developer, managing all aspects of the project, from feature detection to AR application, required extensive testing and iteration to achieve the desired results. The integration of RANSAC for robust homography estimation was particularly challenging due to the complexity of filtering outliers and ensuring accurate projections.
+
+To address these challenges, I invested significant time in studying MATLAB’s image processing toolbox and experimenting with different algorithms to improve feature detection and matching accuracy. The iterative approach allowed me to refine the homography computation and integration, resulting in a functional and interactive AR application.
+
+# Takeaways and Insights
+
+This project provided valuable insights into the practical applications of planar homographies and AR technology. It was also my first time building a MATLAB App. While MATLAB Apps are not ideal for production compared to web applications, which offer more features and a better user experience, they are excellent for understanding the workflow of an algorithm and testing it interactively. Building a MATLAB app allowed me to explore the algorithm’s functionality and visualise results without the immediate need to reimplement the code in a different language such as JavaScript or Python.
+
+The experience of working with MATLAB’s image processing tools enhanced my understanding of feature detection, homography computation, and AR implementation. It also highlighted the importance of iterative testing and refinement to achieve accurate and reliable results. Overall, this project demonstrated how advanced image processing techniques can be applied to create engaging and interactive visual experiences, and how MATLAB can serve as a valuable tool for prototyping and validating algorithms.

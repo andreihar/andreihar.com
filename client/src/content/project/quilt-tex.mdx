@@ -8,3 +8,62 @@ builtW:
   - customtkinter
 github: 'https://github.com/andreihar/quilt-tex'
 ---
+
+# Project Overview
+
+QuiltTex focuses on generating seamless textures from small samples and transferring them onto another image’s structure. It is inspired by the work of Efros and Freeman on image quilting techniques.
+
+# Objective and Vision
+
+The primary goal of QuiltTex is to implement and compare multiple texture synthesis techniques: Random Patch Selection, Overlap-Constrained Patch Selection, and Minimum Error Boundary Cut. These methods aim to generate natural-looking, seamless textures and apply them to reimagine the appearance of other images. The project explores the balance between texture coherence and structural alignment in creating visually striking results.
+
+The project not only compares different approaches to texture synthesis but also explores texture transfer techniques that blend the texture of one image with the content of another. QuiltTex is built with a creative and practical perspective, showcasing the potential for advanced texture manipulation in various applications of computational photography.
+
+# Tools and Technologies
+
+QuiltTex uses the following tools and technologies:
+
+- **NumPy**: For efficient numerical operations and calculations used in texture synthesis and transfer algorithms.
+- **CustomTkinter**: For building an interactive GUI that allows users to experiment with texture synthesis and transfer in real time.
+- **PIL (Pillow)**: Image processing library for handling textures and target images.
+
+# Key Features
+
+## Texture Synthesis
+
+QuiltTex implements three major techniques for texture synthesis:
+
+### Random Patch Selection
+
+This basic method randomly selects patches from an input texture, which can lead to visible seams or unnatural repetitions. It is quick to implement but can result in less visually appealing textures.
+
+### Overlap-Constrained Patch Selection
+
+This method improves on Random Patch Selection by selecting patches that minimise the error in overlapping regions, based on the Sum of Squared Differences. This technique reduces visible seams and produces more natural-looking textures.
+
+### Minimum Error Boundary Cut
+
+This is the most advanced technique, using dynamic programming to calculate the optimal boundary for overlapping regions between patches. The result is a seamless texture with minimal visible joins, making it particularly effective for highly structured textures.
+
+## Texture Transfer
+
+QuiltTex also explores texture transfer, where a source texture is applied to a target image, blending the texture with the image’s structural features. This process balances the consistency of the source texture with the structure of the target image using a weighted error metric.
+
+## Tkinter App
+
+The project includes a Tkinter-based GUI that allows users to:
+
+- Load textures and target images.
+- Apply different texture synthesis and transfer methods.
+- Adjust parameters like patch size and overlap width.
+- Save generated textures and transferred images.
+
+# Challenges Faced and Solutions
+
+One of the main challenges was achieving seamless texture synthesis without visible boundaries, especially for highly structured textures. The Minimum Error Boundary Cut method solved this by introducing a dynamic boundary calculation, making the transition between patches almost imperceptible. Implementing texture transfer while balancing texture fidelity and structural alignment was another complex problem. This was solved by fine-tuning the error metric that controls the trade-off between texture consistency and structural correspondence.
+
+# Takeaways and Insights
+
+Working on QuiltTex provided valuable insights into texture manipulation techniques and their practical applications. Understanding the trade-offs between different synthesis methods and their effects on various types of textures was particularly enlightening. The project also reinforced the importance of balancing creativity and technical precision in image processing.
+
+This project was my first time creating a Tkinter app, and it was an eye-opener in terms of building user-friendly Python applications. I learned how to design simple yet effective interfaces that allow users to interact with algorithms easily and experiment with different parameters. This experience highlighted the importance of user experience in making advanced algorithms accessible and practical for real-world use.

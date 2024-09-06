@@ -10,3 +10,64 @@ builtW:
 github: 'https://github.com/andreihar/footy-ai'
 website: 'https://footy-ai.andreihar.com/'
 ---
+
+# Project Overview
+
+Footy AI is a React-based platform designed for predicting and analysing UEFA Euro tournament matches. The application offers detailed match statistics, historical data, and interactive visualisations of AI-driven match predictions.
+
+# Objective and Vision
+
+Footy AI was created with the goal of enriching football enthusiasts’ experience during UEFA Euro tournaments. By integrating AI-powered match predictions and a deep historical database, it offers users the ability to explore tournament statistics and match outcomes in real-time. The platform also serves as a tool for football data enthusiasts who want to explore predictions for future and custom matches between UEFA teams.
+
+The vision behind Footy AI is to enhance the engagement of football fans by offering AI insights and creating a space where users can visualise and interact with past and hypothetical matches, giving them access to accurate and insightful predictions.
+
+# Tools and Technologies
+
+Footy AI uses several modern technologies to achieve its objectives:
+
+- **Next.js**: Used to build a fast, server-side rendered React application.
+- **Material-UI (MUI)**: Provides UI components that ensure a responsive and intuitive design.
+- **Format.js**: Handles language localisation, enabling users to switch between multiple languages.
+- **Scikit-learn (sklearn)**: Powers the AI model that generates predictions based on ELO ratings and Poisson distribution for match outcomes.
+
+# Key Features
+
+## Overview Page
+
+The Overview Page serves as the main dashboard for Footy AI, summarising key AI predictions and showing recent match outcomes. It provides a quick glance at prediction accuracy and upcoming match forecasts.
+
+## All Matches
+
+The All Matches page presents a detailed list of all matches in the tournament, including predicted outcomes and actual match results, giving users a comprehensive view of tournament progression.
+
+## Group Stage
+
+This feature offers predictions for group stage matches, including rankings, match outcomes, and score predictions. It also compares the AI’s predictions with actual results, highlighting prediction accuracy.
+
+## Knockout Stage
+
+The Knockout Stage displays predictions for each elimination round in a bracket format. Users can see the expected and actual results for each match, providing an engaging way to follow the tournament.
+
+## Custom Match
+
+This feature allows users to create their own matchups between any two UEFA teams from any past Euro tournament. The AI generates predictions for these custom matches, offering a fun way to explore hypothetical outcomes.
+
+## Localisation
+
+Footy AI supports multiple languages, allowing users to switch between all major UEFA languages via a dropdown menu in the navbar.
+
+## Prediction Model
+
+The AI model used by Footy AI relies on ELO ratings to predict match outcomes. It uses Linear Regression to predict goal differences and Poisson Distribution to simulate match scores. The model is trained on over a century of international football data, ensuring that it takes into account team strengths and recent performance trends.
+
+# Challenges Faced and Solutions
+
+One of the major challenges in developing Footy AI was selecting a feature set for the AI model that was both effective and manageable. The goal was to train a model that could accurately predict match outcomes without becoming overly complex, which could hinder performance on less powerful devices. To address this, I focused on using xG paired with the ELO rating system, which provided a robust yet straightforward method for incorporating team strength and historical performance into the predictions. This approach helped balance accuracy and simplicity, ensuring that the model could be used across various devices.
+
+Designing a user-friendly interface also presented its own set of challenges. Ensuring that the application was intuitive and responsive, especially for complex football statistics and predictions, was crucial. Utilising Next.js for server-side rendering and MUI for UI components helped create a seamless and engaging experience for users. These tools allowed me to present detailed information in a user-friendly manner without overloading client devices with processing tasks.
+
+# Takeaways and Insights
+
+Working on Footy AI was a valuable learning experience in both machine learning and web development. I discovered how the ELO rating system, combined with Linear Regression and Poisson distribution, could provide surprisingly good predictions despite its simplicity. This experience reinforced the importance of balancing model complexity with practical constraints and deepened my understanding of how to apply machine learning techniques to real-world problems.
+
+On the front-end side, this project marked my first use of Next.js and MUI. Implementing Next.js allowed for efficient server-side rendering, which was crucial for handling complex statistics without burdening the client device. MUI provided a flexible and responsive design framework that enhanced the user experience. Overall, the project not only expanded my technical skills but also highlighted the importance of creating a scalable and user-friendly application.

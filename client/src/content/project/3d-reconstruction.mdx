@@ -7,3 +7,39 @@ builtW:
   - matlab
 github: 'https://github.com/andreihar/3d-reconstruction'
 ---
+
+# Project Overview
+
+The 3D Reconstruction project focuses on reconstructing three-dimensional scenes from multiple two-dimensional images using computer vision techniques. This project involves implementing and understanding both sparse and dense reconstruction methods, including feature matching, triangulation, and depth estimation, to create detailed 3D models from a set of 2D images.
+
+# Objective and Vision
+
+The goal of the 3D Reconstruction project was to develop a comprehensive understanding of 3D reconstruction techniques and their practical applications. By applying core algorithms such as the Eight-Point Algorithm, triangulation, and stereo matching, the project aims to demonstrate how to accurately transform 2D images into a coherent 3D model. The vision was to highlight the significance of foundational computer vision principles and address real-world challenges such as noise and camera calibration.
+
+The ultimate aim is to showcase how these techniques can be used in various applications, from augmented reality to robotics, providing valuable insights into computational photography.
+
+# Tools and Technologies
+
+- **MATLAB**: The primary environment used for implementing and testing the reconstruction algorithms.
+
+# Key Features
+
+## Sparse Reconstruction
+
+Sparse Reconstruction aims to recover a 3D representation of a scene from a set of 2D images by identifying and matching key features across the images. The process involves the Eight-Point Algorithm, Fundamental Matrix computation, and Epipolar Correspondence to accurately reconstruct sparse 3D points.
+
+## Dense Reconstruction
+
+Dense Reconstruction builds upon the sparse 3D points to create a detailed 3D model. It involves depth and disparity map estimation, image rectification, and generating a dense 3D point cloud to provide a comprehensive representation of the scene.
+
+## Pose Estimation
+
+Pose Estimation involves determining the camera’s position and orientation relative to the scene. This is achieved by computing the Camera Matrix, which includes both intrinsic and extrinsic parameters to align the 3D model with real-world coordinates.
+
+# Challenges Faced and Solutions
+
+Working on this project involved overcoming challenges related to implementing complex computer vision algorithms and handling real-world image data. One of the key challenges was ensuring accurate camera calibration and dealing with noisy image data. Solutions involved refining algorithms and using MATLAB’s built-in functions for precise computation and visualisation.
+
+# Takeaways and Insights
+
+This project provided valuable insights into 3D reconstruction techniques and their applications. It highlighted the importance of understanding fundamental computer vision principles and demonstrated how to tackle practical challenges in computational photography.

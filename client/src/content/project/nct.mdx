@@ -10,3 +10,60 @@ builtW:
 github: 'https://github.com/andreihar/nct'
 website: 'https://nct.andreihar.com/'
 ---
+
+# Project Overview
+
+Night Crusade Titans is an Angular-based web application designed to report and manage public nuisances in the Lower Mainland. With a vibrant superhero theme, the app encourages users to participate in keeping their community safe by reporting disturbances. The app integrates a map and data list view, allowing for easy tracking and management of incidents in real time.
+
+# Objective and Vision
+
+The project was developed as a final project for the Client-side Development course in the Fall 2023 semester. It aims to simplify the process of reporting public nuisances, ensuring community members have an easy-to-use tool for filing reports. Night Crusade Titans provides a seamless experience for users and administrators, combining aesthetics with functionality.
+
+The superhero theme was chosen to make the process engaging and to encourage community involvement. It transforms an otherwise routine task into a collaborative effort, making users feel like they are part of a heroic team fighting for public safety.
+
+# Tools and Technologies
+
+Night Crusade Titans leverages the following technologies:
+
+- **Angular**: The core framework for building the single-page web application.
+- **Firebase**: Used for database services, storing nuisance reports and managing user authentication.
+- **Bootstrap**: Provides responsive design elements to ensure the app works smoothly on various devices.
+- **Leaflet**: Handles the map integration, displaying nuisance reports on an interactive map with markers.
+
+# Key Features
+
+## Home Page
+
+The Home Page serves as the main navigation hub, allowing users to toggle between a Map Display and a Data List view. This ensures users can choose how they want to interact with the reported data, offering flexibility in user experience.
+
+## Map Display
+
+The map shows all reported nuisances, with markers for each location. Users can interact with these markers to view the number of reports for each location, making it easy to visualise problem areas in the community.
+
+## Data List
+
+The Data List provides a sortable table of all nuisance reports. Users can filter and sort the reports based on Time, Name, or Location, offering a clear, detailed overview of all incidents.
+
+## Report Management
+
+Authorised users with the correct passcode ("BaggyJeans") can modify or delete nuisance reports. This feature is secured through MD5 hash password verification.
+
+## Report Creation
+
+Users can submit new nuisance reports through a user-friendly form. The "CREATE NUISANCE REPORT" button reveals the form, allowing for quick and straightforward report submissions.
+
+# Lighthouse Report
+
+The application has been tested using Google Lighthouse, ensuring a high level of performance, accessibility, best practises, and SEO compliance.
+
+# Challenges Faced and Solutions
+
+Night Crusade Titans was my first project utilising a front-end framework, marking a significant shift from creating static websites to building dynamic, feature-rich applications. Integrating Angular with real-time data updates presented a challenge, especially in managing and displaying a large number of nuisance reports efficiently. I had to learn how to optimise data retrieval to ensure smooth performance, which was a substantial learning curve given my prior experience with static sites.
+
+Additionally, incorporating Firebase as the database services was a new experience. I initially underestimated the complexity of structuring real-time data. Through experimentation and research, I improved my understanding of Firebase’s capabilities and implemented effective solutions for data handling. Due to tight time constraints, I used Bootstrap to simplify the frontend design process.
+
+# Takeaways and Insights
+
+Working on Night Crusade Titans was a pivotal moment in my web development journey, marking my transition from static websites to dynamic, interactive applications. This project introduced me to Angular and its powerful features for building single-page applications, fundamentally changing my approach to web development. I gained hands-on experience with real-time data management and learned the importance of optimising performance to handle dynamic content efficiently.
+
+The project also opened my eyes to the value of using frontend libraries like Bootstrap, which I initially underestimated and dismissed for not allowing the designers to add a personal touch to the style. I discovered how such tools can significantly streamline the development process while still offering flexibility for custom design. This experience led me to explore other styling libraries and TypeScript-specific tools. Furthermore, integrating Firebase for the first time provided me with crucial insights into handling backend services and databases in web applications. Overall, this project reinforced my skills in dynamic web development and broadened my understanding of modern web technologies.

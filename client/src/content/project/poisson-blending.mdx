@@ -7,3 +7,38 @@ builtW:
   - matlab
 github: 'https://github.com/andreihar/poisson-blending'
 ---
+
+# Project Overview
+
+Poisson Blending is a project that focuses on seamlessly merging a source image into a target image by preserving the gradient information to ensure smooth transitions. Using Poisson’s equation, the method eliminates visible seams between the blended images, making it highly effective for digital content creation, photo editing, and other image manipulation tasks. Inspired by the seminal work on Poisson Image Editing by Pérez, Gangnet, and Blake, the project showcases how gradient-domain techniques can be applied for advanced image compositing.
+
+# Objective and Vision
+
+The objective of the Poisson Blending project is to implement the Poisson Image Blending technique, which solves Poisson’s equation to maintain gradient consistency across the blended regions of two images. By doing this, the project eliminates hard edges and creates smooth transitions between the source and target images. The tool allows users to select both images, define the blending mask, and adjust the source image’s placement to ensure high-quality, seamless blends that preserve the original appearance of both images. This method can be applied to both grayscale and colour images, making it a versatile tool for graphic designers, photographers, and content creators.
+
+# Tools and Technologies
+
+Poisson Blending uses the following technologies to accomplish its tasks:
+
+- **MATLAB**: MATLAB is used for implementing the Poisson blending algorithm, matrix manipulations, and providing an intuitive app interface.
+- **Sparse Matrix Optimisation**: Used to solve the least-squares problem that arises when solving Poisson’s equation, enabling efficient handling of large images.
+
+# Key Features
+
+## Poisson Image Blending
+
+The core of the project revolves around Poisson Image Blending, a technique designed to seamlessly blend a source image into a target image by solving Poisson’s partial differential equation in the gradient domain. This process aims to preserve the gradients of the source image while blending it into the target image, ensuring smooth transitions without visible seams or sharp intensity differences at the boundaries. The implementation uses a least-squares optimisation approach to solve the Poisson equation, ensuring the transition is natural and visually coherent.
+
+## MATLAB App
+
+A MATLAB app was created to provide an intuitive interface for users to perform Poisson blending. The app allows users to select their source and target images, create or load a mask, adjust placement, and visualise the blending results in real-time. The app simplifies the process of using advanced image compositing techniques, making it accessible to users without technical expertise in image processing. The blended image can be exported directly from the app, providing a straightforward workflow for content creators.
+
+# Challenges Faced and Solutions
+
+One of the main challenges faced during the project was optimising the algorithm to handle large-scale images efficiently. Solving Poisson’s equation involves dealing with large sparse matrices, which can become computationally expensive. To overcome this, sparse matrix optimisations were implemented to reduce memory usage and improve the speed of solving the least-squares problem.
+
+Another challenge was ensuring that the gradients between the source and target images were preserved without introducing visual artifacts. Special attention was paid to the boundary conditions and ensuring that the blending mask was correctly applied to avoid abrupt transitions in regions where the source and target images meet.
+
+# Takeaways and Insights
+
+This project taught me the power of gradient-domain processing in image manipulation and the importance of understanding the mathematical foundations behind advanced image processing techniques. Implementing Poisson blending deepened my knowledge of partial differential equations and matrix optimisation techniques. I also learned how to effectively use MATLAB’s sparse matrix capabilities, which proved critical for handling large image datasets and improving performance.

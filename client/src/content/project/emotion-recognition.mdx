@@ -7,3 +7,52 @@ builtW:
   - keras
 github: 'https://github.com/andreihar/emotion-recognition'
 ---
+
+# Project Overview
+
+Emotion Recognition is a deep learning project that utilises Convolutional Neural Networks to classify human facial emotions into seven distinct categories. This project is designed to be a quick-start solution for facial emotion classification.
+
+# Objective and Vision
+
+The goal of the Emotion Recognition project is to use advanced machine learning techniques to accurately classify and understand human emotions based on facial expressions. The project aims to create a robust tool for emotion detection, which can be applied in various fields such as human-computer interaction, psychological research, and more. By using a CNN architecture, the project focuses on high accuracy and efficiency in emotion classification.
+
+The ultimate vision is to provide a powerful, easy-to-use model that can be integrated into different applications, helping to improve user experience through better emotional understanding.
+
+# Tools and Technologies
+
+Emotion Recognition employs several technologies and tools:
+
+- **Keras**: A high-level neural networks API used to build and train the CNN model.
+- **NumPy**: A fundamental package for scientific computing with Python, used for handling arrays and numerical operations.
+- **scikit-learn**: A library for machine learning that provides various tools for data analysis and model evaluation.
+
+# Key Features
+
+## CNN Model
+
+The core feature of the Emotion Recognition project is the Convolutional Neural Network (CNN) model. This model is designed to classify facial images into one of seven emotion categories. The model architecture is built using Keras and includes pre-trained weights for quick deployment and testing.
+
+## Easy Testing
+
+The project includes pre-trained weights that allow users to test the model on their custom images without the need for additional training. This feature simplifies the process of evaluating the model’s performance on new data.
+
+## Detailed Documentation
+
+The project provides comprehensive documentation, including a detailed description of the CNN architecture, instructions for running the model, and information about the dataset used.
+
+# Challenges Faced and Solutions
+
+Developing the Emotion Recognition project came with its share of challenges. One significant issue was the dataset’s class imbalance, with some emotions being underrepresented. To address this, we adjusted our data split and used augmentation techniques to enrich the training set and improve model generalisation. Another major hurdle was overfitting. Initial models performed well on training data but faltered on validation data. We tackled this by implementing regularisation methods and experimenting with various architectures to enhance the model’s ability to generalise.
+
+Hyperparameter tuning was another area where we faced difficulties. Finding the right settings for learning rates, batch sizes, and regularisation took considerable time and experimentation. Despite our efforts, hitting the target benchmark of 82% accuracy proved elusive. This experience highlighted the complexity of emotion recognition and the need for ongoing refinement and optimisation.
+
+# Takeaways and Insights
+
+This project was a significant learning experience, particularly since it was my first time using Keras and tackling a multi-class classification task. I learned the importance of managing dataset imbalances and employing data augmentation to improve model performance. Navigating the intricacies of Keras for building and training the CNN model was a new challenge, but it provided a solid foundation in deep learning frameworks.
+
+Additionally, the project underscored the need for effective resource management. Working with limited computational power made it clear that balancing model complexity with available resources is crucial. These insights, combined with the experience of handling multi-class classification, have greatly shaped my approach to future machine learning projects, highlighting the importance of both technical skills and strategic planning.
+
+# Team and Contributions
+
+- [Andrei Harbachov](https://www.linkedin.com/in/andreihar/): Lead Developer
+- [Shane Eastwood](https://linkedin.com/in/shane-eastwood-3549479b/): Co-Developer

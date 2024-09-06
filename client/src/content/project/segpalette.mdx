@@ -10,3 +10,56 @@ builtW:
 github: 'https://github.com/andreihar/segpalette'
 video: '7FBLZdGhSWw'
 ---
+
+# Project Overview
+
+SegPalette is an image recolouring tool that allows users to apply customised colour palettes to specific objects in an image after performing instance segmentation. Utilising advanced models like the Segment Anything Model from Meta AI, SegPalette enables precise colour adjustments to isolated image regions, making it ideal for industries such as fashion design, interior decor, and digital art.
+
+# Objective and Vision
+
+The aim of SegPalette was to address the limitations of current recolouring tools by allowing segment-specific colour adjustments through an intuitive web interface. By focusing on individual objects in an image without altering the background, the project provides creative professionals with a powerful tool to experiment with colours, from selecting palettes via K-means clustering to using an instance segmentation model for boundary precision. While the recolouring feature wasn’t fully integrated into the web app, it was successfully demonstrated through MATLAB simulations.
+
+# Tools and Technologies
+
+SegPalette uses a mix of modern web and AI technologies, including:
+
+- **ReactJS**: Frontend framework to deliver a smooth and responsive user interface.
+- **Flask**: Backend framework handling requests, including image processing tasks.
+- **PyTorch**: Library for deep learning models used in the SAM model for segmentation.
+- **MATLAB**: Recolouring simulation for proof of concept when the web app integration encountered challenges.
+
+# Key Features
+
+## Instance Segmentation
+
+SegPalette performs instance segmentation with the SAM model from Meta AI, isolating objects within images for targeted recolouring. SAM is renowned for its precision, making it ideal for complex or cluttered scenes. Users can also upload segmentation data through COCO files, which are decoded into binary masks for colour modification.
+
+## Colour Palette Generation
+
+The tool utilises a K-means clustering algorithm to generate colour palettes for each segmented instance, creating six distinct clusters representing the object’s colours. This approach ensures users have diverse but manageable palettes to work with.
+
+## Recolouring
+
+SegPalette preserves the luminance of images while altering their chromaticity using the LAB colour space, ensuring realistic colour changes. The web app allows users to select and apply new colours to segmented objects without affecting the overall brightness and depth of the image.
+
+## Web Application
+
+The web app offers a user-friendly interface where users can perform real-time recolouring on segmented images. The app supports exporting final images and segmentation data in COCO format, facilitating collaboration and further editing.
+
+## MATLAB Recolouring
+
+Due to time constraints, the recolouring feature was not fully integrated into the web app. However, a proof of concept was implemented using MATLAB, where users can apply the palette and recolour segmented objects based on binary masks generated from the segmentation data.
+
+# Challenges Faced and Solutions
+
+SegPalette posed challenges, especially as one team member didn’t complete their portion of the web recolouring feature on time, which impacted the project’s functionality. Another significant challenge was the complexity of implementing image manipulation using Canvas in React, which was a new area for me. Despite these setbacks, I gained valuable experience working on the frontend, integrating AI-based models, and learned to manage unexpected project hurdles.
+
+# Takeaways and Insights
+
+Through working on SegPalette, I gained deeper knowledge in full-stack development, especially in building AI-integrated web applications. I learned the importance of clear communication in teamwork, especially when managing project timelines. Moreover, this project was my first time working extensively with Canvas for image manipulation in React, which significantly broadened my technical skillset.
+
+# Team and Contributions
+
+- [Brendan Bickford](https://github.com/BrenBick): Theoretical framework, MATLAB recolouring, palette generation.
+- [Andrei Harbachov](https://www.linkedin.com/in/andreihar/): Web app development (excluding palette generation and recolouring).
+- [Carolina Partida Bujanda](https://github.com/caropartida): Web app recolouring.

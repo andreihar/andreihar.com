@@ -8,3 +8,48 @@ builtW:
 github: 'https://github.com/andreihar/taibun'
 website: 'https://taibun.andreihar.com/'
 ---
+
+# Project Overview
+
+Taibun is a versatile library designed for transliterating and tokenising Taiwanese Hokkien. It provides a range of customisable options for converting Chinese characters into various transliteration systems and supports detailed text analysis for Taiwanese Hokkien. Whether you are working on AI projects or web applications, Taibun offers robust tools for handling Taiwanese Hokkien text with precision and flexibility.
+
+# Objective and Vision
+
+The primary goal of Taibun is to facilitate the accurate representation and processing of Taiwanese Hokkien text. This library aims to simplify the conversion of Chinese characters into multiple transliteration systems, handle complex sandhi rules, and support tokenisation of Hokkien sentences. By providing a comprehensive set of features for text transformation and analysis, Taibun seeks to support a variety of applications, from language research and educational tools to AI-based text processing and web integration.
+
+# Tools and Technologies
+
+Taibun has the following versions:
+
+- **Python**: The original implementation of Taibun, suitable for integration into Python-based projects.
+- **JavaScript**: A version for web-related projects, enabling seamless integration with JavaScript-based applications.
+
+# Key Features
+
+## Transliteration
+
+Taibun offers customisable transliteration of Chinese characters into various Taiwanese Hokkien systems. Users can select from multiple transliteration systems, such as Tailo, POJ, Zhuyin, TLPA, Pingyim, Tongiong, and IPA. The library provides options for adjusting parameters like tone format, delimiter, and sandhi rules to match specific requirements.
+
+## Tokenisation
+
+The library includes functionality for tokenising Taiwanese Hokkien text. It breaks down sentences into individual words or tokens, which is crucial for text analysis and natural language processing tasks.
+
+## Set Conversion
+
+Taibun supports the conversion between Simplified and Traditional Chinese characters, accommodating different writing systems and enhancing its utility for various applications.
+
+## Sandhi Handling
+
+Taibun incorporates multiple sandhi modes to handle the tonal changes that occur in Taiwanese Hokkien. Users can choose from different sandhi rules to suit their needs, ensuring accurate representation of spoken language nuances.
+
+# Challenges Faced and Solutions
+
+Developing Taibun presented several significant challenges, especially since it was my first extensive project outside of AI work using Python. I initially struggled with understanding Python’s broader capabilities beyond AI contexts. Managing a large dataset for tokenisation and romanisation was particularly challenging. To handle the complexity of mapping Simplified Chinese characters to multiple Traditional Chinese characters efficiently, I implemented dynamic programming. This approach allowed me to balance accuracy with performance, ensuring that the conversion process remained both precise and efficient.
+
+Another major challenge was integrating multiple Taiwanese Hokkien pronunciation systems, including North Taiwanese, South Taiwanese, and Singaporean variants. I tackled this by employing a Proxy pattern, which facilitated seamless integration and user flexibility. Tokenisation posed its own difficulties; I used dynamic programming to optimise this process, ensuring accurate and efficient splitting of sentences into tokens. Additionally, incorporating unittest into the development workflow significantly improved code quality and testing efficiency, helping to identify and resolve issues more effectively.
+
+# Takeaways and Insights
+
+Taibun was a transformative project that expanded my Python skills beyond AI-specific applications. I gained valuable insights into text processing and learned to leverage Python’s capabilities for a variety of tasks. Dynamic programming proved to be an essential tool for solving complex problems related to character conversion and tokenisation, highlighting its importance in balancing accuracy with performance.
+
+The project also underscored the significance of thorough testing and efficient data management. Using unittest streamlined the testing process and improved code reliability, while handling large datasets taught me about performance optimisation. Overall, Taibun enriched my development experience, providing a solid foundation for future projects and demonstrating the value of flexibility and precision in software design.

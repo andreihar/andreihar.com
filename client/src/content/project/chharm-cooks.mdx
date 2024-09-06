@@ -12,3 +12,90 @@ builtW:
 github: 'https://github.com/andreihar/chharm-cooks'
 website: 'https://chharmcooks.andreihar.com/'
 ---
+
+# Project Overview
+
+ChhármCooks is a React-based web application designed to facilitate the sharing and discovery of Hokkien cuisine recipes. It has a powerful backend and an intuitive frontend to create a dynamic space for culinary enthusiasts to explore and contribute to the rich tradition of Hokkien cooking.
+
+# Objective and Vision
+
+The objective was to create a comprehensive recipe-sharing platform that not only allows users to share and explore recipes but also to engage with Hokkien cuisine in a meaningful way. The vision was to provide a seamless user experience that combines robust functionality with an engaging interface, enabling users to celebrate and preserve Hokkien culinary traditions through interactive features.
+
+# Tools and Technologies
+
+ChhármCooks utilises several technologies to achieve its goals:
+
+- **React**: For building the frontend application.
+- **Auth0**: For user authentication and management.
+- **Bootstrap**: For responsive and modern UI design.
+- **Tiptap**: For integrating a rich-text editor to enhance blog-style recipe descriptions.
+- **Express**: For developing the backend API.
+- **PostgreSQL**: For database management and storing recipe data.
+
+# Key Features
+
+## Authentication
+
+Users can sign up and sign in using Auth0, with a multi-step signup process for enhanced profile customisation. Authentication ensures secure access to features like recipe creation and modification.
+
+## Filtering and Searching
+
+The platform offers robust filtering and search capabilities, allowing users to find recipes by name or filter by national and regional cuisines within Hokkien cooking.
+
+## Recipe Creation
+
+Users can create new recipes with an intuitive form that includes a real-time preview of images and flexible fields for ingredients and directions. The hierarchical cuisine selection helps users categorise recipes accurately.
+
+### Blog Creation
+
+Recipes can be enhanced with blog-style descriptions using an integrated text editor. This feature allows users to add rich content, such as cooking tips and cultural insights, to their recipes.
+
+## Recipe Showcase
+
+Recipes are showcased on the Home Page with detailed information, including popularity, creation, and modification dates. Only the authors of the recipes can delete their entries.
+
+### Recipe Edit
+
+Logged-in users who created a recipe can edit it, with all fields pre-populated for easy updates.
+
+### Recipe Card
+
+The Recipe Card provides essential details in a streamlined format, including an interactive ingredients list for efficient cooking.
+
+## Rating and Commenting
+
+Users can rate recipes from 1 to 5 stars and leave comments. The average rating is displayed on recipe cards for quick reference.
+
+## User Profile
+
+The User Profile feature allows users to follow others, view detailed profiles, and explore their recipes and connections.
+
+## Notifications
+
+Users receive notifications about new recipes and comments from their connections, keeping them engaged with recent activities.
+
+## Settings
+
+Users can manage their profile information, including profile picture, social media links, and personal details.
+
+## User Ranking
+
+A ranking system displays users based on the number of recipes they’ve created, along with the most common cuisine of their recipes.
+
+## Localisation
+
+The app supports English, Chinese, and Malay languages, allowing users to switch between them via a language selector.
+
+# Challenges Faced and Solutions
+
+Developing ChhármCooks presented several challenges, especially as it was the first web application where I developed both the frontend and backend. Integrating technologies such as React for the frontend and Express for the backend required careful synchronisation to ensure a seamless user experience. The initial challenge was managing user authentication and data integrity, especially given that I was using Auth0 for the first time.
+
+Another significant hurdle was the lack of a clear vision for the final project. This led to feature creep, where the project expanded beyond its original scope, resulting in additional complexity and development time. As I added features like localisation, a built-in text editor, and a mini-social media system, it became evident that planning and setting clear goals are crucial.
+
+To address these challenges, I focused on iterative development and thorough testing. Implementing features one at a time and testing them thoroughly helped to ensure that each component worked harmoniously with the others. This approach allowed me to manage the complexity and ensure a functional and cohesive application.
+
+# Takeaways and Insights
+
+ChhármCooks was a pivotal project in my web development journey, marking my first experience with full-stack development and React. It provided practical experience with Express and Node.js. This project also introduced me to new tools and concepts, such as localisation, Auth0 for authentication, and a Tiptap text editor for rich content creation.
+
+One of the key takeaways from this project was the importance of planning and having a clear vision for a project. The feature creep that occurred highlighted the need for setting defined goals and understanding the project’s scope from the beginning. This experience underscored the value of careful planning in avoiding unnecessary complexity and ensuring that development efforts align with the initial objectives.

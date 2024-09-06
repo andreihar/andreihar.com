@@ -7,3 +7,50 @@ builtW:
   - detectron2
 github: 'https://github.com/andreihar/plane-segmenter'
 ---
+
+# Project Overview
+
+Plane Segmenter is a deep learning project that focuses on detecting and segmenting planes in aerial images. By using advanced computer vision models such as Faster R-CNN and Mask R-CNN, the project aims to accurately identify planes in complex aerial landscapes. The project leverages deep learning techniques to handle large-scale image data and produce segmentation masks for each detected plane, contributing to advancements in aerial object detection.
+
+# Objective and Vision
+
+The main goal of the Plane Segmenter project is to develop an accurate system for detecting and segmenting planes in aerial imagery. This technology is crucial in fields like surveillance, air traffic management, and disaster relief, where understanding aerial images is vital. The project seeks to create a model capable of handling diverse and complex scenes while maintaining high accuracy in plane recognition and segmentation.
+
+# Tools and Technologies
+
+Plane Segmenter uses the following technologies to achieve its objectives:
+
+- **PyTorch**: A deep learning framework for building and training neural networks.
+- **Detectron2**: A powerful object detection and segmentation library, used for implementing models like Faster R-CNN and Mask R-CNN.
+- **iSAID Dataset**: A large-scale aerial imagery dataset adapted for training and evaluation.
+- **ResNet-101**: Backbone architecture used for feature extraction in object detection models.
+
+# Key Features
+
+## Object Detection
+
+Plane Segmenter incorporates object detection models to locate planes in aerial images. Using Faster R-CNN, it identifies bounding boxes around planes with high precision, optimising the model through tuning and experimentation to achieve better detection accuracy.
+
+## Instance Segmentation
+
+The project extends the object detection module by adding instance segmentation through Mask R-CNN. This allows the model to generate pixel-level masks for each detected plane, enabling detailed segmentation in complex scenes with overlapping objects.
+
+## Semantic Segmentation
+
+The project includes a semantic segmentation feature that classifies each pixel in an image as part of a plane or background, allowing for a broader understanding of the image. It focuses on ensuring accurate segmentation by optimising the model for challenging aerial environments.
+
+## Model Training and Evaluation
+
+The models used in the project are trained using the iSAID dataset, a well-known aerial imagery dataset. Training involves optimising the models to handle diverse terrains, lighting conditions, and object sizes while improving their ability to differentiate between planes and other objects in aerial scenes.
+
+# Challenges Faced and Solutions
+
+Working on Plane Segmenter was my first significant AI project, transitioning from simple predictions to complex object detection and segmentation. One of the key challenges was managing the intricacy of aerial images and the diverse appearances of planes. Ensuring that the model could accurately detect planes at various scales and orientations required substantial adjustments. To overcome this, I used a ResNet-101 backbone for improved feature extraction and fine-tuned hyperparameters to enhance performance.
+
+Additionally, generalising the model across different environments, such as urban and rural areas, posed another challenge. Rigorous testing and extensive data augmentation were essential to improve the model’s robustness. The process involved long training sessions and iterative fine-tuning of model configurations and hyperparameters to achieve optimal results.
+
+# Takeaways and Insights
+
+This project marked my first foray into more advanced AI work, moving beyond simple predictions to tackle real-world computer vision problems. It was also my initial experience using Python for AI, introducing me to powerful libraries like Detectron2 and PyTorch. The project deepened my understanding of machine learning and computer vision, particularly in handling large-scale datasets and complex models.
+
+The lengthy and meticulous process of training and fine-tuning the model taught me valuable lessons about the importance of optimisation and the practical challenges of working with high-resolution images. This project served as a gateway into the field of AI, significantly expanding my knowledge of mathematical and algorithmic tools essential for developing sophisticated AI systems.
