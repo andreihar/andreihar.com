@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
+import { useState, useEffect, createContext, useContext, ReactNode, CSSProperties } from 'react';
 import { HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
 import useMeta from '@/hooks/useMeta';
 
@@ -39,13 +39,14 @@ const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children,
       setViews(stats.views);
       setLikes(stats.likes);
     };
-
     fetchData();
 
-    const viewKey = `${type}-${id}-viewed`;
-    if (!localStorage.getItem(viewKey)) {
-      updateView(type, id);
-      localStorage.setItem(viewKey, 'true');
+    if (typeof window !== 'undefined') {
+      const viewKey = `${type}-${id}-viewed`;
+      if (!localStorage.getItem(viewKey)) {
+        updateView(type, id);
+        localStorage.setItem(viewKey, 'true');
+      }
     }
   }, [type, id, getStats, updateView]);
 
@@ -58,8 +59,9 @@ const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children,
 
 const ViewsAndLikesCounters: React.FC = () => {
   const { views, likes } = useViewsAndLikes();
-
-  const formatCount = (count: number, singular: string, plural: string) => `${count} ${count === 1 ? singular : plural}`;
+  const formatCount = (count: number, singular: string, plural: string) => {
+    return `${new Intl.NumberFormat().format(count)} ${count === 1 ? singular : plural}`;
+  };
 
   return (
     <>
@@ -79,25 +81,41 @@ const ViewsAndLikesCounters: React.FC = () => {
 const LikeButton: React.FC = () => {
   const { setLikes, type, id } = useViewsAndLikes();
   const { updateLike } = useMeta();
+  const [fillPercentage, setFillPercentage] = useState(0);
+  const likeKey = `${type}-${id}-likes`;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userLikes = parseInt(localStorage.getItem(likeKey) || '0', 10);
+      setFillPercentage((userLikes / 5) * 100);
+    }
+  }, [type, id]);
 
   const handleLike = async () => {
-    const likeKey = `${type}-${id}-likes`;
-    const currentLikes = parseInt(localStorage.getItem(likeKey) || '0', 10);
-    if (currentLikes < 5) {
-      const updatedStats = await updateLike(type, id);
-      setLikes(updatedStats.likes);
-      localStorage.setItem(likeKey, (currentLikes + 1).toString());
+    if (typeof window !== 'undefined') {
+      const currentLikes = parseInt(localStorage.getItem(likeKey) || '0', 10);
+      if (currentLikes < 5) {
+        const updatedStats = await updateLike(type, id);
+        setLikes(updatedStats.likes);
+        localStorage.setItem(likeKey, (currentLikes + 1).toString());
+        setFillPercentage(((currentLikes + 1) / 5) * 100);
+      }
     }
   };
 
+  const buttonStyle: CSSProperties = {
+    '--fill-percentage': `${fillPercentage}%`,
+  } as CSSProperties;
+
   return (
-    <button onClick={handleLike} className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-neutral-950 dark:bg-neutral-200 font-medium text-neutral-200 dark:text-neutral-800 transition-all duration-300 hover:w-32 active:bg-neutral-600 dark:active:bg-neutral-400">
-      <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100">
+    <button onClick={handleLike} className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-neutral-950 dark:bg-neutral-200 font-medium text-neutral-200 dark:text-neutral-800 transition-all duration-300 hover:w-32 active:bg-neutral-600 dark:active:bg-neutral-400" style={buttonStyle}>
+      <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100 z-10">
         I like it!
       </div>
-      <div className="absolute right-3.5">
+      <div className="absolute right-3.5 z-10">
         <HiOutlineThumbUp className="h-5 w-5 transition-transform duration-300 group-active:scale-125 group-active:rotate-12" />
       </div>
+      <div className="absolute inset-0 bg-primary transition-all duration-300 bottom-0 pointer-events-none z-0" style={{ height: 'var(--fill-percentage)' }}></div>
     </button>
   );
 };

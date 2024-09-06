@@ -1,29 +1,31 @@
 import { getPostBySlug } from '@/lib/mdx';
-import { HiOutlineClock } from 'react-icons/hi';
+import { HiOutlineUser, HiLink } from 'react-icons/hi';
+import { SiGithub } from 'react-icons/si';
 import { ViewsAndLikesProvider, ViewsAndLikesCounters, LikeButton } from '@/components/ViewsAndLikes';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import MDXComponents from '@/components/MDXComponents';
 import TableOfContents from '@/components/TableOfContents';
+import TechIcons from '@/components/TechIcons';
 import StorageImg from '@/components/StorageImg';
 
 const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
-  const { meta, source } = await getPostBySlug(params.id ?? '', 'blog');
-  const { id, title, description, published, time, tags } = meta;
+  const { meta, source } = await getPostBySlug(params.id ?? '', 'project');
+  const { id, title, description, published, team, builtW, github, website, video } = meta;
 
   return (
-    <ViewsAndLikesProvider type="blog" id={id}>
+    <ViewsAndLikesProvider type="project" id={id}>
       <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, id: 'theodorusclarence/projects/hexcape/hexcape-banner_xdulxw', width: 1000, alt: 'Banner' })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
-            <p className="text-sm text-gray-400">{tags?.join(', ')}</p>
+            {builtW && <TechIcons technologies={builtW} className="text-3xl text-gray-300" />}
             <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
             <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
             <p className="text-sm text-gray-300 flex flex-wrap items-center">
-              {time && (
+              {team && (
                 <span className="inline-flex items-center gap-1">
-                  <HiOutlineClock className="inline-block text-base" />
-                  {`${time} min`}
+                  <HiOutlineUser className="inline-block text-base" />
+                  {team === 1 ? 'Personal Project' : `${team} people`}
                   <span className="mx-2">━</span>
                 </span>
               )}
@@ -37,8 +39,15 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
           <p className="text-base text-gray-500 dark:text-gray-400">
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
             <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
-            <strong>by Andrei Harbachov</strong>
-            <strong></strong>
+            <a href={github} className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
+              <SiGithub className="inline-block text-base align-middle" />
+              <span className="align-middle">Repository</span>
+            </a>
+            <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
+            <a href={website} className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
+              <HiLink className="inline-block text-base align-middle" />
+              <span className="align-middle">Live Demo</span>
+            </a>
           </p>
           <LikeButton />
         </div>
@@ -54,9 +63,9 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
           </aside>
         </main>
         <div>
-          {tags && tags.length > 0 && (
+          {builtW && builtW.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {tags.map((tag, index) => (
+              {builtW.map((tag, index) => (
                 <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
               ))}
             </div>

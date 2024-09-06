@@ -7,16 +7,18 @@ const rootDirectory = path.join(process.cwd(), 'src', 'content');
 
 export const getPostBySlug = async (id: string, type: string) => {
 	id = id.replace(/\.mdx$/, '');
-	const filePath = path.join(rootDirectory, type, `${id}.mdx`);
-	const fileContent = fs.readFileSync(filePath, { encoding: 'utf8' });
+	const fileContent = fs.readFileSync(path.join(rootDirectory, type, `${id}.mdx`), { encoding: 'utf8' });
 
 	const { frontmatter } = await compileMDX<Blog>({
 		source: fileContent,
 		options: { parseFrontmatter: true }
 	});
-	const contentWithoutFrontmatter = fileContent.replace(/^---[\s\S]*?---/, '').trim();
-	const meta: Blog = { ...frontmatter, id: id, published: new Date(frontmatter.published) };
-	return { meta, source: contentWithoutFrontmatter };
+	let content = fileContent.replace(/^---[\s\S]*?---/, '').trim();
+	const meta: Blog = { ...frontmatter, id, published: new Date(frontmatter.published) };
+	if (frontmatter.video) {
+		content = `# Video Demo\n\n<YouTubeEmbed video="${frontmatter.video}" />\n\n${content}`;
+	}
+	return { meta, source: content };
 };
 
 export const getAllPostsMeta = async (type: string) => {

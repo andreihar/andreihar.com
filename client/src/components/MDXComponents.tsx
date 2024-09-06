@@ -5,8 +5,23 @@ const generateId = (text: string): string => {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 };
 
+const YouTubeEmbed: React.FC<{ video: string; }> = ({ video }) => {
+  return (
+    <div className="relative pt-[56.25%] mb-8">
+      <iframe
+        src={`https://www.youtube.com/embed/${video}?showinfo=0&rel=0`}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        className="absolute top-0 left-0 w-full h-full"
+        allowFullScreen
+      />
+    </div>
+  );
+};
+
 const MDXComponents = {
   StorageImg,
+  YouTubeEmbed,
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
     return <h1 id={generateId(props.children as string)} className="text-4xl font-bold py-3" {...props} />;
   },
