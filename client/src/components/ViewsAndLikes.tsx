@@ -57,25 +57,18 @@ const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children,
   );
 };
 
-const ViewsAndLikesCounters: React.FC = () => {
-  const { views, likes } = useViewsAndLikes();
-  const formatCount = (count: number, singular: string, plural: string) => {
-    return `${new Intl.NumberFormat().format(count)} ${count === 1 ? singular : plural}`;
-  };
+const formatCount = (count: number, singular: string, plural: string) => {
+  return `${new Intl.NumberFormat().format(count)} ${count === 1 ? singular : plural}`;
+};
 
-  return (
-    <>
-      <span className="inline-flex items-center gap-1">
-        <HiOutlineEye className="inline-block text-base" />
-        {formatCount(views, 'view', 'views')}
-      </span>
-      <span className="mx-2">━</span>
-      <span className="inline-flex items-center gap-1">
-        <HiOutlineThumbUp className="inline-block text-base" />
-        {formatCount(likes, 'like', 'likes')}
-      </span>
-    </>
-  );
+const ViewsCounter: React.FC = () => {
+  const { views } = useViewsAndLikes();
+  return formatCount(views, 'view', 'views');
+};
+
+const LikesCounter: React.FC = () => {
+  const { likes } = useViewsAndLikes();
+  return formatCount(likes, 'like', 'likes');
 };
 
 const LikeButton: React.FC = () => {
@@ -120,4 +113,4 @@ const LikeButton: React.FC = () => {
   );
 };
 
-export { ViewsAndLikesProvider, ViewsAndLikesCounters, LikeButton };
+export { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton };

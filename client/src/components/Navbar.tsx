@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Logo from './Logo';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import ThemeSwitch from './ThemeSwitch';
@@ -52,9 +53,9 @@ export default function Navbar() {
       <div className="h-full">
         <div className="flex items-center justify-between w-full h-full max-w-[1300px] px-2.5 mx-auto">
           <div className="flex items-center h-full">
-            <a>
-              <h1 className={`${textColorClass} transition-colors duration-300 ease-in-out`}><span>A</span>ndrei <span>H</span>arbachov</h1>
-            </a>
+            <Link href='/' className={`text-base font-medium tracking-widest no-underline ${textColorClass} uppercase p-5 block hover:text-primary transition-colors duration-300 ease-in-out`}>
+              <Logo height={60} />
+            </Link>
           </div>
           <div className="flex items-center h-full">
             {/* Desktop Menu */}

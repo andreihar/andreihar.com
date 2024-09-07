@@ -1,7 +1,8 @@
 import { getPostBySlug } from '@/lib/mdx';
-import { HiOutlineClock } from 'react-icons/hi';
-import { ViewsAndLikesProvider, ViewsAndLikesCounters, LikeButton } from '@/components/ViewsAndLikes';
+import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
+import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/ViewsAndLikes';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import Layout from '@/components/Layout';
 import MDXComponents from '@/components/MDXComponents';
 import TableOfContents from '@/components/TableOfContents';
 import StorageImg from '@/components/StorageImg';
@@ -13,7 +14,7 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
   return (
     <ViewsAndLikesProvider type="blog" id={id}>
       <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, blog: true, id: `${id}/banner`, alt: `Banner of ${title}` })})` }}>
-        <div className="absolute inset-0 bg-black bg-opacity-80"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
             <p className="text-sm text-gray-400">{tags?.join(', ')}</p>
@@ -27,12 +28,20 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
                   <span className="mx-2">━</span>
                 </span>
               )}
-              <ViewsAndLikesCounters />
+              <span className="inline-flex items-center gap-1">
+                <HiOutlineEye className="inline-block text-base" />
+                <ViewsCounter />
+              </span>
+              <span className="mx-2">━</span>
+              <span className="inline-flex items-center gap-1">
+                <HiOutlineThumbUp className="inline-block text-base" />
+                <LikesCounter />
+              </span>
             </p>
           </div>
         </div>
       </div>
-      <section className="max-w-[1100px] px-4 mx-auto my-16 transition-colors">
+      <Layout>
         <div className="my-5 flex justify-between items-center">
           <p className="text-base text-gray-500 dark:text-gray-400">
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
@@ -62,7 +71,7 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
             </div>
           )}
         </div>
-      </section>
+      </Layout>
     </ViewsAndLikesProvider>
   );
 };

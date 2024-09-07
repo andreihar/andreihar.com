@@ -23,7 +23,7 @@ const iconMapping: { [key: string]: IconType; } = {
   react: SiReact,
 };
 
-const TechIcons: React.FC<{ technologies: string[]; className?: string; }> = ({ technologies, className }) => {
+const TechIcons: React.FC<{ technologies: string[]; showTooltip?: boolean; className?: string; }> = ({ technologies, showTooltip, className }) => {
   return (
     <div className={`flex flex-wrap gap-2 ${className ?? ''}`}>
       {technologies.map((tech) => {
@@ -31,9 +31,11 @@ const TechIcons: React.FC<{ technologies: string[]; className?: string; }> = ({ 
         return (
           <div key={tech} className="relative group">
             <IconComponent />
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-black dark:bg-white text-white dark:text-black text-sm rounded py-1 px-2">
-              {tech}
-            </div>
+            {showTooltip && (
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2 mb-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600 z-20">
+                {tech}
+              </div>
+            )}
           </div>
         );
       })}
