@@ -23,10 +23,10 @@ export const getPostBySlug = async (id: string, type: string) => {
 
 export const getAllPostsMeta = async (type: string) => {
 	const files = fs.readdirSync(path.join(rootDirectory, type));
-
 	const posts = await Promise.all(
 		files.map(file => getPostBySlug(file, type).then(({ meta }) => meta))
 	);
 
+	posts.sort((a, b) => b.published.getTime() - a.published.getTime());
 	return posts;
 };
