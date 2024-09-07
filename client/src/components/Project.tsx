@@ -15,9 +15,9 @@ const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {
           {builtW && <TechIcons technologies={builtW} />}
         </div>
         <div className="relative p-4 flex flex-col justify-end h-full">
-          <h2 className="block text-lg font-semibold leading-tight transition-transform duration-300 ease-in-out group-hover:-translate-y-12">
+          <h1 className="block text-lg font-semibold leading-tight transition-transform duration-300 ease-in-out group-hover:-translate-y-12">
             {title}
-          </h2>
+          </h1>
           <div className="absolute bottom-0 left-0 right-0 p-4 transition-transform duration-300 ease-in-out transform translate-y-full group-hover:translate-y-0">
             <p className="text-sm opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
               {description}

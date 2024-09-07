@@ -49,7 +49,7 @@ export default function Navbar() {
   const textColorClass = header && !isScrolled ? 'text-white dark:text-white' : 'text-base';
 
   return (
-    <nav className={`fixed z-50 left-0 top-0 w-screen h-16 ${header ? (isScrolled ? 'bg-white dark:bg-dark' : 'bg-transparent') : 'bg-white dark:bg-dark'} transition-all duration-300 ease-in-out`}>
+    <nav className={`fixed z-50 left-0 top-0 w-screen h-16 ${header ? (isScrolled ? 'bg-white shadow-md dark:bg-dark' : 'bg-transparent') : 'bg-white shadow-md dark:bg-dark'} transition-all duration-300 ease-in-out`}>
       <div className="h-full">
         <div className="flex items-center justify-between w-full h-full max-w-[1300px] px-2.5 mx-auto">
           <div className="flex items-center h-full">

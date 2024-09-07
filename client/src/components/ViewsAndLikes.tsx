@@ -10,6 +10,7 @@ interface ViewsAndLikesContextProps {
   setLikes: React.Dispatch<React.SetStateAction<number>>;
   type: string;
   id: string;
+  showWords?: boolean;
 }
 
 const ViewsAndLikesContext = createContext<ViewsAndLikesContextProps | null>(null);
@@ -26,9 +27,10 @@ interface ViewsAndLikesProviderProps {
   children: ReactNode;
   type: string;
   id: string;
+  showWords?: boolean;
 }
 
-const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children, type, id }) => {
+const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children, type, id, showWords }) => {
   const [views, setViews] = useState(0);
   const [likes, setLikes] = useState(0);
   const { getStats, updateView } = useMeta();
@@ -51,7 +53,7 @@ const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children,
   }, [type, id, getStats, updateView]);
 
   return (
-    <ViewsAndLikesContext.Provider value={{ views, likes, setLikes, type, id }}>
+    <ViewsAndLikesContext.Provider value={{ views, likes, setLikes, type, id, showWords }}>
       {children}
     </ViewsAndLikesContext.Provider>
   );
@@ -62,13 +64,13 @@ const formatCount = (count: number, singular: string, plural: string) => {
 };
 
 const ViewsCounter: React.FC = () => {
-  const { views } = useViewsAndLikes();
-  return formatCount(views, 'view', 'views');
+  const { views, showWords } = useViewsAndLikes();
+  return showWords ? formatCount(views, 'view', 'views') : new Intl.NumberFormat().format(views);
 };
 
 const LikesCounter: React.FC = () => {
-  const { likes } = useViewsAndLikes();
-  return formatCount(likes, 'like', 'likes');
+  const { likes, showWords } = useViewsAndLikes();
+  return showWords ? formatCount(likes, 'like', 'likes') : new Intl.NumberFormat().format(likes);
 };
 
 const LikeButton: React.FC = () => {
