@@ -5,15 +5,21 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Layout from '@/components/Layout';
 import MDXComponents from '@/components/MDXComponents';
 import TableOfContents from '@/components/TableOfContents';
-import StorageImg from '@/components/StorageImg';
+import { generateStorageImgUrl } from '@/components/StorageImg';
+import { generateMetadata as generateSEO } from '@/components/SEO';
+
+export async function generateMetadata({ params }: { params: { id: string; }; }) {
+  const { meta } = await getPostBySlug(params.id ?? '', 'blog');
+  return generateSEO({ title: meta.title, description: meta.description, images: [generateStorageImgUrl({ header: true, blog: true, id: `${meta.id}/banner` })], url: `blog/${meta.id}`, section: 'Blog', tags: meta.tags, published: meta.published });
+}
 
 const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
   const { meta, source } = await getPostBySlug(params.id ?? '', 'blog');
   const { id, title, description, published, time, tags } = meta;
 
   return (
-    <ViewsAndLikesProvider type="blog" id={id}>
-      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${StorageImg({ header: true, blog: true, id: `${id}/banner`, alt: `Banner of ${title}` })})` }}>
+    <ViewsAndLikesProvider type="blog" id={id} showWords>
+      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: true, id: `${id}/banner` })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
@@ -47,7 +53,6 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
             <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
             <strong>by Andrei Harbachov</strong>
-            <strong></strong>
           </p>
           <LikeButton />
         </div>

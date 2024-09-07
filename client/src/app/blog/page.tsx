@@ -1,42 +1,31 @@
+import { getAllPostsMeta } from '@/lib/mdx';
 import Layout from '@/components/Layout';
-import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineSearch, HiOutlineChevronDown } from 'react-icons/hi';
+import Blog from '@/components/Blog';
+import { generateStorageImgUrl } from '@/components/StorageImg';
+import { generateMetadata as generateSEO } from '@/components/SEO';
 
-const Page = () => {
+export async function generateMetadata() {
+  const metas = await getAllPostsMeta('blog');
+  return generateSEO({ title: 'Blog', description: 'A collection of musings and reflections', images: [generateStorageImgUrl({ header: true, blog: true, id: `${metas[0].id}/banner` })], url: 'blog', section: 'Blog', tags: metas[0].tags });
+}
+
+const Blogs = async () => {
+  const metas = await getAllPostsMeta('blog');
   return (
-    <Layout>
-      <h1 className="text-2xl font-bold mb-6">Blogs</h1>
+    <Layout className='my-20 pt-14'>
+      <div className="flex flex-col items-center pb-10">
+        <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
+          Blog
+        </h1>
+        <p className="text-center text-xl text-base">A collection of musings and reflections</p>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-xl shadow-md overflow-hidden">
-          <div className="relative">
-            <img alt="Artificial Intelligence in Education: Enhancing Learning Experiences" src="https://api-prod-minimal-v610.pages.dev/assets/images/cover/cover-16.webp" className="w-full h-48 object-cover" />
-          </div>
-          <div className="relative p-4">
-            <div className="relative">
-              <img alt="Andrei Harbachov" src="https://avatars.githubusercontent.com/u/95883512?v=4" className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
-            </div>
-            <div className="text-xs text-gray-500 mt-6 mb-4">03 Aug 2024</div>
-            <a href="/post/artificial-intelligence-in-education-enhancing-learning-experiences" className="block text-sm font-semibold leading-tight text-gray-900 hover:underline line-clamp-2">
-              Artificial Intelligence in Education: Enhancing Learning Experiences
-            </a>
-            <div className="flex justify-end gap-4 mt-6 text-gray-500">
-              <div className="flex items-center">
-                <HiOutlineClock className="w-5 h-5" />
-                <span className="ml-1 text-xs">2.41k</span>
-              </div>
-              <div className="flex items-center">
-                <HiOutlineEye className="w-5 h-5" />
-                <span className="ml-1 text-xs">3.95k</span>
-              </div>
-              <div className="flex items-center">
-                <HiOutlineThumbUp className="w-5 h-5" />
-                <span className="ml-1 text-xs">3.13k</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        {metas.map((meta) => (
+          <Blog key={meta.id} meta={meta} />
+        ))}
       </div>
     </Layout>
   );
 };
 
-export default Page;
+export default Blogs;
