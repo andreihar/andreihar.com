@@ -1,7 +1,6 @@
 'use client';
-
 import { useState, useEffect, createContext, useContext, ReactNode, CSSProperties } from 'react';
-import { HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
+import { HiOutlineThumbUp } from 'react-icons/hi';
 import useMeta from '@/hooks/useMeta';
 
 interface ViewsAndLikesContextProps {
@@ -23,14 +22,7 @@ const useViewsAndLikes = () => {
   return context;
 };
 
-interface ViewsAndLikesProviderProps {
-  children: ReactNode;
-  type: string;
-  id: string;
-  showWords?: boolean;
-}
-
-const ViewsAndLikesProvider: React.FC<ViewsAndLikesProviderProps> = ({ children, type, id, showWords }) => {
+const ViewsAndLikesProvider: React.FC<{ children: ReactNode; type: string; id: string; showWords?: boolean; }> = ({ children, type, id, showWords }) => {
   const [views, setViews] = useState(0);
   const [likes, setLikes] = useState(0);
   const { getStats, updateView } = useMeta();

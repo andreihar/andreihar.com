@@ -101,12 +101,12 @@ export default function About() {
               reprehenderit libero enim!
             </p>
             <div className="text-center md:text-left">
-              <Button type='a' text="Download Resume" href="#" size="text-lg px-8 py-4" mobileSize="text-base px-6 py-3" />
+              <Button type='a' text="Download Resume" href="#" size="text-lg px-8 py-4" />
             </div>
           </div>
           <div className="w-64 h-90 mx-auto md:mx-0">
             <div className="about-img relative w-full h-full border-10 border-white">
-              <img src="./studying.jpg" alt="Studying Hard" className="w-full h-full object-cover" />
+              <img src="./img/studying.jpg" alt="Studying Hard" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

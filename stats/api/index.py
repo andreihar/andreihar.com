@@ -3,7 +3,7 @@ from flask_cors import CORS
 import json, os
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 def load_data():
     if os.path.exists('backup.json'):

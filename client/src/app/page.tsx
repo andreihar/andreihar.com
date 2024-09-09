@@ -5,6 +5,7 @@ import RotatingText from '@/components/widgets/RotatingText';
 import { getAllPostsMeta } from '@/lib/mdx';
 import Project from '@/components/content/Project';
 import Blog from '@/components/content/Blog';
+import Contact from '@/components/layout/Contact';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Home = async () => {
@@ -34,7 +35,7 @@ const Home = async () => {
                 <FaGithub className="inline-block align-middle" />
                 <span className="align-middle">andreihar</span>
               </a>
-              <a href='https://linkedin.com/in/andreihar' target="_blank" rel="noopener noreferrer" className="ml-2 inline-flex items-center gap-1 align-middle underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+              <a href='https://linkedin.com/in/andreihar' target="_blank" rel="noopener noreferrer" className="ml-4 inline-flex items-center gap-1 align-middle underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                 <FaLinkedin className="inline-block align-middle" />
                 <span className="align-middle">andreihar</span>
               </a>
@@ -42,18 +43,20 @@ const Home = async () => {
           </Anim>
           <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
             <div className="text-center md:text-left">
-              <Button text="Resume" size="text-xl px-10 py-4" mobileSize="text-md" />
+              <Button text="Resume" size="text-xl px-10 py-4" />
             </div>
           </Anim>
-          <a id="scroll-btn" href="#about" className="absolute h-14 w-8 border-2 border-white m-auto left-0 right-0 bottom-8 rounded-full"></a>
+          <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }}>
+            <a id="scroll-btn" href="#intro" className="absolute h-14 w-8 border-2 border-white m-auto left-0 right-0 bottom-8 rounded-full"></a>
+          </Anim>
         </Layout>
       </div>
       <Layout className="my-20 pt-14">
-        <div className="flex flex-col items-center pb-10">
-          <h1 id="about" className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
+        <div id="intro" className="flex flex-col items-center pb-10">
+          {/* <h1 id="about" className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             Blog
           </h1>
-          <p className="text-center text-xl text-base">A collection of musings and reflections</p>
+          <p className="text-center text-xl text-base">A collection of musings and reflections</p> */}
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <div className="w-full md:max-w-lg mb-10 md:mb-0">
@@ -63,12 +66,12 @@ const Home = async () => {
               Expedita sint ad dolore, commodi labore nihil velit earum ducimus nulla quae nostrum fugit aut, deserunt
               reprehenderit libero enim!</p>
             <div className="text-center md:text-left">
-              <Button type='link' text="About Me" href="/about" size="text-lg px-8 py-4" mobileSize="text-base px-6 py-3" />
+              <Button type='link' text="About Me" href="/about" size="text-lg px-8 py-4" />
             </div>
           </div>
           <div className="col-left w-64 h-90 mx-auto md:mx-0">
             <div className="about-img relative w-full h-full border-10 border-white">
-              <img src="./about.jpg" alt="img" className="w-full h-full object-cover" />
+              <img src="./img/about.jpg" alt="img" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -86,7 +89,7 @@ const Home = async () => {
           ))}
         </div>
         <div className="flex justify-center mt-6">
-          <Button type='link' text="View All Projects" href="/project" size="text-lg px-8 py-4" mobileSize="text-base px-6 py-3" />
+          <Button type='link' text="View All Projects" href="/project" size="text-lg px-8 py-4" />
         </div>
       </Layout>
       <Layout className='my-20 pt-14'>
@@ -101,9 +104,10 @@ const Home = async () => {
           ))}
         </div>
         <div className="flex justify-center mt-6">
-          <Button type='link' text="View All Posts" href="/blog" size="text-lg px-8 py-4" mobileSize="text-base px-6 py-3" />
+          <Button type='link' text="View All Posts" href="/blog" size="text-lg px-8 py-4" />
         </div>
       </Layout>
+      <Contact />
     </main>
   );
 };

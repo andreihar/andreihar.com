@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Anim from '@/components/Anim';
 
 const words = [" Full-Stack Dev", "n AI Scientist", " Programmer"];

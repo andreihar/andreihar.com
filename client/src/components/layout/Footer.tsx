@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope } from 'react-icons/fa';
 
 const socialMediaLinks = [
@@ -24,7 +23,6 @@ export default function Footer() {
           ))}
         </div>
       </div>
-
       <div className="w-full p-4 text-center">© Andrei Harbachov, {displayYear}</div>
     </footer>
   );

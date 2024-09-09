@@ -1,5 +1,3 @@
-import React from 'react';
-
 type StorageImgType = {
   id: string;
   blog?: boolean;
@@ -9,7 +7,6 @@ type StorageImgType = {
   className?: string;
 } & React.ComponentPropsWithoutRef<'figure'>;
 
-// Utility function to generate the image URL
 export const generateStorageImgUrl = ({ id, blog, header }: { id: string; blog?: boolean; header?: boolean; }): string => {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
   let imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload`;
