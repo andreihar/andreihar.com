@@ -1,11 +1,11 @@
 import { getPostBySlug } from '@/lib/mdx';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
-import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/ViewsAndLikes';
+import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/widgets/ViewsAndLikes';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import Layout from '@/components/Layout';
-import MDXComponents from '@/components/MDXComponents';
-import TableOfContents from '@/components/TableOfContents';
-import { generateStorageImgUrl } from '@/components/StorageImg';
+import Layout from '@/components/layout/Layout';
+import MDXComponents from '@/components/content/MDXComponents';
+import TableOfContents from '@/components/content/TableOfContents';
+import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 
 export async function generateMetadata({ params }: { params: { id: string; }; }) {

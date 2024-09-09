@@ -1,9 +1,9 @@
 'use client';
 import Link from 'next/link';
-import Logo from './Logo';
+import Logo from '../Logo';
 import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import ThemeSwitch from './ThemeSwitch';
+import ThemeSwitch from '../ThemeSwitch';
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);

@@ -1,10 +1,10 @@
 import Button from '@/components/Button';
-import Layout from '@/components/Layout';
+import Layout from '@/components/layout/Layout';
 import Anim from '@/components/Anim';
-import RotatingText from '@/components/RotatingText';
+import RotatingText from '@/components/widgets/RotatingText';
 import { getAllPostsMeta } from '@/lib/mdx';
-import Project from '@/components/Project';
-import Blog from '@/components/Blog';
+import Project from '@/components/content/Project';
+import Blog from '@/components/content/Blog';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Home = async () => {

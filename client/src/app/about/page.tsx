@@ -1,5 +1,5 @@
 import Button from '@/components/Button';
-import Layout from '@/components/Layout';
+import Layout from '@/components/layout/Layout';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
 import { FaJava, FaPen } from 'react-icons/fa';
 
@@ -118,13 +118,13 @@ export default function About() {
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([category, technologies]) => (
-            <div key={category}>
+            <div key={category} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-4 capitalize">
                 {category.includes('_') ? category.replace('_', ' & ').toUpperCase() : category}
               </h2>
               <div className="space-y-4">
                 {technologies.map((tech) => (
-                  <div key={tech.name} className="flex items-center space-x-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div key={tech.name} className="flex items-center space-x-4">
                     <tech.icon className="text-4xl text-primary" />
                     <span className="text-xl font-semibold">{tech.name}</span>
                   </div>

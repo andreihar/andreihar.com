@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement } from 'react';
-import StorageImg from './StorageImg';
+import StorageImg from '@/components/widgets/StorageImg';
 
 const generateId = (text: string): string => {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');

@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import TechIcons from './TechIcons';
-import StorageImg from '@/components/StorageImg';
+import TechIcons from '@/components/widgets/TechIcons';
+import StorageImg from '@/components/widgets/StorageImg';
 import { Blog } from '@/types/blog';
 
 const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {

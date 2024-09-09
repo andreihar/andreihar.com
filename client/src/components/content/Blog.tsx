@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { ViewsAndLikesProvider, ViewsCounter, LikesCounter } from '@/components/ViewsAndLikes';
+import { ViewsAndLikesProvider, ViewsCounter, LikesCounter } from '@/components/widgets/ViewsAndLikes';
 import { Blog } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
-import { generateStorageImgUrl } from '@/components/StorageImg';
+import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 
 const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {
   const { id, title, description, tags, time, published } = meta;

@@ -86,14 +86,15 @@ const LikeButton: React.FC = () => {
     }
   }, [type, id]);
 
-  const handleLike = async () => {
+  const handleLike = () => {
     if (typeof window !== 'undefined') {
       const currentLikes = parseInt(localStorage.getItem(likeKey) || '0', 10);
       if (currentLikes < 5) {
-        await updateLike(type, id);
-        setLikes(likes + 1);
-        localStorage.setItem(likeKey, (currentLikes + 1).toString());
-        setFillPercentage(((currentLikes + 1) / 5) * 100);
+        updateLike(type, id).then(() => {
+          setLikes(likes + 1);
+          localStorage.setItem(likeKey, (currentLikes + 1).toString());
+          setFillPercentage(((currentLikes + 1) / 5) * 100);
+        });
       }
     }
   };

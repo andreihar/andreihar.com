@@ -1,7 +1,7 @@
 import { getAllPostsMeta } from '@/lib/mdx';
-import Layout from '@/components/Layout';
-import Project from '@/components/Project';
-import { generateStorageImgUrl } from '@/components/StorageImg';
+import Layout from '@/components/layout/Layout';
+import Project from '@/components/content/Project';
+import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 
 export async function generateMetadata() {
