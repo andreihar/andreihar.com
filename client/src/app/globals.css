@@ -21,24 +21,6 @@ html {
   scroll-padding-top: 100px;
 }
 
-
-
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-} */
-
 .underline-slide {
   position: relative;
 }
@@ -63,40 +45,78 @@ html {
 
 /* Button */
 .button::after {
-	content: "";
-	position: absolute;
-	background-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
-	left: 0;
-	top: 0;
-	z-index: -1;
-	transition: all cubic-bezier(0.19, 1, 0.22, 1) .6s;
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) .6s;
   height: 410%;
-	width: 150%;
-	transform: translate(-98%, -25%) rotate(45deg);
+  width: 150%;
+  transform: translate(-98%, -25%) rotate(45deg);
 }
 
 .button {
-	border-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
-	border-image-slice: 1;
+  border-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
+  border-image-slice: 1;
   background-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
   background-clip: text;
 }
 
 .button:hover::after {
-	transform: translate(-9%, -25%) rotate(45deg);
+  transform: translate(-9%, -25%) rotate(45deg);
 }
 
 /* About Section */
 .about-img::after {
-	content: '';
-	position: absolute;
-	left: -20px;
-	top: 25px;
-	height: 98%;
-	width: 98%;
-	border: 7px solid theme('colors.primary.500');
-	z-index: -1;
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 25px;
+  height: 98%;
+  width: 98%;
+  border: 7px solid theme('colors.primary.500');
+  z-index: -1;
 }
+
+/* Scroll Down */
+a#scroll-btn:before {
+  position: absolute;
+  content: "";
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.4em;
+  height: 0.4em;
+  width: 0.4em;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation: move-down 2s infinite;
+}
+@keyframes move-down {
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(1.77em);
+    opacity: 0;
+  }
+}
+a#scroll-btn:after {
+  position: absolute;
+  content: "SCROLL DOWN";
+  width: 10em;
+  display: block;
+  text-align: center;
+  left: -3.7em;
+  bottom: -2em;
+  font-size: 0.8em;
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
 
 /* Animations */
 @keyframes slideInFromLeft {

@@ -13,6 +13,9 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMounted(true);
+    if (window.scrollY > 0) {
+      setIsScrolled(true);
+    }
   }, []);
 
   const handleHamburgerClick = () => {
@@ -60,23 +63,29 @@ export default function Navbar() {
           <div className="flex items-center h-full">
             {/* Desktop Menu */}
             <ul className="hidden md:flex md:flex-row md:items-center">
-              {menuItems.map((item, index) => (
-                <li key={index} className="md:inline-block">
-                  <Link href={item.href} data-after={item.title} className={`text-base font-medium tracking-widest no-underline ${textColorClass} uppercase p-5 block hover:text-primary transition-colors duration-300 ease-in-out`}>
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
+              {menuItems.map((item, index) => {
+                const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                return (
+                  <li key={index} className="md:inline-block group">
+                    <Link href={item.href} data-after={item.title} className={`tracking-widest no-underline ${textColorClass} uppercase p-5 block group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'text-base font-medium'}`}>
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             {/* Mobile Menu */}
             <ul className={`${isActive ? 'left-0' : 'left-full'} list-none absolute bg-white dark:bg-dark w-screen h-screen top-0 flex flex-col justify-center items-center z-10 overflow-x-hidden transition-[left] duration-500 ease-in-out md:hidden`}>
-              {menuItems.map((item, index) => (
-                <li key={index}>
-                  <Link href={item.href} data-after={item.title} className="text-[1.8rem] font-medium tracking-widest no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 hover:after:scale-50 hover:after:tracking-normal hover:text-primary transition-colors duration-300 ease-in-out">
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
+              {menuItems.map((item, index) => {
+                const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                return (
+                  <li key={index} className="group">
+                    <Link href={item.href} data-after={item.title} className={`text-[1.8rem] tracking-widest no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 group-hover:after:scale-50 group-hover:after:tracking-normal group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`}>
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="flex items-center h-full">
