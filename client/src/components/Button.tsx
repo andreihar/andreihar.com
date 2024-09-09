@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ href, text, type = 'button', onClick, size = 'text-base px-6 py-3', mobileSize = 'text-sm px-4 py-2' }) => {
-  const className = `cta-btn transition-all duration-300 ease-in-out inline-block relative font-bold leading-none z-10 overflow-hidden duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] text-transparent border-2 border-transparent hover:text-white ${size} md:${mobileSize}`;
+  const className = `button transition-all duration-300 ease-in-out inline-block relative font-bold leading-none z-10 overflow-hidden duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] text-transparent border-2 border-transparent hover:text-white ${size} md:${mobileSize}`;
 
   switch (type) {
     case 'a':
