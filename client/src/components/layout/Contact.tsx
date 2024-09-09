@@ -1,7 +1,7 @@
 'use client';
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { FaMapMarkerAlt, FaPhoneAlt, FaClock, FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope } from 'react-icons/fa';
-import Layout from '@/components/layout/Layout';
+import { FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
 import Button from '@/components/Button';
 
 const socialMediaLinks = [
@@ -27,7 +27,16 @@ export default function Footer() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form submitted:', formData);
+      const serviceID = process.env.NEXT_PUBLIC_SERVICE_ID || '';
+      const templateID = process.env.NEXT_PUBLIC_TEMPLATE_ID || '';
+      const userID = process.env.NEXT_PUBLIC_USER_ID || '';
+
+      emailjs.sendForm(serviceID, templateID, e.currentTarget, userID)
+        .then(() => {
+          window.alert('Message successfully sent!');
+        }, (error) => {
+          console.log('Failed to send message.', error.text);
+        });
     }
   };
 
@@ -38,14 +47,6 @@ export default function Footer() {
       ...prevData,
       [name]: type === 'checkbox' ? checked : value,
     }));
-  };
-
-  const handleButtonClick = () => {
-    const form = document.querySelector('form');
-    if (form) {
-      const event = new Event('submit', { bubbles: true, cancelable: true });
-      form.dispatchEvent(event);
-    }
   };
 
   return (
@@ -94,11 +95,11 @@ export default function Footer() {
               {errors.message && <p className="text-red-500 text-xs italic">{errors.message}</p>}
             </div>
             <div className="flex justify-between w-full px-3 mb-6">
-              <Button text="Send Message" type="button" size="text-lg px-8 py-4" onClick={handleButtonClick} />
+              <Button text="Send Message" type="submit" size="text-lg px-8 py-4" />
             </div>
           </div>
         </form>
       </div>
-    </div >
+    </div>
   );
 }

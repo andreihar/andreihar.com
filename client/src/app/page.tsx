@@ -43,7 +43,7 @@ const Home = async () => {
           </Anim>
           <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
             <div className="text-center md:text-left">
-              <Button text="Resume" size="text-xl px-10 py-4" />
+              <Button type='a' text="Resume" href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
           <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }}>
@@ -53,10 +53,6 @@ const Home = async () => {
       </div>
       <Layout className="my-20 pt-14">
         <div id="intro" className="flex flex-col items-center pb-10">
-          {/* <h1 id="about" className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
-            Blog
-          </h1>
-          <p className="text-center text-xl text-base">A collection of musings and reflections</p> */}
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <div className="w-full md:max-w-lg mb-10 md:mb-0">
