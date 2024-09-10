@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout';
 import Project from '@/components/content/Project';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import Anim from '@/components/Anim';
 
 export async function generateMetadata() {
   const metas = await getAllPostsMeta('project');
@@ -20,8 +21,10 @@ const Projects = async () => {
         <p className="text-center text-xl text-base">Explore my projects and blog posts.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {metas.map((meta) => (
-          <Project key={meta.id} meta={meta} />
+        {metas.map((meta, index) => (
+          <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+            <Project meta={meta} />
+          </Anim>
         ))}
       </div>
     </Layout>

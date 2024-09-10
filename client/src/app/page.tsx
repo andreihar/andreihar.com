@@ -47,7 +47,7 @@ const Home = async () => {
               <Button type='a' text="Resume" href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
-          <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }}>
+          <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }} style={{ position: 'absolute', left: '50%', bottom: '2rem', transform: 'translateX(-50%)' }}>
             <a id="scroll-btn" href="#intro" className="absolute h-14 w-8 border-2 border-white m-auto left-0 right-0 bottom-8 rounded-full"></a>
           </Anim>
         </Layout>
@@ -56,55 +56,55 @@ const Home = async () => {
         <div id="intro" className="flex flex-col items-center pb-10">
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
-          <div className="w-full md:max-w-lg mb-10 md:mb-0">
+          <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, velit alias eius non illum beatae atque
-              repellat ratione qui veritatis repudiandae adipisci maiores. At inventore necessitatibus deserunt
-              exercitationem cumque earum omnis ipsum rem accusantium quis, quas quia, accusamus provident suscipit magni!
-              Expedita sint ad dolore, commodi labore nihil velit earum ducimus nulla quae nostrum fugit aut, deserunt
-              reprehenderit libero enim!
+              Hi, I’m Andrei! I’m a Computer Science graduate from Simon Fraser University with a specialisation in AI and Web Development. I’ve been coding since middle school and have developed a strong passion for solving complex problems through tech. Check out my projects and learn more about my journey!
             </p>
             <div className="text-center md:text-left">
               <Button type='link' text="About Me" href="/about" size="text-lg px-8 py-4" />
             </div>
-          </div>
-          <div className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
+          </Anim>
+          <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
               <Image src="/img/about.jpg" alt="Me" fill className="object-cover" />
             </div>
-          </div>
+          </Anim>
         </div>
       </Layout>
       <Layout className='my-20 pt-14'>
-        <div className="flex flex-col items-center pb-10">
+        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex flex-col items-center pb-10">
           <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             Featured Projects
           </h1>
           <p className="text-center text-xl text-base">Some of my creations</p>
-        </div>
+        </Anim>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {projectMetas.map((meta) => (
-            <Project key={meta.id} meta={meta} />
+          {projectMetas.map((meta, index) => (
+            <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+              <Project meta={meta} />
+            </Anim>
           ))}
         </div>
-        <div className="flex justify-center mt-6">
+        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex justify-center mt-6">
           <Button type='link' text="View All Projects" href="/project" size="text-lg px-8 py-4" />
-        </div>
+        </Anim>
       </Layout>
       <Layout className='my-20 pt-14'>
-        <div className="flex flex-col items-center pb-10">
+        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex flex-col items-center pb-10">
           <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             Latest Posts
           </h1>
-        </div>
+        </Anim>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {blogMetas.map((meta) => (
-            <Blog key={meta.id} meta={meta} />
+          {blogMetas.map((meta, index) => (
+            <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+              <Blog meta={meta} />
+            </Anim>
           ))}
         </div>
-        <div className="flex justify-center mt-6">
+        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex justify-center mt-6">
           <Button type='link' text="View All Posts" href="/blog" size="text-lg px-8 py-4" />
-        </div>
+        </Anim>
       </Layout>
       <Contact />
     </main>
