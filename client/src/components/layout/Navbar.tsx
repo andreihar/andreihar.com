@@ -13,7 +13,6 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMounted(true);
-    fetch('/api/robots');
     if (window.scrollY > 0) {
       setIsScrolled(true);
     }

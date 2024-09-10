@@ -37,9 +37,6 @@ const MDXComponents = {
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a className="text-primary font-bold relative inline-block underline-slide transition-colors duration-300 ease-in-out" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }} {...props} />
   ),
-  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    <img className="mx-auto max-w-full mb-8" {...props} />
-  ),
   blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote className="border-l-4 border-gray-300 pl-4 italic mb-6" {...props} />
   ),

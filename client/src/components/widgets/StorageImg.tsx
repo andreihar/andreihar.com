@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type StorageImgType = {
   id: string;
   blog?: boolean;
@@ -22,7 +24,7 @@ export default function StorageImg({ id, blog, header, alt, title, className = '
 
   return (
     <figure className={`${className} mx-auto max-w-full mb-8 overflow-hidden rounded`} style={{ maxWidth: 875 || 'auto', ...style }} {...rest}>
-      <img src={imageUrl} alt={alt} title={title || alt} width={875} className="shadow-md dark:shadow-none rounded" />
+      <Image src={imageUrl} alt={alt} title={title || alt} width={875} height={0} className="shadow-md dark:shadow-none rounded" />
       {title && <figcaption className="text-center mt-2 text-lg font-bold text-gray-800 dark:text-gray-200">{title}</figcaption>}
     </figure>
   );

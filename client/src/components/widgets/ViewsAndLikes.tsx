@@ -76,7 +76,7 @@ const LikeButton: React.FC = () => {
       const userLikes = parseInt(localStorage.getItem(likeKey) || '0', 10);
       setFillPercentage((userLikes / 5) * 100);
     }
-  }, [type, id]);
+  }, [type, id, likeKey]);
 
   const handleLike = () => {
     if (typeof window !== 'undefined') {

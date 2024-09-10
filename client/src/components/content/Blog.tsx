@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ViewsAndLikesProvider, ViewsCounter, LikesCounter } from '@/components/widgets/ViewsAndLikes';
 import { Blog } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
@@ -22,11 +23,11 @@ const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {
                 ))}
               </div>
             )}
-            <img alt={`Banner of ${title}`} src={imageUrl} className="w-full h-48 object-cover transition-transform duration-300 ease-in-out group-hover:scale-110" />
+            <Image alt={`Banner of ${title}`} src={imageUrl} width={0} height={0} sizes="100vw" className="w-full h-48 object-cover transition-transform duration-300 ease-in-out group-hover:scale-110" />
           </div>
           <div className="relative p-4">
             <div className="relative">
-              <img alt="Andrei Harbachov" src="https://avatars.githubusercontent.com/u/95883512?v=4" className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
+              <Image alt="Andrei Harbachov" src="https://avatars.githubusercontent.com/u/95883512?v=4" width={48} height={48} className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
             </div>
             <div className="text-xs text-gray-500 mt-6 mb-4">{`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}</div>
             <h1 className="block text-md font-semibold leading-tight text-gray-900 transition-colors duration-300 ease-in-out group-hover:text-primary">

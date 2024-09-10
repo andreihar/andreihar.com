@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import Image from 'next/image';
 import Layout from '@/components/layout/Layout';
 import Contact from '@/components/layout/Contact';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
@@ -107,7 +108,7 @@ export default function About() {
           </div>
           <div className="w-64 h-90 mx-auto md:mx-0">
             <div className="about-img relative w-full h-full border-10 border-white">
-              <img src="./img/studying.jpg" alt="Studying Hard" className="w-full h-full object-cover" />
+              <Image src="/img/studying.jpg" alt="Studying Hard" fill className="object-cover" />
             </div>
           </div>
         </div>

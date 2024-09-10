@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import Layout from '@/components/layout/Layout';
 import Anim from '@/components/Anim';
+import Image from 'next/image';
 import RotatingText from '@/components/widgets/RotatingText';
 import { getAllPostsMeta } from '@/lib/mdx';
 import Project from '@/components/content/Project';
@@ -26,7 +27,7 @@ const Home = async () => {
               </span>
             </Anim>
             <Anim delay={1.3} duration={0.5} hidden={{ opacity: 0 }} className="mt-10">
-              I'm a<RotatingText />
+              I&apos;m a<RotatingText />
             </Anim>
           </h1>
           <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-left">
@@ -56,18 +57,20 @@ const Home = async () => {
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <div className="w-full md:max-w-lg mb-10 md:mb-0">
-            <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, velit alias eius non illum beatae atque
+            <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, velit alias eius non illum beatae atque
               repellat ratione qui veritatis repudiandae adipisci maiores. At inventore necessitatibus deserunt
               exercitationem cumque earum omnis ipsum rem accusantium quis, quas quia, accusamus provident suscipit magni!
               Expedita sint ad dolore, commodi labore nihil velit earum ducimus nulla quae nostrum fugit aut, deserunt
-              reprehenderit libero enim!</p>
+              reprehenderit libero enim!
+            </p>
             <div className="text-center md:text-left">
               <Button type='link' text="About Me" href="/about" size="text-lg px-8 py-4" />
             </div>
           </div>
-          <div className="col-left w-64 h-90 mx-auto md:mx-0">
+          <div className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <img src="./img/about.jpg" alt="img" className="w-full h-full object-cover" />
+              <Image src="/img/about.jpg" alt="Me" fill className="object-cover" />
             </div>
           </div>
         </div>
