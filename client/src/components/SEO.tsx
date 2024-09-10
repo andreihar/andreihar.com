@@ -11,8 +11,7 @@ type GenerateMetadataProps = {
 export function generateMetadata({ title, description, images, url, section, tags = [], published }: GenerateMetadataProps) {
   const finalTitle = title ? `${title} | Andrei Harbachov` : 'Andrei Harbachov';
 
-  return {
-    title,
+  const metadata: any = {
     description,
     keywords: [...tags, 'Andrei Harbachov'].join(', '),
     openGraph: {
@@ -40,4 +39,10 @@ export function generateMetadata({ title, description, images, url, section, tag
       images,
     },
   };
+
+  if (title) {
+    metadata.title = title;
+  }
+
+  return metadata;
 }

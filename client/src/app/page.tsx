@@ -8,6 +8,17 @@ import Project from '@/components/content/Project';
 import Blog from '@/components/content/Blog';
 import Contact from '@/components/layout/Contact';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { generateMetadata as generateSEO } from '@/components/SEO';
+
+export async function generateMetadata() {
+  return generateSEO({
+    description: 'Welcome to Andrei Harbachov\'s personal website. Explore projects, blog posts, and learn more about my journey in tech.',
+    images: ['/img/hero.jpg'],
+    url: '/',
+    section: 'Home',
+    tags: ['Andrei Harbachov', 'Home', 'Projects', 'Blog', 'Tech'],
+  });
+}
 
 const Home = async () => {
   const projectMetas = await getAllPostsMeta('project').then((metas) => metas.filter((meta) => ['chharm-cooks', 'footy-ai', 'taibun', 'memory-lane', 'emotion-recognition', 'ar-homographies'].includes(meta.id)));

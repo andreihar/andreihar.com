@@ -5,6 +5,18 @@ import Contact from '@/components/layout/Contact';
 import Anim from '@/components/Anim';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
 import { FaJava, FaPen } from 'react-icons/fa';
+import { generateMetadata as generateSEO } from '@/components/SEO';
+
+export async function generateMetadata() {
+  return generateSEO({
+    title: 'About',
+    description: 'Learn more about Andrei Harbachov, his background, skills, and experiences.',
+    images: ['/img/studying.jpg'],
+    url: 'about',
+    section: 'About',
+    tags: ['Andrei Harbachov', 'About', 'Profile', 'Background', 'Skills', 'Experiences'],
+  });
+}
 
 const techStack = {
   frontend: [
