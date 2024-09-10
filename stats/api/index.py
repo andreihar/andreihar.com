@@ -11,12 +11,17 @@ def load_data():
             return json.load(file)
     return {"projects": {}, "blogs": {}}
 
+def save_data(data):
+    with open('backup.json', 'w') as file:
+        json.dump(data, file)
+
 data = load_data()
 
 @app.route('/update_view/<category>/<name>', methods=['POST'])
 def update_view(category, name):
     if category in data and name in data[category]:
         data[category][name]['views'] += 1
+        save_data(data)
         return jsonify({"message": "View updated"})
     return jsonify({"message": "Not found"}), 404
 
@@ -24,6 +29,7 @@ def update_view(category, name):
 def update_like(category, name):
     if category in data and name in data[category]:
         data[category][name]['likes'] += 1
+        save_data(data)
         return jsonify({"message": "Like updated"})
     return jsonify({"message": "Not found"}), 404
 
