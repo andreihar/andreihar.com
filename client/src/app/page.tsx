@@ -77,7 +77,7 @@ const Home = async () => {
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/about.jpg" alt="Me" fill className="object-cover" />
+              <Image src="/img/hero.jpg" alt="Me" fill className="object-cover" />
             </div>
           </Anim>
         </div>
