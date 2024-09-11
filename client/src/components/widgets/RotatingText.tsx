@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Anim from '@/components/Anim';
 
-const words = [" Full-Stack Dev", "n AI Scientist", " Programmer"];
+const words = ["Full-Stack Dev", "AI Scientist", "Programmer"];
 const intervalTime = 3000;
 const fadeDuration = 0.7;
 
@@ -22,17 +22,15 @@ const RotatingText: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const currentWord = words[currentWordIndex];
+  const prefix = currentWord.toLowerCase().startsWith("a") ? "an" : "a";
+
   return (
     <div className="inline-block">
-      <Anim
-        key={currentWordIndex}
-        duration={fadeDuration}
-        hidden={{ opacity: 0 }}
-        fadeOut={!visible}
-        className="transition-opacity"
-      >
-        <span style={{ whiteSpace: 'pre' }}>
-          {words[currentWordIndex]}
+      <span>I&apos;m {prefix}&nbsp;</span>
+      <Anim key={currentWordIndex} duration={fadeDuration} hidden={{ opacity: 0 }} fadeOut={!visible} className="transition-opacity inline-block">
+        <span>
+          {currentWord}
         </span>
       </Anim>
     </div>

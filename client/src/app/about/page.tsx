@@ -112,16 +112,16 @@ export default function About() {
           <h1 className="text-4xl font-bold pb-2 text-center">About</h1>
           <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">Andrei Harbachov</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-screen-xl mx-auto px-5">
-          <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="col-span-2 mb-10 md:mb-0">
+        <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
+          <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
-              Hello, I’m Andrei, a Simon Fraser University graduate with a Bachelor of Science in Computer Science, specialising in Artificial Intelligence and Visual Computing. My programming journey began in middle school and has grown into a diverse skill set across Web Development, Machine Learning, and Computer Vision. I’m constantly exploring new technologies and applying them to real-world problems. On this website, you’ll find my projects, blog posts, and thoughts on tech. I’m always eager to connect, collaborate, and learn — feel free to reach out!
+              Hello, I’m Andrei, a Simon Fraser University graduate with a Bachelor of Science in Computer Science, with a specialisation in Artificial Intelligence and Visual Computing. My programming journey began in middle school and has grown into a diverse skill set across Web Development, Machine Learning, and Computer Vision. I’m constantly exploring new technologies and applying them to real-world problems. On this website, you’ll find my projects, blog posts, and thoughts on tech. I’m always eager to connect, collaborate, and learn — feel free to reach out!
             </p>
             <div className="text-center md:text-left">
               <Button type='a' text="See Resume" href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
-          <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0">
+          <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
               <Image src="/img/studying.jpg" alt="Studying Hard" fill className="object-cover" />
             </div>
@@ -133,7 +133,7 @@ export default function About() {
           <h1 className="text-4xl font-bold pb-2 text-center">Tech Stack</h1>
           <p className="text-center text-xl text-base pb-4">Tools & technologies I use to build innovative solutions</p>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([category, technologies], index) => (
             <Anim key={category} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-4 capitalize">

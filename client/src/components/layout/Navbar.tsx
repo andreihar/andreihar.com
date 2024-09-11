@@ -80,7 +80,7 @@ export default function Navbar() {
                 const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
                 return (
                   <li key={index} className="group">
-                    <Link href={item.href} data-after={item.title} className={`text-[1.8rem] tracking-widest no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 group-hover:after:scale-50 group-hover:after:tracking-normal group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`}>
+                    <Link href={item.href} data-after={item.title} className={`text-[1.8rem] tracking-widest no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 group-hover:after:scale-50 group-hover:after:tracking-normal group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`} onClick={() => setIsActive(false)}>
                       {item.title}
                     </Link>
                   </li>

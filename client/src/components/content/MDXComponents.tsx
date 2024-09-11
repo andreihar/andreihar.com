@@ -23,19 +23,19 @@ const MDXComponents = {
   StorageImg,
   YouTubeEmbed,
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
-    return <h1 id={generateId(props.children as string)} className="text-4xl font-bold py-3" {...props} />;
+    return <h1 id={generateId(props.children as string)} className="text-3xl md:text-4xl font-bold py-3" {...props} />;
   },
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
-    return <h2 id={generateId(props.children as string)} className="text-3xl font-semibold py-2" {...props} />;
+    return <h2 id={generateId(props.children as string)} className="text-2xl md:text-3xl font-semibold py-2" {...props} />;
   },
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className="text-2xl font-medium py-2" {...props} />
+    <h3 className="text-xl md:text-2xl font-medium py-2" {...props} />
   ),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className="text-lg leading-loose mb-8" {...props} />
   ),
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a className="text-primary font-bold relative inline-block underline-slide transition-colors duration-300 ease-in-out" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }} {...props} />
+    <a className="text-primary font-bold inline-block relative underline-slide transition-colors duration-300 ease-in-out" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }} {...props} />
   ),
   blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote className="border-l-4 border-gray-300 pl-4 italic mb-6" {...props} />

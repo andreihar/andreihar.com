@@ -51,7 +51,7 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
       </div>
       <Layout>
         <div className="my-5 flex justify-between items-center">
-          <p className="text-base text-gray-500 dark:text-gray-400">
+          <p className="w-1/2 text-base text-gray-500 dark:text-gray-400">
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
             {github && (
               <>
@@ -72,7 +72,9 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
               </>
             )}
           </p>
-          <LikeButton />
+          <div className="w-1/2 flex justify-end">
+            <LikeButton />
+          </div>
         </div>
         <hr className='dark:border-gray-600' />
         <main className='lg:grid lg:grid-cols-[auto,250px] lg:gap-10 my-6 flex flex-col lg:flex-row'>

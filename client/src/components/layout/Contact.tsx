@@ -63,7 +63,7 @@ export default function Footer() {
           </p>
           <div className="mt-8">
             <h4 className="text-xl font-bold mb-4">Email</h4>
-            <a href="mailto:andreihar@mail.com" className="mb-4 inline-flex text-2xl items-center gap-1 align-middle underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+            <a href="mailto:andreihar@mail.com" className="mb-4 inline-flex text-2xl items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
               <FaEnvelope className="inline-block align-middle text-primary" />
               <span className="align-middle ml-2 text-lg">andreihar@mail.com</span>
             </a>

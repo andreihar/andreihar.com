@@ -26,8 +26,8 @@ const Home = async () => {
 
   return (
     <main>
-      <div id="hero" className="min-h-screen h-screen flex items-center bg-black font-normal text-white px-6 md:px-14 z-[-1] leading-tight bg-gradient-to-bl from-[#82C91E00] to-[#062343]">
-        <Layout className="container mx-auto px-4 md:px-6 py-20">
+      <div id="hero" className="min-h-screen flex flex-col justify-between bg-black font-normal text-white px-6 md:px-14 z-[-1] leading-tight bg-gradient-to-bl from-[#82C91E00] to-[#062343]">
+        <Layout className="container mx-auto px-4 md:px-6 py-20 flex-grow">
           <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-left">
             <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
               <span>
@@ -38,35 +38,35 @@ const Home = async () => {
               </span>
             </Anim>
             <Anim delay={1.3} duration={0.5} hidden={{ opacity: 0 }} className="mt-10">
-              I&apos;m a<RotatingText />
+              <RotatingText />
             </Anim>
           </h1>
           <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-left">
             <div className="text-gray-400 font-bold relative text-lg mb-6">
-              <a href='https://github.com/andreihar' target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+              <a href='https://github.com/andreihar' target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                 <FaGithub className="inline-block align-middle" />
                 <span className="align-middle">andreihar</span>
               </a>
-              <a href='https://linkedin.com/in/andreihar' target="_blank" rel="noopener noreferrer" className="ml-4 inline-flex items-center gap-1 align-middle underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+              <a href='https://linkedin.com/in/andreihar' target="_blank" rel="noopener noreferrer" className="ml-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                 <FaLinkedin className="inline-block align-middle" />
                 <span className="align-middle">andreihar</span>
               </a>
             </div>
           </Anim>
           <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left pd-30">
               <Button type='a' text="Resume" href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
-          <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }} style={{ position: 'absolute', left: '50%', bottom: '2rem', transform: 'translateX(-50%)' }}>
-            <a id="scroll-btn" href="#intro" className="absolute h-14 w-8 border-2 border-white m-auto left-0 right-0 bottom-8 rounded-full"></a>
-          </Anim>
         </Layout>
+        <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }} className="flex justify-center items-end pb-10">
+          <a id="scroll" href="#intro" className="relative h-10 w-6 border-2 border-white rounded-full flex flex-col items-center justify-center">
+            <span className="flex justify-center absolute bottom-[-1.5rem] w-full text-xs text-white tracking-wider font-semibold">SCROLL</span>
+          </a>
+        </Anim>
       </div>
       <Layout className="my-20 pt-14">
-        <div id="intro" className="flex flex-col items-center pb-10">
-        </div>
-        <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
+        <div id="intro" className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
               Hi, I’m Andrei! I’m a Computer Science graduate from Simon Fraser University with a specialisation in AI and Web Development. I’ve been coding since middle school and have developed a strong passion for solving complex problems through tech. Check out my projects and learn more about my journey!

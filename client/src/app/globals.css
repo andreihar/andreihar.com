@@ -21,10 +21,6 @@ html {
   scroll-padding-top: 100px;
 }
 
-.underline-slide {
-  position: relative;
-}
-
 .underline-slide::after {
   content: '';
   position: absolute;
@@ -37,7 +33,6 @@ html {
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
-
 .underline-slide:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
@@ -56,14 +51,11 @@ html {
   width: 150%;
   transform: translate(-98%, -25%) rotate(45deg);
 }
-
 .button {
   border-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
   border-image-slice: 1;
   background-image: linear-gradient(135deg, theme('colors.primary.500') 0%, theme('colors.orange.600') 100%);
-  background-clip: text;
 }
-
 .button:hover::after {
   transform: translate(-9%, -25%) rotate(45deg);
 }
@@ -80,16 +72,16 @@ html {
   z-index: -1;
 }
 
-/* Scroll Down */
-a#scroll-btn:before {
+/* Scroll Button */
+a#scroll:before {
   position: absolute;
   content: "";
   margin: auto;
   left: 0;
   right: 0;
-  top: 0.4em;
-  height: 0.4em;
-  width: 0.4em;
+  top: 0.3em;
+  height: 0.3em;
+  width: 0.3em;
   background-color: #ffffff;
   border-radius: 50%;
   animation: move-down 2s infinite;
@@ -99,24 +91,10 @@ a#scroll-btn:before {
     opacity: 0.5;
   }
   100% {
-    transform: translateY(1.77em);
+    transform: translateY(1.50em);
     opacity: 0;
   }
 }
-a#scroll-btn:after {
-  position: absolute;
-  content: "SCROLL DOWN";
-  width: 10em;
-  display: block;
-  text-align: center;
-  left: -3.7em;
-  bottom: -2em;
-  font-size: 0.8em;
-  color: #ffffff;
-  letter-spacing: 1px;
-  font-weight: 600;
-}
-
 
 /* Animations */
 @keyframes slideInFromLeft {
