@@ -39,7 +39,7 @@ const Page = ({
   type,
 }: PageProps): JSX.Element => {
   return (
-    <ViewsAndLikesProvider type={type} id={id} showWords>
+    <ViewsAndLikesProvider type={type} id={id} showWords updateViewOnLoad>
       <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: type === 'blog', id: `${id}/banner` })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative p-8 mt-[80px]">

@@ -22,7 +22,7 @@ const useViewsAndLikes = () => {
   return context;
 };
 
-const ViewsAndLikesProvider: React.FC<{ children: ReactNode; type: string; id: string; showWords?: boolean; }> = ({ children, type, id, showWords }) => {
+const ViewsAndLikesProvider: React.FC<{ children: ReactNode; type: string; id: string; showWords?: boolean; updateViewOnLoad?: boolean; }> = ({ children, type, id, showWords, updateViewOnLoad = false }) => {
   const [views, setViews] = useState(0);
   const [likes, setLikes] = useState(0);
   const { getStats, updateView } = useMeta();
@@ -35,14 +35,14 @@ const ViewsAndLikesProvider: React.FC<{ children: ReactNode; type: string; id: s
     };
     fetchData();
 
-    if (typeof window !== 'undefined') {
+    if (updateViewOnLoad && typeof window !== 'undefined') {
       const viewKey = `${type}-${id}-viewed`;
       if (!localStorage.getItem(viewKey)) {
         updateView(type, id);
         localStorage.setItem(viewKey, 'true');
       }
     }
-  }, [type, id, getStats, updateView]);
+  }, [type, id, getStats, updateView, updateViewOnLoad]);
 
   return (
     <ViewsAndLikesContext.Provider value={{ views, likes, setLikes, type, id, showWords }}>
