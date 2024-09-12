@@ -36,7 +36,7 @@ projects = [
     "quilt-tex", "footy-ai"
 ]
 
-blogs = ["dragons-freedom-and-mods"]
+blogs = ["future-of-learning", "dragons-freedom-and-mods"]
 
 def load_data():
     try:
