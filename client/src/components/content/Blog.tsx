@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ViewsAndLikesProvider, ViewsCounter, LikesCounter } from '@/components/widgets/ViewsAndLikes';
-import { Blog } from '@/types/blog';
+import { BlogType } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 
-const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {
+const Blog: React.FC<{ meta: BlogType; }> = ({ meta }) => {
   const { id, title, description, tags, time, published } = meta;
   const imageUrl = generateStorageImgUrl({ header: true, blog: true, id: `${id}/banner` });
 
@@ -14,15 +14,13 @@ const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {
       <Link href={`/blog/${id}`} className="block group">
         <div className="bg-white rounded-xl shadow-md overflow-hidden group">
           <div className="relative overflow-hidden">
-            {tags && tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 absolute top-2 left-2 z-10">
-                {tags.map((tag, index) => (
-                  <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1 px-2 font-sans font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600" style={{ fontSize: '0.625rem' }}>
-                    {tag}
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-wrap gap-2 absolute top-2 left-2 z-10">
+              {tags.map((tag, index) => (
+                <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1 px-2 font-sans font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600" style={{ fontSize: '0.625rem' }}>
+                  {tag}
+                </div>
+              ))}
+            </div>
             <Image alt={`Banner of ${title}`} src={imageUrl} width={0} height={0} sizes="100vw" className="w-full h-48 object-cover transition-transform duration-300 ease-in-out group-hover:scale-110" />
           </div>
           <div className="relative p-4">
@@ -57,4 +55,4 @@ const Project: React.FC<{ meta: Blog; }> = ({ meta }) => {
   );
 };
 
-export default Project;
+export default Blog;

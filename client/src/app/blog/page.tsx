@@ -21,9 +21,9 @@ const Blogs = async () => {
         <p className="text-center text-xl text-base">A collection of musings and reflections</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {metas.map((meta, index) => (
-          <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
-            <Blog meta={meta} />
+        {metas.map((post, index) => (
+          <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+            <Blog meta={post} />
           </Anim>
         ))}
       </div>

@@ -7,7 +7,7 @@ import Anim from '@/components/Anim';
 
 export async function generateMetadata() {
   const metas = await getAllPostsMeta('project');
-  return generateSEO({ title: 'Projects', description: 'Explore my projects and blog posts', images: [generateStorageImgUrl({ header: true, id: `${metas[0].id}/banner` })], url: 'project', section: 'Project', tags: metas[0].tags });
+  return generateSEO({ title: 'Projects', description: 'Explore my projects and blog posts', images: [generateStorageImgUrl({ header: true, id: `${metas[0].id}/banner` })], url: 'project', section: 'Project', tags: metas[0].builtW });
 }
 
 const Projects = async () => {
@@ -21,9 +21,9 @@ const Projects = async () => {
         <p className="text-center text-xl text-base">Explore my projects and blog posts.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {metas.map((meta, index) => (
-          <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
-            <Project meta={meta} />
+        {metas.map((post, index) => (
+          <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+            <Project meta={post} />
           </Anim>
         ))}
       </div>

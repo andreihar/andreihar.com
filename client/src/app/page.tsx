@@ -26,39 +26,41 @@ const Home = async () => {
 
   return (
     <main>
-      <div id="hero" className="min-h-screen flex flex-col justify-between bg-black font-normal text-white px-6 md:px-14 z-[-1] leading-tight bg-gradient-to-bl from-[#82C91E00] to-[#062343]">
-        <Layout className="container mx-auto px-4 md:px-6 py-20 flex-grow">
-          <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-left">
-            <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
-              <span>
-                Hi, my name is
-                <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block ml-2 md:ml-4 bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
-                  Andrei
-                </Anim>
-              </span>
+      <div className="min-h-screen flex flex-col justify-between bg-black font-normal text-white px-6 md:px-14 z-[-1] leading-tight bg-gradient-to-bl from-[#82C91E00] to-[#062343]">
+        <div className="flex-grow flex items-center">
+          <Layout className="container mx-auto px-4 md:px-6">
+            <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-left">
+              <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
+                <span>
+                  Hi, my name is
+                  <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block ml-2 md:ml-4 bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
+                    Andrei
+                  </Anim>
+                </span>
+              </Anim>
+              <Anim delay={1.3} duration={0.5} hidden={{ opacity: 0 }} className="mt-10">
+                <RotatingText />
+              </Anim>
+            </h1>
+            <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-left">
+              <div className="text-gray-400 font-bold relative text-lg mb-6">
+                <a href='https://github.com/andreihar' target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+                  <FaGithub className="inline-block align-middle" />
+                  <span className="align-middle">andreihar</span>
+                </a>
+                <a href='https://linkedin.com/in/andreihar' target="_blank" rel="noopener noreferrer" className="ml-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+                  <FaLinkedin className="inline-block align-middle" />
+                  <span className="align-middle">andreihar</span>
+                </a>
+              </div>
             </Anim>
-            <Anim delay={1.3} duration={0.5} hidden={{ opacity: 0 }} className="mt-10">
-              <RotatingText />
+            <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
+              <div className="text-center md:text-left pd-30">
+                <Button type='a' text="Resume" href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
+              </div>
             </Anim>
-          </h1>
-          <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-left">
-            <div className="text-gray-400 font-bold relative text-lg mb-6">
-              <a href='https://github.com/andreihar' target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
-                <FaGithub className="inline-block align-middle" />
-                <span className="align-middle">andreihar</span>
-              </a>
-              <a href='https://linkedin.com/in/andreihar' target="_blank" rel="noopener noreferrer" className="ml-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
-                <FaLinkedin className="inline-block align-middle" />
-                <span className="align-middle">andreihar</span>
-              </a>
-            </div>
-          </Anim>
-          <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
-            <div className="text-center md:text-left pd-30">
-              <Button type='a' text="Resume" href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
-            </div>
-          </Anim>
-        </Layout>
+          </Layout>
+        </div>
         <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }} className="flex justify-center items-end pb-10">
           <a id="scroll" href="#intro" className="relative h-10 w-6 border-2 border-white rounded-full flex flex-col items-center justify-center">
             <span className="flex justify-center absolute bottom-[-1.5rem] w-full text-xs text-white tracking-wider font-semibold">SCROLL</span>

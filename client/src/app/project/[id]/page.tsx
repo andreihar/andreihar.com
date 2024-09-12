@@ -11,13 +11,13 @@ import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 
 export async function generateMetadata({ params }: { params: { id: string; }; }) {
-  const { meta } = await getPostBySlug(params.id ?? '', 'project');
-  return generateSEO({ title: meta.title, description: meta.description, images: [generateStorageImgUrl({ header: true, id: `${meta.id}/banner` })], url: `project/${meta.id}`, section: 'Project', tags: meta.builtW, published: meta.published });
+  const post = await getPostBySlug(params.id ?? '', 'project');
+  return generateSEO({ title: post.title, description: post.description, images: [generateStorageImgUrl({ header: true, id: `${post.id}/banner` })], url: `project/${post.id}`, section: 'Project', tags: post.builtW, published: post.published });
 }
 
 const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
-  const { meta, source } = await getPostBySlug(params.id ?? '', 'project');
-  const { id, title, description, published, team, builtW, github, website } = meta;
+  const post = await getPostBySlug(params.id ?? '', 'project');
+  const { id, title, description, published, team, builtW, github, website, source } = post;
 
   return (
     <ViewsAndLikesProvider type="project" id={id} showWords>
@@ -29,13 +29,11 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
             <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
             <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
             <p className="text-sm text-gray-300 flex flex-wrap items-center">
-              {team && (
-                <span className="inline-flex items-center gap-1">
-                  <HiOutlineUser className="inline-block text-base" />
-                  {team === 1 ? 'Personal Project' : `${team} people`}
-                  <span className="mx-2">━</span>
-                </span>
-              )}
+              <span className="inline-flex items-center gap-1">
+                <HiOutlineUser className="inline-block text-base" />
+                {team === 1 ? 'Personal Project' : `${team} people`}
+                <span className="mx-2">━</span>
+              </span>
               <span className="inline-flex items-center gap-1">
                 <HiOutlineEye className="inline-block text-base" />
                 <ViewsCounter />
@@ -88,13 +86,11 @@ const Page = async ({ params }: { params: { id: string; }; }): Promise<JSX.Eleme
           </aside>
         </main>
         <div>
-          {builtW && builtW.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {builtW.map((tag, index) => (
-                <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
-              ))}
-            </div>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {builtW.map((tag, index) => (
+              <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
+            ))}
+          </div>
         </div>
       </Layout>
     </ViewsAndLikesProvider>
