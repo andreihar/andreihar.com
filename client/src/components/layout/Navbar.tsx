@@ -4,6 +4,7 @@ import Logo from '../Logo';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import ThemeSwitch from '../ThemeSwitch';
+import text from '@/data/text.json';
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
@@ -38,10 +39,10 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
-    { title: 'Home', href: "/", },
-    { title: 'Projects', href: "/project", },
-    { title: 'Blog', href: "/blog", },
-    { title: 'About', href: "/about", },
+    { title: text.navbar.home, href: "/", },
+    { title: text.navbar.projects, href: "/project", },
+    { title: text.navbar.blog, href: "/blog", },
+    { title: text.navbar.about, href: "/about", },
   ];
 
   if (!isMounted) {

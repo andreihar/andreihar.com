@@ -8,6 +8,7 @@ import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import TechIcons from '@/components/widgets/TechIcons';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
+import text from '@/data/text.json';
 
 type PageProps = {
   id: string;
@@ -24,20 +25,7 @@ type PageProps = {
   type: 'blog' | 'project';
 };
 
-const Page = ({
-  id,
-  title,
-  description,
-  published,
-  source,
-  tags,
-  time,
-  team,
-  builtW,
-  github,
-  website,
-  type,
-}: PageProps): JSX.Element => {
+const Page = ({ id, title, description, published, source, tags, time, team, builtW, github, website, type }: PageProps): JSX.Element => {
   return (
     <ViewsAndLikesProvider type={type} id={id} showWords updateViewOnLoad>
       <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: type === 'blog', id: `${id}/banner` })})` }}>
@@ -52,12 +40,12 @@ const Page = ({
               {type === 'blog' ? (
                 <span className="inline-flex items-center gap-1">
                   <HiOutlineClock className="inline-block text-base" />
-                  {`${time} min`}
+                  {`${time} ${text.page.min}`}
                 </span>
               ) : (
                 <span className="inline-flex items-center gap-1">
                   <HiOutlineUser className="inline-block text-base" />
-                  {team === 1 ? 'Personal Project' : `${team} people`}
+                  {team === 1 ? text.page.solo : `${team} ${text.page.team}`}
                 </span>
               )}
               <span className="mx-2">━</span>
@@ -79,13 +67,13 @@ const Page = ({
           <p className="w-1/2 text-base text-gray-500 dark:text-gray-400">
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
             {type === 'blog' && <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>}
-            {type === 'blog' && <strong>by Andrei Harbachov</strong>}
-            {[{ href: github, icon: <SiGithub className="inline-block text-base align-middle" />, label: 'Repository' }, { href: website, icon: <HiLink className="inline-block text-base align-middle" />, label: 'Live Demo' }
+            {type === 'blog' && <strong>{text.page.by}</strong>}
+            {[{ href: github, icon: <SiGithub className="inline-block text-base align-middle" />, label: text.page.repo }, { href: website, icon: <HiLink className="inline-block text-base align-middle" />, label: text.page.demo }
             ].map(
               (link, index) =>
                 link.href && (<React.Fragment key={index}>
                   <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle text-primary font-bold relative underline-slide transition-colors duration-300 ease-in-out">
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle text-primary font-bold capitalize relative underline-slide transition-colors duration-300 ease-in-out">
                     {link.icon}
                     <span className="align-middle">{link.label}</span>
                   </a>

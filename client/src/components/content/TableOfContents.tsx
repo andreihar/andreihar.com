@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import text from '@/data/text.json';
 
 type Heading = {
   id: string;
@@ -72,7 +73,7 @@ const TableOfContents = () => {
 
   return (
     <nav>
-      <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
+      <h2 className="text-xl font-bold mb-4">{text.page.toc}</h2>
       <div className="lg:max-h-[55vh] overflow-y-auto">
         {renderHeadings(headings)}
       </div>

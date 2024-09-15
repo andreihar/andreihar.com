@@ -6,78 +6,42 @@ import Anim from '@/components/Anim';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
 import { FaJava, FaPen } from 'react-icons/fa';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import text from '@/data/text.json';
 
 export async function generateMetadata() {
   return generateSEO({
-    title: 'About',
-    description: 'Learn more about Andrei Harbachov, his background, skills, and experiences.',
+    title: text.about.title,
+    description: text.about.desc,
     images: ['/img/studying.jpg'],
     url: 'about',
     section: 'About',
-    tags: ['Andrei Harbachov', 'About', 'Profile', 'Background', 'Skills', 'Experiences'],
+    tags: ['About', 'Profile', 'Background', 'Skills', 'Experiences', ...Object.values(text.home.rotating).slice(0, 4), ...text.contact.locationText.split(', ')],
   });
 }
 
+const tech = (name: string, icon: React.ComponentType<{ className?: string; }>) => ({ name, icon });
+
 const techStack = {
   frontend: [
-    { name: 'React', icon: SiReact },
-    { name: 'Next.js', icon: SiNextdotjs },
-    { name: 'Angular', icon: SiAngular },
-    { name: 'Tailwind CSS', icon: SiTailwindcss },
-    { name: 'Bootstrap', icon: SiBootstrap },
-    { name: 'Material-UI', icon: SiMui },
-    { name: 'TypeScript', icon: SiTypescript },
+    tech('React', SiReact), tech('Next.js', SiNextdotjs), tech('Angular', SiAngular),
+    tech('Tailwind CSS', SiTailwindcss), tech('Bootstrap', SiBootstrap), tech('Material-UI', SiMui),
+    tech('TypeScript', SiTypescript),
   ],
   backend: [
-    { name: 'Node.js', icon: SiNodedotjs },
-    { name: 'Express', icon: SiExpress },
-    { name: 'Flask', icon: SiFlask },
-    { name: 'Firebase', icon: SiFirebase },
-    { name: 'PostgreSQL', icon: SiPostgresql },
-    { name: 'MySQL', icon: SiMysql },
+    tech('Node.js', SiNodedotjs), tech('Express', SiExpress), tech('Flask', SiFlask),
+    tech('Firebase', SiFirebase), tech('PostgreSQL', SiPostgresql), tech('MySQL', SiMysql),
   ],
   ai_ml: [
-    { name: 'Python', icon: SiPython },
-    { name: 'TensorFlow', icon: SiTensorflow },
-    { name: 'PyTorch', icon: SiPytorch },
-    { name: 'Keras', icon: SiKeras },
-    { name: 'NumPy', icon: SiNumpy },
-    { name: 'Pandas', icon: SiPandas },
+    tech('Python', SiPython), tech('TensorFlow', SiTensorflow), tech('PyTorch', SiPytorch),
+    tech('Keras', SiKeras), tech('NumPy', SiNumpy), tech('Pandas', SiPandas),
   ],
   other: [
-    { name: 'Android', icon: SiAndroid },
-    { name: 'Java', icon: FaJava },
-    { name: 'Unity', icon: SiUnity },
-    { name: 'C', icon: SiC },
-    { name: 'C++', icon: SiCplusplus },
-    { name: 'C#', icon: SiCsharp },
-    { name: 'MATLAB', icon: SiZalando },
+    tech('Android', SiAndroid), tech('Java', FaJava), tech('Unity', SiUnity), tech('C', SiC),
+    tech('C++', SiCplusplus), tech('C#', SiCsharp), tech('MATLAB', SiZalando),
   ],
 };
 
-const timelineData = [
-  {
-    title: 'Bachelor of Science in Computer Science',
-    date: '2020 - 2024',
-    institution: 'Simon Fraser University',
-    description: 'Specialised in Artificial Intelligence and Visual Computing. Gained a strong foundation in core computer science topics such as Algorithms, Data Structures, and Software Engineering. Developed expertise in Machine Learning, Computer Vision, Natural Language Processing, and Computational Photography through hands-on projects and coursework. Achieved Honour Roll recognition from 2022 onwards for academic excellence.',
-  },
-  {
-    title: 'High School Diploma',
-    date: '2015 - 2020',
-    institution: 'Burnaby South Secondary',
-    description: 'Graduated with distinction, earning a place on the Principal’s List and achieving 100% in AP Computer Science. Learned web development and object-oriented programming while cultivating a strong passion for coding through personal projects.',
-  }
-];
-
-interface TimelineItemProps {
-  title: string;
-  date: string;
-  institution: string;
-  description: string;
-}
-
-const TimelineItem: React.FC<TimelineItemProps> = ({ title, date, institution, description }) => (
+const TimelineItem: React.FC<{ title: string; date: string; institution: string; desc: string; }> = ({ title, date, institution, desc }) => (
   <li className="relative pb-8">
     <span className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
     <div className="relative flex items-start space-x-3">
@@ -96,7 +60,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ title, date, institution, d
         <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
           <div className="mt-2">
             <h4 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">{institution}</h4>
-            <p className="text-gray-700 dark:text-gray-300 text-lg">{description}</p>
+            <p className="text-gray-700 dark:text-gray-300 text-lg">{desc}</p>
           </div>
         </Anim>
       </div>
@@ -109,16 +73,16 @@ export default function About() {
     <main>
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
-          <h1 className="text-4xl font-bold pb-2 text-center">About</h1>
-          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">Andrei Harbachov</h2>
+          <h1 className="text-4xl font-bold pb-2 text-center">{text.about.title}</h1>
+          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{text.values.name}</h2>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
-              Hello, I’m Andrei, a Simon Fraser University graduate with a Bachelor of Science in Computer Science, with a specialisation in Artificial Intelligence and Visual Computing. My programming journey began in middle school and has grown into a diverse skill set across Web Development, Machine Learning, and Computer Vision. I’m constantly exploring new technologies and applying them to real-world problems. On this website, you’ll find my projects, blog posts, and thoughts on tech. I’m always eager to connect, collaborate, and learn — feel free to reach out!
+              {text.about.text}
             </p>
             <div className="text-center md:text-left">
-              <Button type='a' text="See Resume" href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
+              <Button type='a' text={text.about.resume} href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
@@ -130,8 +94,8 @@ export default function About() {
       </Layout>
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
-          <h1 className="text-4xl font-bold pb-2 text-center">Tech Stack</h1>
-          <p className="text-center text-xl text-base pb-4">Tools & technologies I use to build innovative solutions</p>
+          <h1 className="text-4xl font-bold pb-2 text-center">{text.about.tech}</h1>
+          <p className="text-center text-xl text-base pb-4">{text.about.techDesc}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([category, technologies], index) => (
@@ -153,11 +117,11 @@ export default function About() {
       </Layout>
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
-          <h1 className="text-4xl font-bold pb-4 text-center">Background Education</h1>
+          <h1 className="text-4xl font-bold pb-4 text-center">{text.about.education}</h1>
         </div>
         <div className="max-w-screen-xl mx-auto px-5 relative">
           <ul className="-mb-8">
-            {timelineData.map((item, index) => (
+            {Object.values(text.about.edu).map(({ title, date, institution, desc }) => ({ title, date, institution, desc })).map((item, index) => (
               <TimelineItem key={index} {...item} />
             ))}
           </ul>

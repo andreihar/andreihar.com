@@ -1,10 +1,11 @@
 import { FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope } from 'react-icons/fa';
+import text from '@/data/text.json';
 
 const socialMediaLinks = [
-  { href: 'mailto:andreihar@mail.com', icon: FaEnvelope },
-  { href: 'https://github.com/andreihar', icon: FaGithub },
-  { href: 'https://linkedin.com/in/andreihar', icon: FaLinkedinIn },
-  { href: 'https://youtube.com/@aharba', icon: FaYoutube },
+  { href: `mailto:${text.values.email}`, icon: FaEnvelope },
+  { href: `https://github.com/${text.values.github}`, icon: FaGithub },
+  { href: `https://linkedin.com/in/${text.values.linkedin}`, icon: FaLinkedinIn },
+  { href: `https://youtube.com/@${text.values.youtube}`, icon: FaYoutube },
 ];
 
 export default function Footer() {
@@ -23,7 +24,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="w-full p-4 text-center">© Andrei Harbachov, {displayYear}</div>
+      <div className="w-full p-4 text-center">{text.footer.copyright} {displayYear}</div>
     </footer>
   );
 };

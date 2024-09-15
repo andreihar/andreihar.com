@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ href, text, type = 'button', onClick, size = 'text-base px-6 py-3', target, rel }) => {
-  const className = `button transition-all duration-300 ease-in-out inline-block relative font-bold leading-none bg-clip-text z-10 overflow-hidden duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] text-transparent border-2 border-transparent hover:text-white ${size}`;
+  const className = `button transition-all duration-300 ease-in-out inline-block relative font-bold capitalize leading-none bg-clip-text z-10 overflow-hidden duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)] text-transparent border-2 border-transparent hover:text-white ${size}`;
 
   switch (type) {
     case 'a':

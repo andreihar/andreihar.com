@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Anim from '@/components/Anim';
+import text from '@/data/text.json';
 
-const words = ["Full-Stack Dev", "AI Scientist", "Programmer"];
+const words = Object.values(text.home.rotating).slice(0, 4);
 const intervalTime = 3000;
 const fadeDuration = 0.7;
 
@@ -23,11 +24,11 @@ const RotatingText: React.FC = () => {
   }, []);
 
   const currentWord = words[currentWordIndex];
-  const prefix = currentWord.toLowerCase().startsWith("a") ? "an" : "a";
+  const prefix = currentWord.toLowerCase().startsWith("a") ? text.home.rotating.an : text.home.rotating.a;
 
   return (
     <div className="inline-block">
-      <span>I&apos;m {prefix}&nbsp;</span>
+      <span>{text.home.rotating.im} {prefix}&nbsp;</span>
       <Anim key={currentWordIndex} duration={fadeDuration} hidden={{ opacity: 0 }} fadeOut={!visible} className="transition-opacity inline-block">
         <span>
           {currentWord}
