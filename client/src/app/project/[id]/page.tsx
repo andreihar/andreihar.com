@@ -1,7 +1,12 @@
-import { getPostBySlug } from '@/lib/mdx';
+import { getPostBySlug, getAllPostsMeta } from '@/lib/mdx';
 import Page from '@/components/layout/Page';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+
+export async function generateStaticParams() {
+  const projects = await getAllPostsMeta('project');
+  return projects.map((project) => ({ id: project.id }));
+}
 
 export async function generateMetadata({ params }: { params: { id: string; }; }) {
   const post = await getPostBySlug(params.id ?? '', 'project');

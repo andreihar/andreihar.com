@@ -41,7 +41,7 @@ const techStack = {
   ],
 };
 
-const TimelineItem: React.FC<{ title: string; date: string; institution: string; desc: string; }> = ({ title, date, institution, desc }) => (
+const TimelineItem: React.FC<{ title: string; date: string; institution: string; desc: string; note?: string; }> = ({ title, date, institution, desc, note }) => (
   <li className="relative pb-8">
     <span className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
     <div className="relative flex items-start space-x-3">
@@ -56,6 +56,7 @@ const TimelineItem: React.FC<{ title: string; date: string; institution: string;
             <span className="font-medium text-gray-900 dark:text-gray-100 mr-2">{title}</span>
             <span className="whitespace-nowrap">{date}</span>
           </div>
+          {note && <span className="text-lg text-gray-500 dark:text-gray-400">{note}</span>}
         </Anim>
         <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
           <div className="mt-2">
@@ -121,7 +122,7 @@ export default function About() {
         </div>
         <div className="max-w-screen-xl mx-auto px-5 relative">
           <ul className="-mb-8">
-            {Object.values(text.about.edu).map(({ title, date, institution, desc }) => ({ title, date, institution, desc })).map((item, index) => (
+            {Object.values(text.about.edu).map((item: { title: string; date: string; institution: string; desc: string; note?: string; }) => ({ title: item.title, date: item.date, institution: item.institution, desc: item.desc, note: item.note })).map((item, index) => (
               <TimelineItem key={index} {...item} />
             ))}
           </ul>
