@@ -9,13 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@giscus/react": "^3.0.0",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^11.5.4",
-    "i": "^0.3.7",
-    "next": "14.2.5",
+    "next": "^14.2.14",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
-    "npm": "^10.8.2",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",

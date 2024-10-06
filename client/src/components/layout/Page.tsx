@@ -1,14 +1,15 @@
 import React from 'react';
-import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/widgets/ViewsAndLikes';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import text from '@/data/text.json';
+import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/widgets/ViewsAndLikes';
+import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
+import TechIcons from '@/components/widgets/TechIcons';
+import Comments from '@/components/widgets/Comments';
 import Layout from '@/components/layout/Layout';
 import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents from '@/components/content/TableOfContents';
-import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
-import TechIcons from '@/components/widgets/TechIcons';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
-import text from '@/data/text.json';
 
 type PageProps = {
   id: string;
@@ -105,6 +106,7 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
             ))}
           </div>
         </div>
+        <Comments key={id} />
       </Layout>
     </ViewsAndLikesProvider>
   );
