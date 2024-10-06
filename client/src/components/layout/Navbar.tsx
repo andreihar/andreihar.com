@@ -57,7 +57,7 @@ export default function Navbar() {
       <div className="h-full">
         <div className="flex items-center justify-between w-full h-full max-w-[1300px] px-2.5 mx-auto">
           <div className="flex items-center h-full">
-            <Link href='/' className={`text-base font-medium tracking-widest no-underline ${textColorClass} uppercase p-5 block hover:text-primary transition-colors duration-300 ease-in-out`}>
+            <Link href='/' aria-label="Home" className={`text-base font-medium tracking-widest no-underline ${textColorClass} uppercase p-5 block hover:text-primary transition-colors duration-300 ease-in-out`}>
               <Logo height={60} />
             </Link>
           </div>

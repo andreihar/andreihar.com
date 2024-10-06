@@ -64,7 +64,15 @@ const TableOfContents = () => {
         {headings.map((heading) => (
           <li key={heading.id} className={`${activeId === heading.id ? 'border-l-4 pl-2 border-primary font-bold text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'} transition-all duration-300 ease-in-out`}>
             <a href={`#${heading.id}`} className="hover:text-primary">{heading.text}</a>
-            {heading.children && <ul className="ml-4">{renderHeadings(heading.children)}</ul>}
+            {heading.children && (
+              <ul className="ml-4">
+                {heading.children.map((child) => (
+                  <li key={child.id} className={`${activeId === child.id ? 'border-l-4 pl-2 border-primary font-bold text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'} transition-all duration-300 ease-in-out`}>
+                    <a href={`#${child.id}`} className="hover:text-primary">{child.text}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>

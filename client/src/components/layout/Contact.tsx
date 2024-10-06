@@ -6,10 +6,10 @@ import Button from '@/components/Button';
 import text from '@/data/text.json';
 
 const socialMediaLinks = [
-  { href: `mailto:${text.values.email}`, icon: FaEnvelope },
-  { href: `https://github.com/${text.values.github}`, icon: FaGithub },
-  { href: `https://linkedin.com/in/${text.values.linkedin}`, icon: FaLinkedinIn },
-  { href: `https://youtube.com/@${text.values.youtube}`, icon: FaYoutube },
+  { href: `mailto:${text.values.email}`, icon: FaEnvelope, name: 'Email' },
+  { href: `https://github.com/${text.values.github}`, icon: FaGithub, name: 'GitHub' },
+  { href: `https://linkedin.com/in/${text.values.linkedin}`, icon: FaLinkedinIn, name: 'LinkedIn' },
+  { href: `https://youtube.com/@${text.values.youtube}`, icon: FaYoutube, name: 'YouTube' },
 ];
 
 export default function Footer() {
@@ -73,8 +73,8 @@ export default function Footer() {
             </p>
             <h4 className="text-xl font-bold my-4">{text.contact.socials}</h4>
             <div className="flex space-x-4 mb-6">
-              {socialMediaLinks.slice(1).map(({ href, icon: Icon }, index) => (
-                <a key={index} href={href} className="text-primary hover:text-white transition duration-150 ease-in-out">
+              {socialMediaLinks.slice(1).map(({ href, icon: Icon, name }, index) => (
+                <a key={index} href={href} aria-label={name} className="text-primary hover:text-white transition duration-150 ease-in-out">
                   <Icon className="text-2xl" />
                 </a>
               ))}
