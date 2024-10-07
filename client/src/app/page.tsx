@@ -1,13 +1,13 @@
+import Image from 'next/image';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { getAllPostsMeta } from '@/lib/mdx';
 import Button from '@/components/Button';
 import Layout from '@/components/layout/Layout';
 import Anim from '@/components/Anim';
-import Image from 'next/image';
 import RotatingText from '@/components/widgets/RotatingText';
-import { getAllPostsMeta } from '@/lib/mdx';
 import Project from '@/components/content/Project';
 import Blog from '@/components/content/Blog';
 import Contact from '@/components/layout/Contact';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 import text from '@/data/text.json';
 
@@ -80,7 +80,7 @@ const Home = async () => {
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/hero.jpg" alt="Me" fill className="object-cover" />
+              <Image src="/img/hero.jpg" alt="Andrei Harbachov" fill className="object-cover" />
             </div>
           </Anim>
         </div>

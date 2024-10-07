@@ -19,7 +19,6 @@ export default function Comments() {
         inputPosition="top"
         theme={resolvedTheme as Theme}
         lang="en"
-        loading="lazy"
       />
     </div>
   );

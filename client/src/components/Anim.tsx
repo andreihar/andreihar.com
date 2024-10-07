@@ -16,19 +16,9 @@ function Anim({ children, className, style, duration = 1, delay = 0, hidden = { 
   }, [controls, fadeOut, inView]);
 
   return (
-    <motion.div
-      ref={ref}
-      animate={controls}
-      initial="hidden"
-      transition={{ duration, delay }}
-      variants={{
-        visible: { opacity: 1, x: 0, y: 0, scale: 1 },
-        hidden,
-        fadeOut: { opacity: 0 }
-      }}
-      className={className}
-      style={style}
-      {...props}
+    <motion.div ref={ref} animate={controls} initial="hidden" transition={{ duration, delay }}
+      variants={{ visible: { opacity: 1, x: 0, y: 0, scale: 1 }, hidden, fadeOut: { opacity: 0 } }}
+      className={className} style={style} {...props}
     >
       {children}
     </motion.div>
