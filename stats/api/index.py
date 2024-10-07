@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -26,108 +26,62 @@ firebase_credentials = {
 
 cred = credentials.Certificate(firebase_credentials)
 firebase_admin.initialize_app(cred)
-
 db = firestore.client()
 
-projects = [
-    "howl", "memory-lane", "emotion-recognition", "ar-homographies",
-    "3d-reconstruction", "plane-segmenter", "taibun", "nct",
-    "chharm-cooks", "segpalette", "knights-and-knaves", "poisson-blending",
-    "quilt-tex", "footy-ai"
-]
+allowed_origin = os.environ.get('ALLOWED_ORIGIN')
 
-blogs = ["future-of-learning", "dragons-freedom-and-mods"]
-
-def load_data():
-    try:
-        project_doc_ref = db.collection('stats').document('project')
-        blog_doc_ref = db.collection('stats').document('blog')
-        
-        project_doc = project_doc_ref.get()
-        blog_doc = blog_doc_ref.get()
-        
-        data = {
-            "project": project_doc.to_dict().get('projects', []) if project_doc.exists else [],
-            "blog": blog_doc.to_dict().get('blogs', []) if blog_doc.exists else []
-        }
-        
-        return data
-    except Exception as e:
-        print(f"Error loading data: {e}")
-        return {"project": [], "blog": []}
-
-def save_data(category, name):
-    try:
-        doc_ref = db.collection('stats').document(category)
-        doc = doc_ref.get()
-        
-        if doc.exists:
-            items = doc.to_dict().get(category + 's', [])
-            if name not in items:
-                items.append(name)
-                doc_ref.update({category + 's': items})
-        else:
-            doc_ref.set({category + 's': [name]})
-        
-        item_doc_ref = db.collection(category).document(name)
-        item_doc = item_doc_ref.get()
-        
-        if not item_doc.exists:
-            item_doc_ref.set({"likes": 0, "views": 0})
-    except Exception as e:
-        print(f"Error saving data: {e}")
-
-data = load_data()
-
-for project in projects:
-    if project not in data['project']:
-        save_data('project', project)
-
-for blog in blogs:
-    if blog not in data['blog']:
-        save_data('blog', blog)
+def is_valid_origin():
+    origin = request.headers.get('Origin')
+    referer = request.headers.get('Referer')
+    return origin == allowed_origin or (referer and referer.startswith(allowed_origin))
 
 @app.route('/update_view/<category>/<name>', methods=['POST'])
 def update_view(category, name):
-    if category in data and name in data[category]:
-        item_doc_ref = db.collection(category).document(name)
-        item_doc = item_doc_ref.get()
-        
-        if item_doc.exists:
-            item_data = item_doc.to_dict()
-            item_data['views'] += 1
-            item_doc_ref.update(item_data)
-            return jsonify({"message": "View updated"})
-        else:
-            save_data(category, name)
-            return jsonify({"message": "Item created and view updated"})
-    return jsonify({"message": "Not found"}), 404
+    if not is_valid_origin():
+        return jsonify({"message": "Forbidden"}), 403
+
+    item_doc_ref = db.collection(category).document(name)
+    item_doc = item_doc_ref.get()
+    
+    if item_doc.exists:
+        item_data = item_doc.to_dict()
+        item_data['views'] += 1
+        item_doc_ref.update(item_data)
+        return jsonify({"message": "View updated"})
+    else:
+        item_doc_ref.set({"likes": 0, "views": 1})
+        return jsonify({"message": "Item created and view updated"})
 
 @app.route('/update_like/<category>/<name>', methods=['POST'])
 def update_like(category, name):
-    if category in data and name in data[category]:
-        item_doc_ref = db.collection(category).document(name)
-        item_doc = item_doc_ref.get()
-        
-        if item_doc.exists:
-            item_data = item_doc.to_dict()
-            item_data['likes'] += 1
-            item_doc_ref.update(item_data)
-            return jsonify({"message": "Like updated"})
-        else:
-            save_data(category, name)
-            return jsonify({"message": "Item created and like updated"})
-    return jsonify({"message": "Not found"}), 404
+    if not is_valid_origin():
+        return jsonify({"message": "Forbidden"}), 403
+
+    item_doc_ref = db.collection(category).document(name)
+    item_doc = item_doc_ref.get()
+    
+    if item_doc.exists:
+        item_data = item_doc.to_dict()
+        item_data['likes'] += 1
+        item_doc_ref.update(item_data)
+        return jsonify({"message": "Like updated"})
+    else:
+        item_doc_ref.set({"likes": 1, "views": 1})
+        return jsonify({"message": "Item created and like updated"})
 
 @app.route('/get_stats/<category>/<name>', methods=['GET'])
 def get_stats(category, name):
-    if category in data and name in data[category]:
-        item_doc_ref = db.collection(category).document(name)
-        item_doc = item_doc_ref.get()
-        
-        if item_doc.exists:
-            return jsonify(item_doc.to_dict())
-    return jsonify({"message": "Not found"}), 404
+    if not is_valid_origin():
+        return jsonify({"message": "Forbidden"}), 403
+
+    item_doc_ref = db.collection(category).document(name)
+    item_doc = item_doc_ref.get()
+    
+    if item_doc.exists:
+        return jsonify(item_doc.to_dict())
+    else:
+        item_doc_ref.set({"likes": 0, "views": 0})
+        return jsonify({"message": "Item created", "likes": 0, "views": 0})
 
 if __name__ == '__main__':
     app.run(debug=True)
