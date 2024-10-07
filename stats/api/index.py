@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials, firestore
+from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
 
@@ -28,12 +29,25 @@ cred = credentials.Certificate(firebase_credentials)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-allowed_origin = os.environ.get('ALLOWED_ORIGIN')
+allowed_domain = os.environ.get('ALLOWED_DOMAIN', 'localhost:3000')
+
+def extract_domain(url):
+    if not url:
+        return None
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc
+    if domain.startswith("www."):
+        domain = domain[4:]
+    return domain
 
 def is_valid_origin():
     origin = request.headers.get('Origin')
     referer = request.headers.get('Referer')
-    return origin == allowed_origin or (referer and referer.startswith(allowed_origin))
+    
+    origin_domain = extract_domain(origin)
+    referer_domain = extract_domain(referer)
+    
+    return origin_domain == allowed_domain or referer_domain == allowed_domain
 
 @app.route('/update_view/<category>/<name>', methods=['POST'])
 def update_view(category, name):
