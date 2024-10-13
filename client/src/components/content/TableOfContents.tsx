@@ -46,6 +46,10 @@ const TableOfContents = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
+            const activeElement = document.querySelector(`#toc-${entry.target.id}`);
+            if (activeElement) {
+              activeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
           }
         });
       },
@@ -62,12 +66,12 @@ const TableOfContents = () => {
     return (
       <ul className="space-y-2">
         {headings.map((heading) => (
-          <li key={heading.id} className={`${activeId === heading.id ? 'border-l-4 pl-2 border-primary font-bold text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'} transition-all duration-300 ease-in-out`}>
+          <li id={`toc-${heading.id}`} key={heading.id} className={`${activeId === heading.id ? 'border-l-4 pl-2 border-primary font-bold text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'} transition-all duration-300 ease-in-out`}>
             <a href={`#${heading.id}`} className="hover:text-primary">{heading.text}</a>
             {heading.children && (
               <ul className="ml-4">
                 {heading.children.map((child) => (
-                  <li key={child.id} className={`${activeId === child.id ? 'border-l-4 pl-2 border-primary font-bold text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'} transition-all duration-300 ease-in-out`}>
+                  <li id={`toc-${child.id}`} key={child.id} className={`${activeId === child.id ? 'border-l-4 pl-2 border-primary font-bold text-primary-600 dark:text-primary-400' : 'text-gray-600 dark:text-gray-400'} transition-all duration-300 ease-in-out`}>
                     <a href={`#${child.id}`} className="hover:text-primary">{child.text}</a>
                   </li>
                 ))}
