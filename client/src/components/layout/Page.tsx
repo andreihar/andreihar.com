@@ -9,6 +9,7 @@ import Comments from '@/components/widgets/Comments';
 import Layout from '@/components/layout/Layout';
 import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents from '@/components/content/TableOfContents';
+import ShareButton from '@/components/ShareButton';
 import text from '@/data/text.json';
 
 type PageProps = {
@@ -32,34 +33,45 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
       <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: type === 'blog', id: `${id}/banner` })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative p-8 mt-[80px]">
-          <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
-            {builtW && <TechIcons technologies={builtW} showTooltip className="text-3xl text-gray-300" />}
-            {tags && <p className="text-sm text-gray-400">{tags.join(', ')}</p>}
-            <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
-            <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
-            <p className="text-sm text-gray-300 flex flex-wrap items-center">
-              {type === 'blog' ? (
-                <span className="inline-flex items-center gap-1">
-                  <HiOutlineClock className="inline-block text-base" />
-                  {`${time} ${text.page.min}`}
+          <div className="flex justify-between items-start">
+            <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
+              {builtW && <TechIcons technologies={builtW} showTooltip className="text-3xl text-gray-300" />}
+              {tags && tags.map((tag, index) => (
+                <span key={index} className="relative inline-block select-none items-center whitespace-nowrap rounded-lg bg-white bg-opacity-20 py-1 px-2 font-sans font-bold uppercase text-white dark:bg-opacity-20 dark:bg-white mr-2" style={{ fontSize: '0.625rem' }}>
+                  {tag}
                 </span>
-              ) : (
+              ))}
+              <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
+              <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
+              <p className="text-sm text-gray-300 flex flex-wrap items-center">
+                {type === 'blog' ? (
+                  <span className="inline-flex items-center gap-1">
+                    <HiOutlineClock className="inline-block text-base" />
+                    {`${time} ${text.page.min}`}
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1">
+                    <HiOutlineUser className="inline-block text-base" />
+                    {team === 1 ? text.page.solo : `${team} ${text.page.team}`}
+                  </span>
+                )}
+                <span className="mx-2">━</span>
                 <span className="inline-flex items-center gap-1">
-                  <HiOutlineUser className="inline-block text-base" />
-                  {team === 1 ? text.page.solo : `${team} ${text.page.team}`}
+                  <HiOutlineEye className="inline-block text-base" />
+                  <ViewsCounter />
                 </span>
-              )}
-              <span className="mx-2">━</span>
-              <span className="inline-flex items-center gap-1">
-                <HiOutlineEye className="inline-block text-base" />
-                <ViewsCounter />
-              </span>
-              <span className="mx-2">━</span>
-              <span className="inline-flex items-center gap-1">
-                <HiOutlineThumbUp className="inline-block text-base" />
-                <LikesCounter />
-              </span>
-            </p>
+                <span className="mx-2">━</span>
+                <span className="inline-flex items-center gap-1">
+                  <HiOutlineThumbUp className="inline-block text-base" />
+                  <LikesCounter />
+                </span>
+              </p>
+            </div>
+            <div className="lg:max-w-[35%]">
+              <div className="absolute bottom-5 right-0.5">
+                <ShareButton link={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${type}/${id}`} title={title} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
