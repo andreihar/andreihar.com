@@ -1,10 +1,9 @@
 import { getAllPostsMeta } from '@/lib/mdx';
 import Layout from '@/components/layout/Layout';
-import Blog from '@/components/content/Blog';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
-import Anim from '@/components/Anim';
 import text from '@/data/text.json';
+import BlogList from '@/components/layout/BlogList';
 
 export async function generateMetadata() {
   const metas = await getAllPostsMeta('blog');
@@ -21,13 +20,7 @@ const Blogs = async () => {
         </h1>
         <p className="text-center text-xl text-base">{text.blog.desc}</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {metas.map((post, index) => (
-          <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
-            <Blog meta={post} />
-          </Anim>
-        ))}
-      </div>
+      <BlogList posts={metas} />
     </Layout>
   );
 };
