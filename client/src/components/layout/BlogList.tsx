@@ -6,15 +6,16 @@ import Blog from '@/components/content/Blog';
 import Anim from '@/components/Anim';
 import useMeta from '@/hooks/useMeta';
 import { BlogType } from '@/types/blog';
+import text from '@/data/text.json';
 
 interface BlogListProps {
   posts: BlogType[];
 }
 
 const sortOptions = [
-  { label: 'Sort by Date', value: 'date', icon: HiCalendar },
-  { label: 'Sort by Views', value: 'views', icon: HiEye },
-  { label: 'Sort by Likes', value: 'likes', icon: HiThumbUp }
+  { label: text.filter.date, value: 'date', icon: HiCalendar },
+  { label: text.filter.views, value: 'views', icon: HiEye },
+  { label: text.filter.likes, value: 'likes', icon: HiThumbUp }
 ];
 
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
@@ -106,12 +107,12 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (
     <div>
       <form className="max-w-lg mx-auto">
-        <label htmlFor="default-search" className="sr-only">Search</label>
+        <label htmlFor="default-search" className="sr-only">{text.filter.search}</label>
         <div className="relative flex items-center">
           <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
             <HiSearch className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </div>
-          <input type="search" id="default-search" className="block w-full p-3 ps-12 text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white" placeholder="Search..." value={search} onChange={(e) => handleSearch(e.target.value)} />
+          <input type="search" id="default-search" className="block w-full p-3 ps-12 text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white" placeholder={`${text.filter.search}...`} value={search} onChange={(e) => handleSearch(e.target.value)} />
           <div ref={dropdownRef} className="relative">
             <button id="dropdown-button" data-dropdown-toggle="dropdown" className="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 font-medium text-center text-gray-900 bg-gray-50 border border-gray-300 rounded-e-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:text-white dark:border-gray-700 whitespace-nowrap" type="button" onClick={() => setDropdownOpen(!dropdownOpen)}>
               {(() => {

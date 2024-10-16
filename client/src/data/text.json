@@ -1,6 +1,7 @@
 {
 	"values": {
 		"name": "Andrei Harbachov",
+		"avatar": "https://avatars.githubusercontent.com/u/95883512?v=4",
 		"email": "andreihar@mail.com",
 		"github": "andreihar",
 		"linkedin": "andreihar",
@@ -10,7 +11,6 @@
 	"home": {
 		"description": "Welcome to Andrei Harbachov's personal website. Explore projects, blog posts, and learn more about my journey in tech.",
 		"myName": "Hi, my name is",
-		"name": "Andrei",
 		"rotating": {
 			"im": "I'm",
 			"a": "a",
@@ -37,6 +37,12 @@
 	"blog": {
 		"title": "Blog",
 		"desc": "Read my latest blog posts."
+	},
+	"filter": {
+		"search": "Search",
+		"date": "Sort by Date",
+		"views": "Sort by Views",
+		"likes": "Sort by Likes"
 	},
 	"about": {
 		"title": "About",
@@ -73,7 +79,6 @@
 		"min": "min",
 		"solo": "Personal Project",
 		"team": "people",
-		"by": "by Andrei Harbachov",
 		"repo": "Repository",
 		"demo": "Live demo",
 		"toc": "Table of Contents"
@@ -83,9 +88,6 @@
 		"projects": "Projects",
 		"blog": "Blog",
 		"about": "About"
-	},
-	"footer": {
-		"copyright": "© Andrei Harbachov,"
 	},
 	"contact": {
 		"title": "Contact",

@@ -26,7 +26,7 @@ const Blog: React.FC<{ meta: BlogType; }> = ({ meta }) => {
           </div>
           <div className="relative p-4 dark:text-white">
             <div className="relative">
-              <Image alt={text.values.name} src="https://avatars.githubusercontent.com/u/95883512?v=4" width={48} height={48} className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
+              <Image alt={text.values.name} src={text.values.avatar} width={48} height={48} className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
             </div>
             <div className="text-xs text-gray-500 dark:text-gray-400 mt-6 mb-4">{`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}</div>
             <h1 className="block text-md font-semibold leading-tight text-gray-900 dark:text-gray-100 transition-colors duration-300 ease-in-out group-hover:text-primary">

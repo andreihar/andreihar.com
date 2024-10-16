@@ -80,7 +80,7 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
           <p className="w-1/2 text-base text-gray-500 dark:text-gray-400">
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
             {type === 'blog' && <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>}
-            {type === 'blog' && <strong>{text.page.by}</strong>}
+            {type === 'blog' && <strong>{text.values.name}</strong>}
             {[{ href: github, icon: <SiGithub className="inline-block text-base align-middle" />, label: text.page.repo }, { href: website, icon: <HiLink className="inline-block text-base align-middle" />, label: text.page.demo }
             ].map(
               (link, index) =>

@@ -24,7 +24,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <div className="w-full p-4 text-center">{text.footer.copyright} {displayYear}</div>
+      <div className="w-full p-4 text-center">@ {text.values.name} {displayYear}</div>
     </footer>
   );
 };
