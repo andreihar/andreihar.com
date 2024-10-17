@@ -21,6 +21,14 @@ html {
   scroll-padding-top: 100px;
 }
 
+body {
+  @apply font-inter;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-jost;
+}
+
 .underline-slide::after {
   content: '';
   position: absolute;

@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect, useRef } from 'react';
 import { HiSearch, HiChevronDown, HiCalendar, HiEye, HiThumbUp } from 'react-icons/hi';
 import Blog from '@/components/content/Blog';

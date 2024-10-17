@@ -68,7 +68,7 @@ export default function Navbar() {
                 const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
                 return (
                   <li key={index} className="md:inline-block group">
-                    <Link href={item.href} data-after={item.title} className={`tracking-widest no-underline ${textColorClass} uppercase p-5 block group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'text-base font-medium'}`}>
+                    <Link href={item.href} data-after={item.title} className={`tracking-widest no-underline ${textColorClass} uppercase p-5 block group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'} font-jest`}>
                       {item.title}
                     </Link>
                   </li>
