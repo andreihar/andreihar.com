@@ -41,7 +41,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       setFilteredPosts(postsWithStats);
     };
     fetchStats();
-  }, []);
+  }, [posts]);
 
   const handleSearch = (query: string) => {
     setSearch(query);
@@ -97,10 +97,10 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
 
   const getTagClass = (tag: string) => {
     if (activeTags.includes(tag))
-      return 'bg-blue-600';
+      return 'cursor-pointer bg-primary-100 text-primary-900 dark:bg-primary-500 dark:text-primary-100 hover:bg-primary-200 dark:hover:bg-primary-400';
     if (activeTags.length > 0 && !filteredPosts.some(post => post.tags.includes(tag)))
-      return 'bg-gray-400 cursor-not-allowed';
-    return 'bg-gradient-to-tr from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-600';
+      return 'cursor-not-allowed text-white bg-gray-400';
+    return 'cursor-pointer text-gray-300 dark:text-gray-400 bg-gradient-to-tr from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-600 hover:text-white dark:hover:text-white';
   };
 
   return (
@@ -145,7 +145,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
 
       <div className="flex flex-wrap gap-2 mt-4 max-w-lg mx-auto justify-center">
         {allTags.map((tag) => (
-          <div key={tag} className={`relative grid select-none items-center whitespace-nowrap rounded-lg py-1 px-2 font-sans font-bold uppercase text-white ${getTagClass(tag)}`} style={{ fontSize: '0.625rem', cursor: activeTags.includes(tag) || !(activeTags.length > 0 && !filteredPosts.some(post => post.tags.includes(tag))) ? 'pointer' : 'default' }} onClick={() => !(activeTags.length > 0 && !filteredPosts.some(post => post.tags.includes(tag))) && handleTagClick(tag)}>
+          <div key={tag} className={`relative grid select-none items-center whitespace-nowrap rounded-lg py-1 px-2 font-sans font-bold uppercase ${getTagClass(tag)} transition-colors duration-300 ease-in-out`} style={{ fontSize: '0.625rem' }} onClick={() => !(activeTags.length > 0 && !filteredPosts.some(post => post.tags.includes(tag))) && handleTagClick(tag)}>
             {tag}
           </div>
         ))}
