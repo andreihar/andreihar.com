@@ -1,9 +1,8 @@
 import { getAllPostsMeta } from '@/lib/mdx';
 import Layout from '@/components/layout/Layout';
-import Project from '@/components/content/Project';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
-import Anim from '@/components/Anim';
+import ItemsList from '@/components/layout/ItemsList';
 import text from '@/data/text.json';
 
 export async function generateMetadata() {
@@ -21,13 +20,7 @@ const Projects = async () => {
         </h1>
         <p className="text-center text-xl text-base">{text.project.desc}</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {metas.map((post, index) => (
-          <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
-            <Project meta={post} />
-          </Anim>
-        ))}
-      </div>
+      <ItemsList posts={metas} />
     </Layout>
   );
 };

@@ -2,13 +2,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { HiSearch, HiChevronDown, HiCalendar, HiEye, HiThumbUp } from 'react-icons/hi';
 import Blog from '@/components/content/Blog';
+import Project from '@/components/content/Project';
 import Anim from '@/components/Anim';
 import useMeta from '@/hooks/useMeta';
-import { BlogType } from '@/types/blog';
+import { BlogType, ProjectType } from '@/types/blog';
 import text from '@/data/text.json';
 
 interface BlogListProps {
-  posts: BlogType[];
+  posts: (BlogType | ProjectType)[];
 }
 
 const sortOptions = [
@@ -17,24 +18,22 @@ const sortOptions = [
   { label: text.filter.likes, value: 'likes', icon: HiThumbUp }
 ];
 
+type PostWithStats = (BlogType & { views: number; likes: number; }) | (ProjectType & { views: number; likes: number; });
+
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   const { getStats } = useMeta();
-  const [postsWithStats, setPostsWithStats] = useState<(BlogType & { views: number; likes: number; })[]>([]);
+  const [postsWithStats, setPostsWithStats] = useState<PostWithStats[]>([]);
   const [search, setSearch] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState<(BlogType & { views: number; likes: number; })[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostWithStats[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(sortOptions[0].value);
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setPostsWithStats(posts.map(post => ({ ...post, views: 0, likes: 0 })));
-  }, [posts]);
-
-  useEffect(() => {
     const fetchStats = async () => {
       const postsWithStats = await Promise.all(posts.map(async (post) => {
-        const stats = await getStats('blog', post.id);
+        const stats = await getStats('tags' in posts[0] ? 'blog' : 'project', post.id);
         return { ...post, views: stats.views, likes: stats.likes };
       }));
       setPostsWithStats(postsWithStats);
@@ -57,12 +56,20 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       results = results.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
     } else if (selectedCategory === 'likes') {
       results = results.sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0));
+      console.log(results);
     } else {
-      results = results.sort((a, b) => b.published.getTime() - a.published.getTime());
+      results = results.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
     }
 
     if (activeTags.length > 0) {
-      results = results.filter(post => activeTags.every(tag => post.tags.includes(tag)));
+      results = results.filter(post => {
+        if ('tags' in post) {
+          return activeTags.every(tag => post.tags.includes(tag));
+        } else if ('builtW' in post) {
+          return activeTags.every(tag => post.builtW.includes(tag));
+        }
+        return false;
+      });
     }
     setFilteredPosts(results);
   }, [search, selectedCategory, activeTags, postsWithStats]);
@@ -93,14 +100,14 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
     }
   };
 
-  const allTags = Array.from(new Set(posts.flatMap(post => post.tags)));
+  const allTags = Array.from(new Set(posts.flatMap(post => 'tags' in post ? post.tags : post.builtW)));
 
   const getTagClass = (tag: string) => {
     if (activeTags.includes(tag))
-      return 'cursor-pointer bg-primary-100 text-primary-900 dark:bg-primary-500 dark:text-primary-100 hover:bg-primary-200 dark:hover:bg-primary-400';
-    if (activeTags.length > 0 && !filteredPosts.some(post => post.tags.includes(tag)))
+      return 'cursor-pointer bg-primary-600 text-primary-200 hover:bg-primary-500 transition-colors duration-300 ease-in-out';
+    if (activeTags.length > 0 && !filteredPosts.some(post => 'tags' in post ? post.tags.includes(tag) : post.builtW.includes(tag)))
       return 'cursor-not-allowed text-white bg-gray-400';
-    return 'cursor-pointer text-gray-300 dark:text-gray-400 bg-gradient-to-tr from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-600 hover:text-white dark:hover:text-white';
+    return 'cursor-pointer text-white bg-gradient-to-tr from-gray-900 to-gray-800 dark:from-gray-700 dark:to-gray-600 hover:bg-primary-500 transition-colors duration-300 ease-in-out';
   };
 
   return (
@@ -145,7 +152,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
 
       <div className="flex flex-wrap gap-2 mt-4 max-w-lg mx-auto justify-center">
         {allTags.map((tag) => (
-          <div key={tag} className={`relative grid select-none items-center whitespace-nowrap rounded-lg py-1 px-2 font-sans font-bold uppercase ${getTagClass(tag)} transition-colors duration-300 ease-in-out`} style={{ fontSize: '0.625rem' }} onClick={() => !(activeTags.length > 0 && !filteredPosts.some(post => post.tags.includes(tag))) && handleTagClick(tag)}>
+          <div key={tag} className={`relative grid select-none items-center whitespace-nowrap rounded-lg py-1 px-2 font-sans font-bold uppercase ${getTagClass(tag)} transition-colors duration-300 ease-in-out`} style={{ fontSize: '0.625rem' }} onClick={() => !(activeTags.length > 0 && !filteredPosts.some(post => 'tags' in post ? post.tags.includes(tag) : post.builtW.includes(tag))) && handleTagClick(tag)}>
             {tag}
           </div>
         ))}
@@ -154,7 +161,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
         {filteredPosts.map((post, index) => (
           <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
-            <Blog meta={post} />
+            {'tags' in post ? <Blog meta={post} /> : <Project meta={post} />}
           </Anim>
         ))}
       </div>

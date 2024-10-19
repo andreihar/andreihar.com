@@ -2,8 +2,8 @@ import { getAllPostsMeta } from '@/lib/mdx';
 import Layout from '@/components/layout/Layout';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import ItemsList from '@/components/layout/ItemsList';
 import text from '@/data/text.json';
-import BlogList from '@/components/layout/BlogList';
 
 export async function generateMetadata() {
   const metas = await getAllPostsMeta('blog');
@@ -20,7 +20,7 @@ const Blogs = async () => {
         </h1>
         <p className="text-center text-xl text-base">{text.blog.desc}</p>
       </div>
-      <BlogList posts={metas} />
+      <ItemsList posts={metas} />
     </Layout>
   );
 };
