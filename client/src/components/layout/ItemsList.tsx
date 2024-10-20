@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { HiSearch, HiChevronDown, HiCalendar, HiEye, HiThumbUp } from 'react-icons/hi';
+import { HiSearch, HiChevronDown, HiCalendar, HiEye, HiThumbUp, HiOutlineEmojiSad } from 'react-icons/hi';
 import Blog from '@/components/content/Blog';
 import Project from '@/components/content/Project';
 import Anim from '@/components/Anim';
@@ -29,6 +29,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   const [selectedCategory, setSelectedCategory] = useState(sortOptions[0].value);
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const allTags = Array.from(new Set(posts.flatMap(post => 'tags' in post ? post.tags : post.builtW)));
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -53,9 +54,9 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
     );
 
     if (selectedCategory === 'views') {
-      results = results.sort((a, b) => (b.views ?? 0) - (a.views ?? 0));
+      results = results.sort((a, b) => (b.views) - (a.views));
     } else if (selectedCategory === 'likes') {
-      results = results.sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0));
+      results = results.sort((a, b) => (b.likes) - (a.likes));
       console.log(results);
     } else {
       results = results.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
@@ -99,8 +100,6 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       setActiveTags([...activeTags, tag]);
     }
   };
-
-  const allTags = Array.from(new Set(posts.flatMap(post => 'tags' in post ? post.tags : post.builtW)));
 
   const getTagClass = (tag: string) => {
     if (activeTags.includes(tag))
@@ -158,13 +157,20 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
-        {filteredPosts.map((post, index) => (
-          <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
-            {'tags' in post ? <Blog meta={post} /> : <Project meta={post} />}
-          </Anim>
-        ))}
-      </div>
+      {filteredPosts.length === 0 ? (
+        <div className="flex flex-col items-center justify-center mt-10">
+          <HiOutlineEmojiSad className="w-20 h-20 text-gray-500 dark:text-gray-400" />
+          <p className="mt-4 max-w-lg text-2xl text-gray-500 dark:text-gray-400 text-center">Oops! Looks like there’s nothing here. Try searching for something else!</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
+          {filteredPosts.map((post, index) => (
+            <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+              {'tags' in post ? <Blog meta={post} /> : <Project meta={post} />}
+            </Anim>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

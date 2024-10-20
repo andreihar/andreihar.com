@@ -51,7 +51,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative bg-white">
       <div className="absolute inset-0 bg-gray-900 md:w-1/3"></div>
       <div className="relative grid grid-cols-1 md:grid-cols-3 mx-auto max-w-[1100px]">
         <div className="bg-gray-900 md:col-span-1 p-10 pb-0 text-white">
@@ -81,7 +81,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <form onSubmit={handleSubmit} className="md:col-span-2 p-10 pb-0 bg-white">
+        <form onSubmit={handleSubmit} className="md:col-span-2 p-10 pb-0">
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">{text.contact.form.name}</label>
