@@ -160,7 +160,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       {filteredPosts.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-10">
           <HiOutlineEmojiSad className="w-20 h-20 text-gray-500 dark:text-gray-400" />
-          <p className="mt-4 max-w-lg text-2xl text-gray-500 dark:text-gray-400 text-center">Oops! Looks like there’s nothing here. Try searching for something else!</p>
+          <p className="mt-4 max-w-lg text-2xl text-gray-500 dark:text-gray-400 text-center">{text.filter.nothing}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">

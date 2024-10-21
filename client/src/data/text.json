@@ -42,7 +42,8 @@
 		"search": "Search",
 		"date": "Sort by Date",
 		"views": "Sort by Views",
-		"likes": "Sort by Likes"
+		"likes": "Sort by Likes",
+		"nothing": "Oops! Looks like there’s nothing here. Try searching for something else!"
 	},
 	"about": {
 		"title": "About",
