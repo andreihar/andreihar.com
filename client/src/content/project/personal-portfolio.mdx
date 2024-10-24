@@ -1,0 +1,68 @@
+---
+title: 'Personal Portfolio'
+description: 'Portfolio to showcase projects and blog posts with backend stats tracking for views and likes'
+published: '2024-09-10'
+team: 1
+builtW:
+  - nextjs
+  - tailwind
+  - flask
+  - firebase
+github: 'https://github.com/andreihar/andreihar.com'
+website: 'https://andreihar.com/'
+---
+
+# Project Overview
+
+This Personal Portfolio is a sleek and modern web application that serves as a platform for showcasing projects and blog posts. The platform incorporates a dynamic, interactive design, using serverless functions to provide real-time statistics for views and likes.
+
+# Objective and Vision
+
+The portfolio's primary goal was to create a professional online presence for showcasing projects, blogs, and skills in a comprehensive, visually engaging manner. The vision was to build a scalable, easily maintainable solution that demonstrates technical capabilities while providing visitors with an intuitive and engaging experience.
+
+# Tools and Technologies
+
+The portfolio uses cutting-edge technologies to deliver its features:
+
+- **Next.js**: For building a fast and responsive frontend.
+- **Tailwind CSS**: For creating modern, responsive, and custom-styled components.
+- **Flask**: For implementing serverless functions to handle backend tasks efficiently.
+- **Firebase**: For storing and managing real-time data for likes and views tracking.
+
+# Key Features
+
+## Home Page
+
+The Home Page serves as an intuitive introduction to the portfolio, presenting an overview of projects, blog posts, and contact options.
+
+## Projects / Blog List
+
+Visitors can browse the Projects and Blog sections, filtering projects by the tech stack and blog posts by tags. Both sections include search functionality and sorting options, ensuring a user-friendly exploration experience.
+
+## Project / Post Pages
+
+Each project and blog post is showcased on its dedicated page, designed to offer a detailed and interactive presentation of its content. These pages dynamically update likes and view counts in real-time, providing clear metrics of engagement. Visitors can leave comments using Giscus integration, which links discussions directly to the relevant content for seamless interaction.
+
+To enhance user engagement, the pages also feature a Share Button that allows visitors to share articles on popular social media platforms, encouraging wider reach and visibility for the content. Additionally, a dynamically generated table of contents improves navigation by enabling users to quickly access specific sections of detailed blog posts.
+
+## Contact Me
+
+The portfolio includes a Contact Form for easy communication. Submissions are validated and sent securely using EmailJS.
+
+## Likes and Views
+
+Likes and views are tracked using serverless Flask functions and stored in Firebase. The system automatically handles new projects or blog posts, streamlining maintenance and ensuring security with an origin checker to verify requests.
+
+# Challenges Faced and Solutions
+
+One of the significant challenges I encountered was using MDX (Markdown with embedded JSX) for storing articles. React has several libraries for handling MDX, but I found that working with this format, while flexible and powerful, can be inefficient. Rendering MDX client-side often impacts performance, especially when dealing with larger articles or complex content. To address this, I decided to utilise Next.js, which allows server-side processing of MDX. This approach ensures the content is pre-rendered efficiently on the server, providing a much smoother and faster user experience.
+
+Another challenge arose when I needed to implement a comments system and a contact system. At first, I expected this to be complex, as integrating these systems on a personal website seemed daunting. However, I soon realised that there are several excellent, well-documented solutions available online. These solutions, such as Giscus for comments and EmailJS for contact systems, integrate seamlessly into the project, saving considerable development time and allowing me to focus on other important aspects.
+
+Building a fast and cost-efficient backend also seemed like a significant hurdle at first. Initially, I considered more complex architectures, but after thorough research, I realised that a simple, serverless function powered by Flask, combined with Firebase for data storage, was more than adequate. This setup not only met my requirements for performance and scalability but also offered an extremely low-maintenance solution. It’s simple, cost-effective, and perfectly suited for a personal website, with no noticeable drawbacks.
+
+# Takeaways and Insights
+
+One of the key takeaways from this project was the importance of efficiency and performance optimisation when using frameworks like Next.js and MDX. While MDX provides a flexible and powerful way to structure content, it’s essential to consider how it’s processed. Server-side rendering of MDX was crucial for maintaining a smooth user experience. This experience taught me always to prioritise performance and to carefully evaluate the tools and frameworks I choose based on how they impact the overall user experience.
+
+Additionally, this project reinforced the value of finding simple solutions to complex problems. I initially envisioned a more complex architecture for backend and content management, but after exploring existing tools and frameworks, I realised that using simple, serverless functions and third-party solutions could achieve the same results with minimal overhead. This project also highlighted the importance of iterative development—making small, incremental changes and testing each one thoroughly allowed me to build a robust, feature-rich application without getting overwhelmed by the scope.
