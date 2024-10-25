@@ -1,5 +1,5 @@
 import { IconType } from 'react-icons';
-import { SiAndroid, SiAngular, SiAuth0, SiBootstrap, SiSquare, SiProbot, SiExpress, SiFirebase, SiFlask, SiI18Next, SiKeras, SiZalando, SiMui, SiNextdotjs, SiNumpy, SiPostgresql, SiPytorch, SiPython, SiReact } from 'react-icons/si';
+import { SiAndroid, SiAngular, SiAuth0, SiBootstrap, SiSquare, SiProbot, SiExpress, SiFirebase, SiFlask, SiI18Next, SiKeras, SiZalando, SiMui, SiNextdotjs, SiNumpy, SiPostgresql, SiPytorch, SiPython, SiReact, SiTailwindcss } from 'react-icons/si';
 
 const iconMapping: { [key: string]: IconType; } = {
   android: SiAndroid,
@@ -21,6 +21,7 @@ const iconMapping: { [key: string]: IconType; } = {
   pytorch: SiPytorch,
   python: SiPython,
   react: SiReact,
+  tailwind: SiTailwindcss,
 };
 
 const TechIcons: React.FC<{ technologies: string[]; showTooltip?: boolean; className?: string; }> = ({ technologies, showTooltip, className }) => {

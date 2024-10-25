@@ -102,7 +102,7 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
           <article className='order-2 lg:order-1 break-words whitespace-normal mx-auto mt-4 w-full'>
             <MDXRemote source={source} components={MDXComponents} />
           </article>
-          <aside className='order-1 lg:order-2 py-4'>
+          <aside className='hidden lg:block order-2 py-4'>
             <div className='sticky top-36'>
               <TableOfContents />
             </div>
