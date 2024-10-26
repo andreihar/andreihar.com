@@ -18,12 +18,12 @@ export default function Footer() {
     <footer className="w-full max-w-screen-xl mx-auto p-4 md:py-8 m-4">
       <div className="inline-flex items-center justify-center w-full mb-12 lg:mb-14">
         <div className="w-full h-px mx-auto py-0.5 divider" />
-        <div className="absolute px-4 -translate-x-1/2 left-1/2 bg-white dark:bg-dark text-primary">
+        <div className="absolute px-4 -translate-x-1/2 left-1/2 bg-white dark:bg-[#121212] text-primary">
           <Logo height={60} />
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-center justify-between sm:flex-row">
         <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
           <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Andrei Harbachov</h1>
         </div>
