@@ -11,7 +11,7 @@ export async function generateMetadata() {
 }
 
 const Projects = async () => {
-  const metas = await getAllPostsMeta('project');
+  const metas = await getAllPostsMeta('project').then((posts) => posts.map((post) => ({ ...post, views: 0, likes: 0 })));
   return (
     <Layout className='my-20 pt-14'>
       <div className="flex flex-col items-center pb-10">

@@ -8,8 +8,9 @@ import useMeta from '@/hooks/useMeta';
 import { BlogType, ProjectType } from '@/types/blog';
 import text from '@/data/text.json';
 
+type PostWithStats = (BlogType & { views: number; likes: number; }) | (ProjectType & { views: number; likes: number; });
 interface BlogListProps {
-  posts: (BlogType | ProjectType)[];
+  posts: PostWithStats[];
 }
 
 const sortOptions = [
@@ -18,13 +19,11 @@ const sortOptions = [
   { label: text.filter.likes, value: 'likes', icon: HiThumbUp }
 ];
 
-type PostWithStats = (BlogType & { views: number; likes: number; }) | (ProjectType & { views: number; likes: number; });
-
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   const { getStats } = useMeta();
-  const [postsWithStats, setPostsWithStats] = useState<PostWithStats[]>([]);
+  const [postsWithStats, setPostsWithStats] = useState<PostWithStats[]>(posts);
   const [search, setSearch] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState<PostWithStats[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostWithStats[]>(posts);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(sortOptions[0].value);
   const [activeTags, setActiveTags] = useState<string[]>([]);
@@ -42,10 +41,6 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
     };
     fetchStats();
   }, [posts]);
-
-  const handleSearch = (query: string) => {
-    setSearch(query);
-  };
 
   useEffect(() => {
     let results = postsWithStats.filter((post) =>
@@ -117,7 +112,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
           <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
             <HiSearch className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </div>
-          <input type="search" id="default-search" className="block w-full p-3 ps-12 text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white" placeholder={`${text.filter.search}...`} value={search} onChange={(e) => handleSearch(e.target.value)} />
+          <input type="search" id="default-search" className="block w-full p-3 ps-12 text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white" placeholder={`${text.filter.search}...`} value={search} onChange={(e) => setSearch(e.target.value)} />
           <div ref={dropdownRef} className="relative">
             <button id="dropdown-button" data-dropdown-toggle="dropdown" className="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 font-medium text-center text-gray-900 bg-gray-50 border border-gray-300 rounded-e-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:text-white dark:border-gray-700 whitespace-nowrap" type="button" onClick={() => setDropdownOpen(!dropdownOpen)}>
               {(() => {
