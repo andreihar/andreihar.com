@@ -1,5 +1,6 @@
 import React from 'react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import { BlogType, ProjectType } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
 import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/widgets/ViewsAndLikes';
@@ -12,22 +13,14 @@ import TableOfContents from '@/components/content/TableOfContents';
 import ShareButton from '@/components/ShareButton';
 import text from '@/data/text.json';
 
-type PageProps = {
-  id: string;
-  title: string;
-  description: string;
-  published: Date;
-  source: string;
-  tags?: string[];
-  time?: number;
-  team?: number;
-  builtW?: string[];
-  github?: string;
-  website?: string;
-  type: 'blog' | 'project';
-};
+interface PageProps {
+  post: BlogType & { source: any; } | ProjectType & { source: any; };
+}
 
-const Page = ({ id, title, description, published, source, tags, time, team, builtW, github, website, type }: PageProps): JSX.Element => {
+const Page: React.FC<PageProps> = ({ post }) => {
+  const { id, title, description, published, source } = post;
+  const type = 'tags' in post ? 'blog' : 'project';
+
   return (
     <ViewsAndLikesProvider type={type} id={id} showWords updateViewOnLoad>
       <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: type === 'blog', id: `${id}/banner` })})` }}>
@@ -35,8 +28,8 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
         <div className="relative p-8 mt-[80px]">
           <div className="flex justify-between items-start">
             <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
-              {builtW && <TechIcons technologies={builtW} showTooltip className="text-3xl text-gray-300" />}
-              {tags && tags.map((tag, index) => (
+              {'builtW' in post && <TechIcons technologies={post.builtW} showTooltip className="text-3xl text-gray-300" />}
+              {'tags' in post && post.tags.map((tag, index) => (
                 <span key={index} className="relative inline-block select-none items-center whitespace-nowrap rounded-lg bg-white bg-opacity-20 py-1 px-2 font-sans font-bold uppercase text-white dark:bg-opacity-20 dark:bg-white mr-2" style={{ fontSize: '0.625rem' }}>
                   {tag}
                 </span>
@@ -44,15 +37,15 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
               <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
               <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
               <p className="text-sm text-gray-300 flex flex-wrap items-center">
-                {type === 'blog' ? (
+                {'tags' in post ? (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineClock className="inline-block text-base" />
-                    {`${time} ${text.page.min}`}
+                    {`${post.time} ${text.page.min}`}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineUser className="inline-block text-base" />
-                    {team === 1 ? text.page.solo : `${team} ${text.page.team}`}
+                    {post.team === 1 ? text.page.solo : `${post.team} ${text.page.team}`}
                   </span>
                 )}
                 <span className="mx-2">━</span>
@@ -81,7 +74,7 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
             {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
             {type === 'blog' && <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>}
             {type === 'blog' && <strong>{text.values.name}</strong>}
-            {[{ href: github, icon: <SiGithub className="inline-block text-base align-middle" />, label: text.page.repo }, { href: website, icon: <HiLink className="inline-block text-base align-middle" />, label: text.page.demo }
+            {'builtW' in post && [{ href: post.github, icon: <SiGithub className="inline-block text-base align-middle" />, label: text.page.repo }, { href: post.website, icon: <HiLink className="inline-block text-base align-middle" />, label: text.page.demo }
             ].map(
               (link, index) =>
                 link.href && (<React.Fragment key={index}>
@@ -110,10 +103,10 @@ const Page = ({ id, title, description, published, source, tags, time, team, bui
         </main>
         <div>
           <div className="flex flex-wrap gap-2">
-            {tags && tags.map((tag, index) => (
+            {'tags' in post && post.tags.map((tag, index) => (
               <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
             ))}
-            {builtW && builtW.map((tag, index) => (
+            {'builtW' in post && post.builtW.map((tag, index) => (
               <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
             ))}
           </div>

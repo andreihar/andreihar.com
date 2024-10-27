@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { id: string; }; })
 
 const BlogPage = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
   const post = await getPostBySlug(params.id ?? '', 'blog');
-  return <Page {...post} type="blog" />;
+  return <Page post={post} />;
 };
 
 export default BlogPage;
