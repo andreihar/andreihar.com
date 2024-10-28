@@ -19,11 +19,12 @@ interface PageProps {
 
 const Page: React.FC<PageProps> = ({ post }) => {
   const { id, title, description, published, source } = post;
-  const type = 'tags' in post ? 'blog' : 'project';
+  const isBlog = 'tags' in post;
+  const formattedDate = `${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`;
 
   return (
-    <ViewsAndLikesProvider type={type} id={id} showWords updateViewOnLoad>
-      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: type === 'blog', id: `${id}/banner` })})` }}>
+    <ViewsAndLikesProvider type={isBlog ? 'blog' : 'project'} id={id} showWords updateViewOnLoad>
+      <div className="relative p-5 text-center bg-center bg-no-repeat bg-cover min-h-[550px] h-auto flex flex-col justify-end" style={{ backgroundImage: `url(${generateStorageImgUrl({ header: true, blog: isBlog, id: `${id}/banner` })})` }}>
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="flex justify-between items-start">
@@ -62,7 +63,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
             </div>
             <div className="lg:max-w-[35%]">
               <div className="absolute bottom-5 right-0.5">
-                <ShareButton link={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${type}/${id}`} title={title} />
+                <ShareButton link={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${isBlog ? 'blog' : 'project'}/${id}`} title={title} />
               </div>
             </div>
           </div>
@@ -70,10 +71,17 @@ const Page: React.FC<PageProps> = ({ post }) => {
       </div>
       <Layout>
         <div className="my-5 flex justify-between items-center">
-          <p className="w-1/2 text-base text-gray-500 dark:text-gray-400">
-            {`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}
-            {type === 'blog' && <span className="text-gray-300 dark:text-gray-600 mx-2">━</span>}
-            {type === 'blog' && <strong>{text.values.name}</strong>}
+          <p className="text-base text-gray-500 dark:text-gray-400 flex-grow">
+            {isBlog && (
+              <div className="flex items-center space-x-4">
+                <img src={text.values.avatar} alt={text.values.name} className="w-10 h-10 rounded-full" />
+                <div>
+                  <p className="font-bold">{text.values.name}</p>
+                  <p className="text-sm text-gray-500">{formattedDate}</p>
+                </div>
+              </div>
+            )}
+            {!isBlog && formattedDate}
             {'builtW' in post && [{ href: post.github, icon: <SiGithub className="inline-block text-base align-middle" />, label: text.page.repo }, { href: post.website, icon: <HiLink className="inline-block text-base align-middle" />, label: text.page.demo }
             ].map(
               (link, index) =>
@@ -86,7 +94,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
                 </React.Fragment>)
             )}
           </p>
-          <div className="w-1/2 flex justify-end">
+          <div className="flex justify-end">
             <LikeButton />
           </div>
         </div>
