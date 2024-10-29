@@ -25,7 +25,7 @@ export default function Footer() {
 
       <div className="flex flex-col items-center justify-between sm:flex-row">
         <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-          <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Andrei Harbachov</h1>
+          <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{text.values.name}</h1>
         </div>
         <div className="mb-6 flex justify-center space-x-3 md:space-x-6">
           {socialMediaLinks.map(({ href, icon: Icon, name }, index) => (

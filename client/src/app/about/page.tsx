@@ -88,7 +88,7 @@ export default function About() {
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/studying.jpg" alt="Andrei Harbachov" fill className="object-cover" />
+              <Image src="/img/studying.jpg" alt={text.values.name} fill className="object-cover" />
             </div>
           </Anim>
         </div>
