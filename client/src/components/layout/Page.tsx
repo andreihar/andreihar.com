@@ -111,10 +111,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
         </main>
         <div>
           <div className="flex flex-wrap gap-2">
-            {'tags' in post && post.tags.map((tag, index) => (
-              <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
-            ))}
-            {'builtW' in post && post.builtW.map((tag, index) => (
+            {('tags' in post ? post.tags : post.builtW).map((tag, index) => (
               <div key={index} className="relative grid select-none items-center whitespace-nowrap rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white dark:from-gray-700 dark:to-gray-600">{tag}</div>
             ))}
           </div>
