@@ -89,9 +89,10 @@ export default function Navbar() {
             <ThemeSwitch />
             <button onClick={() => setIsActive(!isActive)} className="z-50 text-gray-500 w-10 h-10 relative focus:outline-none bg-transparent md:hidden">
               <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <span aria-hidden="true" className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${isActive ? 'rotate-45' : '-translate-y-1.5'}`} />
-                <span aria-hidden="true" className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${isActive ? 'opacity-0' : ''}`} />
-                <span aria-hidden="true" className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${isActive ? '-rotate-45' : 'translate-y-1.5'}`} />
+                {[{ act: 'rotate-45', in: '-translate-y-1.5' }, { act: 'opacity-0', in: '' }, { act: '-rotate-45', in: 'translate-y-1.5' }].map((line, index) => (
+                  <span key={index} aria-hidden="true" className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${isActive ? line.act : line.in}`}
+                  />
+                ))}
               </div>
             </button>
           </div>

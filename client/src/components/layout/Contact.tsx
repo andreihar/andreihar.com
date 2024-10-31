@@ -69,7 +69,7 @@ export default function Footer() {
             </a>
             <p className="mb-4 inline-flex text-2xl items-center gap-1 align-middle">
               <FaMapMarkerAlt className="inline-block align-middle text-primary" />
-              <span className="align-middle ml-2 text-lg">{text.contact.locationText}</span>
+              <span className="align-middle ml-2 text-lg">{text.values.location}</span>
             </p>
             <h4 className="text-xl font-bold my-4">{text.contact.socials}</h4>
             <div className="flex space-x-4 mb-6">
