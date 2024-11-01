@@ -15,7 +15,7 @@ export async function generateMetadata() {
     images: ['/img/studying.jpg'],
     url: 'about',
     section: 'About',
-    tags: ['About', 'Profile', 'Background', 'Skills', 'Experiences', ...Object.values(text.home.rotating).slice(0, 4), ...text.contact.locationText.split(', ')],
+    tags: ['About', 'Profile', 'Background', 'Skills', 'Experiences', ...Object.values(text.home.rotating).slice(0, 4), ...text.values.location.split(', ')],
   });
 }
 

@@ -17,7 +17,7 @@ export async function generateMetadata() {
     images: ['/img/hero.jpg'],
     url: '/',
     section: 'Home',
-    tags: ['Home', 'Projects', 'Blog', 'Tech', ...Object.values(text.home.rotating).slice(0, 4), ...text.contact.locationText.split(', ')],
+    tags: ['Home', 'Projects', 'Blog', 'Tech', ...Object.values(text.home.rotating).slice(0, 4), ...text.values.location.split(', ')],
   });
 }
 

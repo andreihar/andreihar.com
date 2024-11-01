@@ -1,6 +1,7 @@
 {
 	"values": {
 		"name": "Andrei Harbachov",
+		"location": "Vancouver, BC, Canada",
 		"avatar": "https://avatars.githubusercontent.com/u/95883512?v=4",
 		"email": "andreihar@mail.com",
 		"github": "andreihar",
@@ -95,7 +96,6 @@
 		"getIn": "Get in",
 		"touch": "touch",
 		"desc": "Feel free to reach out for project enquiries, collaboration opportunities, or any questions you may have. I’m always open to new connections in tech and computer science. Drop me an email or connect with me on social media!",
-		"locationText": "Vancouver, BC, Canada",
 		"socials": "Socials",
 		"form": {
 			"name": "Name",
