@@ -1,5 +1,5 @@
 {
-	"values": {
+	"Values": {
 		"name": "Andrei Harbachov",
 		"location": "Vancouver, BC, Canada",
 		"avatar": "https://avatars.githubusercontent.com/u/95883512?v=4",
@@ -9,8 +9,9 @@
 		"twitter": "andrei_har",
 		"youtube": "aharba"
 	},
-	"home": {
-		"description": "Welcome to Andrei Harbachov's personal website. Explore projects, blog posts, and learn more about my journey in tech.",
+	"Home": {
+		"title": "Home",
+		"desc": "Welcome to {name}'s personal website. Explore projects, blog posts, and learn more about my journey in tech.",
 		"myName": "Hi, my name is",
 		"rotating": {
 			"im": "I'm",
@@ -31,24 +32,17 @@
 		"blog": "Latest Posts",
 		"blogBtn": "View all posts"
 	},
-	"project": {
+	"Project": {
 		"title": "Projects",
 		"desc": "Explore my Web Development and AI projects."
 	},
-	"blog": {
+	"Blog": {
 		"title": "Blog",
 		"desc": "Read my latest blog posts."
 	},
-	"filter": {
-		"search": "Search",
-		"date": "Sort by Date",
-		"views": "Sort by Views",
-		"likes": "Sort by Likes",
-		"nothing": "Oops! Looks like there’s nothing here. Try searching for something else!"
-	},
-	"about": {
+	"About": {
 		"title": "About",
-		"desc": "Learn more about Andrei Harbachov, his background, skills, and experiences.",
+		"desc": "Learn more about {name}, his background, skills, and experiences.",
 		"text": "Hello, I’m Andrei, a Simon Fraser University graduate with a Bachelor of Science in Computer Science, with a specialisation in Artificial Intelligence and Visual Computing. My programming journey began in middle school and has grown into a diverse skill set across Web Development, Machine Learning, and Computer Vision. I’m constantly exploring new technologies and applying them to real-world problems. On this website, you’ll find my projects, blog posts, and thoughts on tech. I’m always eager to connect, collaborate, and learn — feel free to reach out!",
 		"resume": "See résumé",
 		"tech": "Tech Stack",
@@ -70,14 +64,7 @@
 			}
 		}
 	},
-	"likesViews": {
-		"iLike": "I like it!",
-		"view": "view",
-		"views": "views",
-		"like": "like",
-		"likes": "likes"
-	},
-	"page": {
+	"BlogPage": {
 		"min": "min",
 		"solo": "Personal Project",
 		"team": "people",
@@ -85,13 +72,21 @@
 		"demo": "Live demo",
 		"toc": "Table of Contents"
 	},
-	"navbar": {
-		"home": "Home",
-		"projects": "Projects",
-		"blog": "Blog",
-		"about": "About"
+	"Filter": {
+		"search": "Search",
+		"date": "Sort by Date",
+		"views": "Sort by Views",
+		"likes": "Sort by Likes",
+		"nothing": "Oops! Looks like there’s nothing here. Try searching for something else!"
 	},
-	"contact": {
+	"LikesViews": {
+		"iLike": "I like it!",
+		"view": "view",
+		"views": "views",
+		"like": "like",
+		"likes": "likes"
+	},
+	"Contact": {
 		"title": "Contact",
 		"getIn": "Get in",
 		"touch": "touch",
