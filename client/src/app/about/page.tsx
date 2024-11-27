@@ -1,21 +1,25 @@
 import Image from 'next/image';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
 import { FaJava, FaPen } from 'react-icons/fa';
+import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 import Button from '@/components/Button';
 import Layout from '@/components/layout/Layout';
 import Contact from '@/components/layout/Contact';
 import Anim from '@/components/Anim';
 import { generateMetadata as generateSEO } from '@/components/SEO';
-import text from '@/data/text.json';
 
 export async function generateMetadata() {
+  const t = await getTranslations('About');
+  const t_values = await getTranslations();
+
   return generateSEO({
-    title: text.about.title,
-    description: text.about.desc,
+    title: t('title'),
+    description: t('desc', { name: t_values('Values.name') }),
     images: ['/img/studying.jpg'],
     url: 'about',
     section: 'About',
-    tags: ['About', 'Profile', 'Background', 'Skills', 'Experiences', ...Object.values(text.home.rotating).slice(0, 4), ...text.values.location.split(', ')],
+    tags: ['About', 'Profile', 'Background', 'Skills', 'Experiences', ...[1, 2, 3, 4].map(key => t_values(`Home.rotating.${key}`)), ...t_values('Values.location').split(', ')],
   });
 }
 
@@ -70,33 +74,41 @@ const TimelineItem: React.FC<{ title: string; date: string; institution: string;
 );
 
 export default function About() {
+  const t = useTranslations('About');
+  const t_values = useTranslations('Values');
+
+  const education = [
+    { title: t('edu.1.title'), date: t('edu.1.date'), institution: t('edu.1.institution'), desc: t('edu.1.desc'), note: t('edu.1.note') },
+    { title: t('edu.2.title'), date: t('edu.2.date'), institution: t('edu.2.institution'), desc: t('edu.2.desc'), note: '' },
+  ];
+
   return (
     <main>
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
-          <h1 className="text-4xl font-bold pb-2 text-center">{text.about.title}</h1>
-          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{text.values.name}</h2>
+          <h1 className="text-4xl font-bold pb-2 text-center">{t('title')}</h1>
+          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{t_values('name')}</h2>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
-              {text.about.text}
+              {t('text')}
             </p>
             <div className="text-center md:text-left">
-              <Button type='a' text={text.about.resume} href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
+              <Button type='a' text={t('resume')} href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/studying.jpg" alt={text.values.name} fill className="object-cover" />
+              <Image src="/img/studying.jpg" alt={t_values('name')} fill className="object-cover" />
             </div>
           </Anim>
         </div>
       </Layout>
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
-          <h1 className="text-4xl font-bold pb-2 text-center">{text.about.tech}</h1>
-          <p className="text-center text-xl text-base pb-4">{text.about.techDesc}</p>
+          <h1 className="text-4xl font-bold pb-2 text-center">{t('tech')}</h1>
+          <p className="text-center text-xl text-base pb-4">{t('techDesc')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([category, technologies], index) => (
@@ -118,13 +130,15 @@ export default function About() {
       </Layout>
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
-          <h1 className="text-4xl font-bold pb-4 text-center">{text.about.education}</h1>
+          <h1 className="text-4xl font-bold pb-4 text-center">{t('education')}</h1>
         </div>
         <div className="max-w-screen-xl mx-auto px-5 relative">
           <ul className="-mb-8">
-            {Object.values(text.about.edu).map((item: { title: string; date: string; institution: string; desc: string; note?: string; }) => ({ title: item.title, date: item.date, institution: item.institution, desc: item.desc, note: item.note })).map((item, index) => (
-              <TimelineItem key={index} {...item} />
-            ))}
+            {education.map((item, index) => {
+              return (
+                <TimelineItem key={index} {...item} />
+              );
+            })}
           </ul>
         </div>
       </Layout>
