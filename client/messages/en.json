@@ -11,10 +11,11 @@
 	},
 	"Home": {
 		"title": "Home",
+		"tags": "Projects, Blog, Tech",
 		"desc": "Welcome to {name}'s personal website. Explore projects, blog posts, and learn more about my journey in tech.",
-		"myName": "Hi, my name is",
+		"myName": "Hi, my name is <c>{name}</c>",
 		"rotating": {
-			"im": "I'm",
+			"sentence": "I'm {prefix, select, true {an} other {a}} <c>{word}</c>",
 			"a": "a",
 			"an": "an",
 			"1": "Full-Stack Dev",
@@ -42,6 +43,7 @@
 	},
 	"About": {
 		"title": "About",
+		"tags": "Profile, Background, Skills, Experiences",
 		"desc": "Learn more about {name}, his background, skills, and experiences.",
 		"text": "Hello, I’m Andrei, a Simon Fraser University graduate with a Bachelor of Science in Computer Science, with a specialisation in Artificial Intelligence and Visual Computing. My programming journey began in middle school and has grown into a diverse skill set across Web Development, Machine Learning, and Computer Vision. I’m constantly exploring new technologies and applying them to real-world problems. On this website, you’ll find my projects, blog posts, and thoughts on tech. I’m always eager to connect, collaborate, and learn — feel free to reach out!",
 		"resume": "See résumé",
@@ -65,31 +67,29 @@
 		}
 	},
 	"BlogPage": {
-		"min": "min",
+		"min": "{time} min",
 		"solo": "Personal Project",
-		"team": "people",
+		"team": "{team, plural, one {Personal Project} other {# people}}",
 		"repo": "Repository",
 		"demo": "Live demo",
 		"toc": "Table of Contents"
 	},
 	"Filter": {
 		"search": "Search",
-		"date": "Sort by Date",
-		"views": "Sort by Views",
-		"likes": "Sort by Likes",
+		"sort": "Sort by {category}",
+		"date": "Date",
+		"views": "Views",
+		"likes": "Likes",
 		"nothing": "Oops! Looks like there’s nothing here. Try searching for something else!"
 	},
 	"LikesViews": {
 		"iLike": "I like it!",
-		"view": "view",
-		"views": "views",
-		"like": "like",
-		"likes": "likes"
+		"view": "{count, plural, one {# view} other {# views}}",
+		"like": "{count, plural, one {# like} other {# likes}}"
 	},
 	"Contact": {
 		"title": "Contact",
-		"getIn": "Get in",
-		"touch": "touch",
+		"touch": "Get in <c>touch</c>",
 		"desc": "Feel free to reach out for project enquiries, collaboration opportunities, or any questions you may have. I’m always open to new connections in tech and computer science. Drop me an email or connect with me on social media!",
 		"socials": "Socials",
 		"form": {
@@ -97,11 +97,12 @@
 			"email": "Email Address",
 			"message": "Message",
 			"send": "Send message",
-			"nameError": "Name is required",
-			"emailError": "Email is required",
-			"messageError": "Message is required",
+			"require": "{value} is required",
 			"success": "Message sent successfully!",
 			"error": "An error occurred. Please try again."
 		}
+	},
+	"Footer": {
+		"rights": "@ {name}, {year}"
 	}
 }
