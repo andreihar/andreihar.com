@@ -1,16 +1,17 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
 import ThemeSwitch from '@/components/ThemeSwitch';
-import text from '@/data/text.json';
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations();
 
   useEffect(() => {
     setIsMounted(true);
@@ -35,10 +36,10 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
-    { title: text.navbar.home, href: "/", },
-    { title: text.navbar.projects, href: "/project", },
-    { title: text.navbar.blog, href: "/blog", },
-    { title: text.navbar.about, href: "/about", },
+    { title: t('Home.title'), href: "/", },
+    { title: t('Project.title'), href: "/project", },
+    { title: t('Blog.title'), href: "/blog", },
+    { title: t('About.title'), href: "/about", },
   ];
 
   if (!isMounted) {

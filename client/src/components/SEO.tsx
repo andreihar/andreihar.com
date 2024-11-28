@@ -1,4 +1,4 @@
-import text from '@/data/text.json';
+import { getTranslations } from 'next-intl/server';
 
 type GenerateMetadataProps = {
   title?: string;
@@ -10,22 +10,23 @@ type GenerateMetadataProps = {
   published?: Date;
 };
 
-export function generateMetadata({ title, description, images, url, section, tags = [], published }: GenerateMetadataProps) {
-  const finalTitle = title ? `${title} | ${text.values.name}` : text.values.name;
+export async function generateMetadata({ title, description, images, url, section, tags = [], published }: GenerateMetadataProps) {
+  const t = await getTranslations('Values');
+  const finalTitle = title ? `${title} | ${t('name')}` : t('name');
 
   const metadata: any = {
     description,
-    keywords: [...tags, text.values.name, ...text.values.name.split(' '), text.values.name.split(' ')[1].slice(0, 3)].join(', '),
+    keywords: [...tags, t('name'), ...t('name').split(' '), t('name').split(' ')[1].slice(0, 3)].join(', '),
     openGraph: {
       type: 'article',
       url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}${url}`,
       title: finalTitle,
       description,
       images,
-      site_name: text.values.name,
+      site_name: t('name'),
       locale: 'en',
       article: {
-        authors: [text.values.name],
+        authors: [t('name')],
         section,
         tags,
         publishedTime: published ? published.toISOString() : undefined,
@@ -33,8 +34,8 @@ export function generateMetadata({ title, description, images, url, section, tag
     },
     twitter: {
       card: 'summary_large_image',
-      site: `@${text.values.twitter}`,
-      creator: `@${text.values.twitter}`,
+      site: `@${t('twitter')}`,
+      creator: `@${t('twitter')}`,
       url,
       title: finalTitle,
       description,

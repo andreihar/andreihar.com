@@ -1,25 +1,26 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import { HiSearch, HiChevronDown, HiCalendar, HiEye, HiThumbUp, HiOutlineEmojiSad } from 'react-icons/hi';
 import Blog from '@/components/content/Blog';
 import Project from '@/components/content/Project';
 import Anim from '@/components/Anim';
 import useMeta from '@/hooks/useMeta';
 import { BlogType, ProjectType } from '@/types/blog';
-import text from '@/data/text.json';
 
 type PostWithStats = (BlogType & { views: number; likes: number; }) | (ProjectType & { views: number; likes: number; });
 interface BlogListProps {
   posts: PostWithStats[];
 }
 
-const sortOptions = [
-  { label: text.filter.date, value: 'date', icon: HiCalendar },
-  { label: text.filter.views, value: 'views', icon: HiEye },
-  { label: text.filter.likes, value: 'likes', icon: HiThumbUp }
-];
-
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
+  const t = useTranslations('Filter');
+  const sortOptions = [
+    { label: t('date'), value: 'date', icon: HiCalendar },
+    { label: t('views'), value: 'views', icon: HiEye },
+    { label: t('likes'), value: 'likes', icon: HiThumbUp }
+  ];
+
   const { getStats } = useMeta();
   const [postsWithStats, setPostsWithStats] = useState<PostWithStats[]>(posts);
   const [search, setSearch] = useState('');
@@ -107,12 +108,12 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (
     <div>
       <form className="max-w-lg mx-auto">
-        <label htmlFor="default-search" className="sr-only">{text.filter.search}</label>
+        <label htmlFor="default-search" className="sr-only">{t('search')}</label>
         <div className="relative flex items-center">
           <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
             <HiSearch className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </div>
-          <input type="search" id="default-search" className="block w-full p-3 ps-12 text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white" placeholder={`${text.filter.search}...`} value={search} onChange={(e) => setSearch(e.target.value)} />
+          <input type="search" id="default-search" className="block w-full p-3 ps-12 text-gray-900 border border-gray-300 rounded-s-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white" placeholder={`${t('search')}...`} value={search} onChange={(e) => setSearch(e.target.value)} />
           <div ref={dropdownRef} className="relative">
             <button id="dropdown-button" data-dropdown-toggle="dropdown" className="flex-shrink-0 z-10 inline-flex items-center py-3 px-4 font-medium text-center text-gray-900 bg-gray-50 border border-gray-300 rounded-e-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:text-white dark:border-gray-700 whitespace-nowrap" type="button" onClick={() => setDropdownOpen(!dropdownOpen)}>
               {(() => {
@@ -155,7 +156,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       {filteredPosts.length === 0 ? (
         <div className="flex flex-col items-center justify-center mt-10">
           <HiOutlineEmojiSad className="w-20 h-20 text-gray-500 dark:text-gray-400" />
-          <p className="mt-4 max-w-lg text-2xl text-gray-500 dark:text-gray-400 text-center">{text.filter.nothing}</p>
+          <p className="mt-4 max-w-lg text-2xl text-gray-500 dark:text-gray-400 text-center">{t('nothing')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">

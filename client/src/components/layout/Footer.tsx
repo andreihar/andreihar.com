@@ -1,15 +1,17 @@
 import { FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope } from 'react-icons/fa';
+import { useTranslations } from 'next-intl';
 import Logo from '@/components/Logo';
-import text from '@/data/text.json';
-
-const socialMediaLinks = [
-  { href: `mailto:${text.values.email}`, icon: FaEnvelope, name: 'Email' },
-  { href: `https://github.com/${text.values.github}`, icon: FaGithub, name: 'GitHub' },
-  { href: `https://linkedin.com/in/${text.values.linkedin}`, icon: FaLinkedinIn, name: 'LinkedIn' },
-  { href: `https://youtube.com/@${text.values.youtube}`, icon: FaYoutube, name: 'YouTube' },
-];
 
 export default function Footer() {
+  const t = useTranslations('Values');
+  const t_values = useTranslations('Values');
+  const socialMediaLinks = [
+    { href: `mailto:${t_values('email')}`, icon: FaEnvelope, name: 'Email' },
+    { href: `https://github.com/${t_values('github')}`, icon: FaGithub, name: 'GitHub' },
+    { href: `https://linkedin.com/in/${t_values('linkedin')}`, icon: FaLinkedinIn, name: 'LinkedIn' },
+    { href: `https://youtube.com/@${t_values('youtube')}`, icon: FaYoutube, name: 'YouTube' },
+  ];
+
   const startingYear = 2024;
   const currentYear = new Date().getFullYear();
   const displayYear = startingYear === currentYear ? `${startingYear}` : `${startingYear} - ${currentYear}`;
@@ -25,7 +27,7 @@ export default function Footer() {
 
       <div className="flex flex-col items-center justify-between sm:flex-row">
         <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-          <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{text.values.name}</h1>
+          <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{t_values('name')}</h1>
         </div>
         <div className="mb-6 flex justify-center space-x-3 md:space-x-6">
           {socialMediaLinks.map(({ href, icon: Icon, name }, index) => (
@@ -35,7 +37,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <span className="block text-gray-600 text-center dark:text-gray-300">@ {text.values.name}, {displayYear}</span>
+      <span className="block text-gray-600 text-center dark:text-gray-300">@ {t_values('name')}, {displayYear}</span>
     </footer>
   );
-};
+}

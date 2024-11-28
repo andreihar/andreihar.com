@@ -1,5 +1,6 @@
 import React from 'react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import { useTranslations } from 'next-intl';
 import { BlogType, ProjectType } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
@@ -11,7 +12,6 @@ import Layout from '@/components/layout/Layout';
 import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents from '@/components/content/TableOfContents';
 import ShareButton from '@/components/ShareButton';
-import text from '@/data/text.json';
 
 interface PageProps {
   post: BlogType & { source: any; } | ProjectType & { source: any; };
@@ -21,6 +21,8 @@ const Page: React.FC<PageProps> = ({ post }) => {
   const { id, title, description, published, source } = post;
   const isBlog = 'tags' in post;
   const formattedDate = `${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`;
+  const t = useTranslations('BlogPage');
+  const t_values = useTranslations('Values');
 
   return (
     <ViewsAndLikesProvider type={isBlog ? 'blog' : 'project'} id={id} showWords updateViewOnLoad>
@@ -41,12 +43,12 @@ const Page: React.FC<PageProps> = ({ post }) => {
                 {'tags' in post ? (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineClock className="inline-block text-base" />
-                    {`${post.time} ${text.page.min}`}
+                    {`${post.time} ${t('min')}`}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineUser className="inline-block text-base" />
-                    {post.team === 1 ? text.page.solo : `${post.team} ${text.page.team}`}
+                    {post.team === 1 ? t('solo') : `${post.team} ${t('team')}`}
                   </span>
                 )}
                 <span className="mx-2">━</span>
@@ -74,15 +76,15 @@ const Page: React.FC<PageProps> = ({ post }) => {
           <p className="text-base text-gray-500 dark:text-gray-400 flex-grow">
             {isBlog && (
               <div className="flex items-center space-x-4">
-                <img src={text.values.avatar} alt={text.values.name} className="w-10 h-10 rounded-full" />
+                <img src={t_values('avatar')} alt={t_values('name')} className="w-10 h-10 rounded-full" />
                 <div>
-                  <p className="font-bold">{text.values.name}</p>
+                  <p className="font-bold">{t_values('name')}</p>
                   <p className="text-sm text-gray-500">{formattedDate}</p>
                 </div>
               </div>
             )}
             {!isBlog && formattedDate}
-            {'builtW' in post && [{ href: post.github, icon: <SiGithub className="inline-block text-base align-middle" />, label: text.page.repo }, { href: post.website, icon: <HiLink className="inline-block text-base align-middle" />, label: text.page.demo }
+            {'builtW' in post && [{ href: post.github, icon: <SiGithub className="inline-block text-base align-middle" />, label: t('repo') }, { href: post.website, icon: <HiLink className="inline-block text-base align-middle" />, label: t('demo') }
             ].map(
               (link, index) =>
                 link.href && (<React.Fragment key={index}>
