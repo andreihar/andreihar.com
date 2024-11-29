@@ -9,7 +9,14 @@ export async function generateMetadata() {
   const metas = await getAllPostsMeta('project');
   const t = await getTranslations('Project');
 
-  return generateSEO({ title: t('title'), description: t('desc'), images: [generateStorageImgUrl({ header: true, id: `${metas[0].id}/banner` })], url: 'project', section: 'Project', tags: metas[0].builtW });
+  return generateSEO({
+    title: t('title'),
+    description: t('desc'),
+    images: [generateStorageImgUrl({ header: true, id: `${metas[0].id}/banner` })],
+    url: 'project',
+    section: t('title'),
+    tags: metas[0].builtW
+  });
 }
 
 const Projects = async () => {

@@ -18,8 +18,8 @@ export async function generateMetadata() {
     description: t('desc', { name: t_values('Values.name') }),
     images: ['/img/studying.jpg'],
     url: 'about',
-    section: 'About',
-    tags: ['About', 'Profile', 'Background', 'Skills', 'Experiences', ...[1, 2, 3, 4].map(key => t_values(`Home.rotating.${key}`)), ...t_values('Values.location').split(', ')],
+    section: t('title'),
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...t_values('Values.location').split(', ')],
   });
 }
 
@@ -77,11 +77,6 @@ export default function About() {
   const t = useTranslations('About');
   const t_values = useTranslations('Values');
 
-  const education = [
-    { title: t('edu.1.title'), date: t('edu.1.date'), institution: t('edu.1.institution'), desc: t('edu.1.desc'), note: t('edu.1.note') },
-    { title: t('edu.2.title'), date: t('edu.2.date'), institution: t('edu.2.institution'), desc: t('edu.2.desc'), note: '' },
-  ];
-
   return (
     <main>
       <Layout className="my-20 pt-14">
@@ -134,9 +129,9 @@ export default function About() {
         </div>
         <div className="max-w-screen-xl mx-auto px-5 relative">
           <ul className="-mb-8">
-            {education.map((item, index) => {
+            {Array.from({ length: 100 }, (_, i) => i + 1).map(i => t.has(`edu.${i}`) ? `edu.${i}` : null).filter((word): word is string => word !== null).map((item, index) => {
               return (
-                <TimelineItem key={index} {...item} />
+                <TimelineItem key={index} title={t(`${item}.title`)} date={t(`${item}.date`)} institution={t(`${item}.institution`)} desc={t(`${item}.desc`)} note={t.has(`${item}.note`) ? t(`${item}.note`) : undefined} />
               );
             })}
           </ul>

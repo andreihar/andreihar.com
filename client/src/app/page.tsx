@@ -19,8 +19,8 @@ export async function generateMetadata() {
     description: t('desc', { name: t_values('name') }),
     images: ['/img/hero.jpg'],
     url: '/',
-    section: 'Home',
-    tags: ['Home', 'Projects', 'Blog', 'Tech', ...[1, 2, 3, 4].map(key => t(`rotating.${key}`)), ...t_values('location').split(', ')],
+    section: t('title'),
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...t_values('location').split(', ')],
   });
 }
 
@@ -38,10 +38,9 @@ const Home = async () => {
             <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-left">
               <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
                 <span>
-                  {t('myName')}
-                  <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block ml-2 md:ml-4 bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
-                    {t_values('name').split(' ')[0]}
-                  </Anim>
+                  {t.rich('myName', {
+                    c: (chunks) => <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: t_values('name').split(' ')[0]
+                  })}
                 </span>
               </Anim>
               <Anim delay={1.3} duration={0.5} hidden={{ opacity: 0 }} className="mt-10">
