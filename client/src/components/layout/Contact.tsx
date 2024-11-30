@@ -21,9 +21,9 @@ export default function Contact() {
 
   const validateForm = () => {
     const newErrors = { name: '', email: '', message: '' };
-    if (!formData.name) newErrors.name = t('form.nameError');
-    if (!formData.email) newErrors.email = t('form.emailError');
-    if (!formData.message) newErrors.message = t('form.messageError');
+    if (!formData.name) newErrors.name = t('form.require', { value: t('form.name') });
+    if (!formData.email) newErrors.email = t('form.require', { value: t('form.email') });
+    if (!formData.message) newErrors.message = t('form.require', { value: t('form.message') });
     setErrors(newErrors);
     return !newErrors.name && !newErrors.email && !newErrors.message;
   };
@@ -60,7 +60,7 @@ export default function Contact() {
         <div className="bg-gray-900 md:col-span-1 p-10 pb-0 text-white">
           <p className="mt-4 text-sm leading-7 font-regular uppercase">{t('title')}</p>
           <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold capitalize tracking-tight">
-            {t('getIn')} <span className="text-primary">{t('touch')}</span>
+            {t.rich('touch', { c: (chunks) => <span className="text-primary">{chunks}</span> })}
           </h3>
           <p className="mt-4 leading-7 text-gray-200">
             {t('desc')}

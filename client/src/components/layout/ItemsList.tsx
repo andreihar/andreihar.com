@@ -16,9 +16,9 @@ interface BlogListProps {
 const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   const t = useTranslations('Filter');
   const sortOptions = [
-    { label: t('date'), value: 'date', icon: HiCalendar },
-    { label: t('views'), value: 'views', icon: HiEye },
-    { label: t('likes'), value: 'likes', icon: HiThumbUp }
+    { label: t('sort', { category: t('date') }), value: 'date', icon: HiCalendar },
+    { label: t('sort', { category: t('views') }), value: 'views', icon: HiEye },
+    { label: t('sort', { category: t('likes') }), value: 'likes', icon: HiThumbUp }
   ];
 
   const { getStats } = useMeta();

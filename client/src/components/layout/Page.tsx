@@ -43,12 +43,12 @@ const Page: React.FC<PageProps> = ({ post }) => {
                 {'tags' in post ? (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineClock className="inline-block text-base" />
-                    {`${post.time} ${t('min')}`}
+                    {t('min', { time: post.time })}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineUser className="inline-block text-base" />
-                    {post.team === 1 ? t('solo') : `${post.team} ${t('team')}`}
+                    {t('team', { team: post.team })}
                   </span>
                 )}
                 <span className="mx-2">━</span>

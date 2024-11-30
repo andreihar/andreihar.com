@@ -8,7 +8,7 @@ const fadeDuration = 0.7;
 
 const RotatingText: React.FC = () => {
   const t = useTranslations('Home');
-  const words = [1, 2, 3, 4].map(key => t(`rotating.${key}`));
+  const words = Array.from({ length: 100 }, (_, i) => i + 1).map(i => t.has(`rotating.${i}`) ? t(`rotating.${i}`) : null).filter((word): word is string => word !== null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [visible, setVisible] = useState(true);
 
@@ -24,17 +24,11 @@ const RotatingText: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const currentWord = words[currentWordIndex];
-  const prefix = currentWord.toLowerCase().startsWith("a") ? t('rotating.an') : t('rotating.a');
-
   return (
     <div className="inline-block">
-      <span>{t('rotating.im')} {prefix}&nbsp;</span>
-      <Anim key={currentWordIndex} duration={fadeDuration} hidden={{ opacity: 0 }} fadeOut={!visible} className="transition-opacity inline-block">
-        <span>
-          {currentWord}
-        </span>
-      </Anim>
+      {t.rich('rotating.sentence', {
+        c: (chunks) => <Anim key={currentWordIndex} duration={fadeDuration} hidden={{ opacity: 0 }} fadeOut={!visible} className="transition-opacity inline-block">{chunks}</Anim>, prefix: /^[aeiou]/i.test(words[currentWordIndex]), word: words[currentWordIndex]
+      })}
     </div>
   );
 };

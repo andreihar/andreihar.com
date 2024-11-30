@@ -52,20 +52,16 @@ const ViewsAndLikesProvider: React.FC<{ children: ReactNode; type: string; id: s
   );
 };
 
-const formatCount = (count: number, singular: string, plural: string) => {
-  return `${new Intl.NumberFormat().format(count)} ${count === 1 ? singular : plural}`;
-};
-
 const ViewsCounter: React.FC = () => {
   const { views, showWords } = useViewsAndLikes();
   const t = useTranslations('LikesViews');
-  return showWords ? formatCount(views, t('view'), t('views')) : new Intl.NumberFormat().format(views);
+  return showWords ? t('view', { count: views }) : new Intl.NumberFormat().format(views);
 };
 
 const LikesCounter: React.FC = () => {
   const { likes, showWords } = useViewsAndLikes();
   const t = useTranslations('LikesViews');
-  return showWords ? formatCount(likes, t('like'), t('likes')) : new Intl.NumberFormat().format(likes);
+  return showWords ? t('like', { count: likes }) : new Intl.NumberFormat().format(likes);
 };
 
 const LikeButton: React.FC = () => {

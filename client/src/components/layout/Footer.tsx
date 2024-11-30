@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import Logo from '@/components/Logo';
 
 export default function Footer() {
-  const t = useTranslations('Values');
+  const t = useTranslations('Footer');
   const t_values = useTranslations('Values');
   const socialMediaLinks = [
     { href: `mailto:${t_values('email')}`, icon: FaEnvelope, name: 'Email' },
@@ -37,7 +37,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <span className="block text-gray-600 text-center dark:text-gray-300">@ {t_values('name')}, {displayYear}</span>
+      <span className="block text-gray-600 text-center dark:text-gray-300">{t('rights', { name: t_values('name'), year: displayYear })}</span>
     </footer>
   );
 }
