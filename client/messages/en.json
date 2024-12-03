@@ -1,6 +1,8 @@
 {
 	"Values": {
-		"name": "Andrei Harbachov",
+		"f": "Andrei",
+		"s": "Harbachov",
+		"name": "{f} {s}",
 		"location": "Vancouver, BC, Canada",
 		"avatar": "https://avatars.githubusercontent.com/u/95883512?v=4",
 		"email": "andreihar@mail.com",
