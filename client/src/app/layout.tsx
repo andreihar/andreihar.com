@@ -11,12 +11,13 @@ const jost = Jost({ subsets: ["latin"], variable: "--font-jost" });
 
 export async function generateMetadata() {
   const t = await getTranslations({ namespace: 'Values' });
+  const name = t('name', { f: t('f'), s: t('s') });
   return {
     title: {
-      default: t('name'),
-      template: `%s | ${[...t('name').split(" ")].map(n => n[0]).join('')}`,
+      default: name,
+      template: `%s | ${[...name.split(" ")].map(n => n[0]).join('')}`,
     },
-    description: t('name'),
+    description: name,
   };
 }
 

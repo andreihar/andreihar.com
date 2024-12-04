@@ -16,7 +16,7 @@ export async function generateMetadata() {
   const t_values = await getTranslations('Values');
 
   return generateSEO({
-    description: t('desc', { name: t_values('name') }),
+    description: t('desc', { name: t_values('name', { f: t_values('f'), s: t_values('s') }) }),
     images: ['/img/hero.jpg'],
     url: '/',
     section: t('title'),
@@ -39,7 +39,7 @@ const Home = async () => {
               <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
                 <span>
                   {t.rich('myName', {
-                    c: (chunks) => <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: t_values('name').split(' ')[0]
+                    c: (chunks) => <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: t_values('f')
                   })}
                 </span>
               </Anim>
@@ -84,7 +84,7 @@ const Home = async () => {
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/hero.jpg" alt={t_values('name')} fill className="object-cover" />
+              <Image src="/img/hero.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
             </div>
           </Anim>
         </div>

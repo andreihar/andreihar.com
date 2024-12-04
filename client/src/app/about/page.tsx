@@ -15,7 +15,7 @@ export async function generateMetadata() {
 
   return generateSEO({
     title: t('title'),
-    description: t('desc', { name: t_values('Values.name') }),
+    description: t('desc', { name: t_values('Values.name', { f: t_values('Values.f'), s: t_values('Values.s') }) }),
     images: ['/img/studying.jpg'],
     url: 'about',
     section: t('title'),
@@ -82,7 +82,7 @@ export default function About() {
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
           <h1 className="text-4xl font-bold pb-2 text-center">{t('title')}</h1>
-          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{t_values('name')}</h2>
+          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{t_values('name', { f: t_values('f'), s: t_values('s') })}</h2>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
@@ -95,7 +95,7 @@ export default function About() {
           </Anim>
           <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/studying.jpg" alt={t_values('name')} fill className="object-cover" />
+              <Image src="/img/studying.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
             </div>
           </Anim>
         </div>
