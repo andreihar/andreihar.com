@@ -76,9 +76,9 @@ const Page: React.FC<PageProps> = ({ post }) => {
           <p className="text-base text-gray-500 dark:text-gray-400 flex-grow">
             {isBlog && (
               <div className="flex items-center space-x-4">
-                <img src={t_values('avatar')} alt={t_values('name')} className="w-10 h-10 rounded-full" />
+                <img src={t_values('avatar')} alt={t_values('name', { f: t_values('f'), s: t_values('s') })} className="w-10 h-10 rounded-full" />
                 <div>
-                  <p className="font-bold">{t_values('name')}</p>
+                  <p className="font-bold">{t_values('name', { f: t_values('f'), s: t_values('s') })}</p>
                   <p className="text-sm text-gray-500">{formattedDate}</p>
                 </div>
               </div>

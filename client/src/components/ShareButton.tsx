@@ -12,7 +12,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ link, title }) => {
   const socialMedia = [
     { name: 'Twitter', href: `https://x.com/intent/post?url=${link}&text=I came across ${title} by @${t('twitter')} — a must-read!%0A%0A`, icon: FaTwitter },
     { name: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${link}`, icon: FaLinkedin },
-    { name: 'Mail', href: `mailto:?subject=Check This Out!&body=I came across ${title} by ${t('name')}  —  a must-read!%0A%0A${link}`, icon: FaEnvelope },
+    { name: 'Mail', href: `mailto:?subject=Check This Out!&body=I came across ${title} by ${t('name', { f: t('f'), s: t('s') })}  —  a must-read!%0A%0A${link}`, icon: FaEnvelope },
   ];
 
   return (

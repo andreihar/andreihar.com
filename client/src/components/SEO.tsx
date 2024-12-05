@@ -12,21 +12,22 @@ type GenerateMetadataProps = {
 
 export async function generateMetadata({ title, description, images, url, section, tags = [], published }: GenerateMetadataProps) {
   const t = await getTranslations('Values');
-  const finalTitle = title ? `${title} | ${t('name')}` : t('name');
+  const name = t('name', { f: t('f'), s: t('s') });
+  const finalTitle = title ? `${title} | ${name}` : name;
 
   const metadata: any = {
     description,
-    keywords: [...tags, t('name'), ...t('name').split(' '), t('name').split(' ')[1].slice(0, 3)].join(', '),
+    keywords: [...tags, name, t('f'), t('s')].join(', '),
     openGraph: {
       type: 'article',
       url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}${url}`,
       title: finalTitle,
       description,
       images,
-      site_name: t('name'),
+      site_name: name,
       locale: 'en',
       article: {
-        authors: [t('name')],
+        authors: [name],
         section,
         tags,
         publishedTime: published ? published.toISOString() : undefined,
