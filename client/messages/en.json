@@ -51,6 +51,10 @@
 		"resume": "See résumé",
 		"tech": "Tech Stack",
 		"techDesc": "Tools & technologies I use to build innovative solutions",
+		"front": "Frontend",
+		"back": "Backend",
+		"aiMl": "AI & ML",
+		"other": "Other",
 		"education": "Education",
 		"edu": {
 			"1": {

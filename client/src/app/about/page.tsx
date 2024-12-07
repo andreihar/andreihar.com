@@ -25,26 +25,6 @@ export async function generateMetadata() {
 
 const tech = (name: string, icon: React.ComponentType<{ className?: string; }>) => ({ name, icon });
 
-const techStack = {
-  frontend: [
-    tech('React', SiReact), tech('Next.js', SiNextdotjs), tech('Angular', SiAngular),
-    tech('Tailwind CSS', SiTailwindcss), tech('Bootstrap', SiBootstrap), tech('Material-UI', SiMui),
-    tech('TypeScript', SiTypescript),
-  ],
-  backend: [
-    tech('Node.js', SiNodedotjs), tech('Express', SiExpress), tech('Flask', SiFlask),
-    tech('Firebase', SiFirebase), tech('PostgreSQL', SiPostgresql), tech('MySQL', SiMysql),
-  ],
-  ai_ml: [
-    tech('Python', SiPython), tech('TensorFlow', SiTensorflow), tech('PyTorch', SiPytorch),
-    tech('Keras', SiKeras), tech('NumPy', SiNumpy), tech('Pandas', SiPandas),
-  ],
-  other: [
-    tech('Android', SiAndroid), tech('Java', FaJava), tech('Unity', SiUnity), tech('C', SiC),
-    tech('C++', SiCplusplus), tech('C#', SiCsharp), tech('MATLAB', SiZalando),
-  ],
-};
-
 const TimelineItem: React.FC<{ title: string; date: string; institution: string; desc: string; note?: string; }> = ({ title, date, institution, desc, note }) => (
   <li className="relative pb-8">
     <span className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
@@ -77,6 +57,34 @@ export default function About() {
   const t = useTranslations('About');
   const t_values = useTranslations('Values');
 
+  const techStack = [
+    {
+      label: t('front'), tech: [
+        tech('React', SiReact), tech('Next.js', SiNextdotjs), tech('Angular', SiAngular),
+        tech('Tailwind CSS', SiTailwindcss), tech('Bootstrap', SiBootstrap), tech('Material-UI', SiMui),
+        tech('TypeScript', SiTypescript),
+      ],
+    },
+    {
+      label: t('back'), tech: [
+        tech('Node.js', SiNodedotjs), tech('Express', SiExpress), tech('Flask', SiFlask),
+        tech('Firebase', SiFirebase), tech('PostgreSQL', SiPostgresql), tech('MySQL', SiMysql),
+      ],
+    },
+    {
+      label: t('aiMl'), tech: [
+        tech('Python', SiPython), tech('TensorFlow', SiTensorflow), tech('PyTorch', SiPytorch),
+        tech('Keras', SiKeras), tech('NumPy', SiNumpy), tech('Pandas', SiPandas),
+      ],
+    },
+    {
+      label: t('other'), tech: [
+        tech('Android', SiAndroid), tech('Java', FaJava), tech('Unity', SiUnity), tech('C', SiC),
+        tech('C++', SiCplusplus), tech('C#', SiCsharp), tech('MATLAB', SiZalando),
+      ],
+    },
+  ];
+
   return (
     <main>
       <Layout className="my-20 pt-14">
@@ -106,13 +114,11 @@ export default function About() {
           <p className="text-center text-xl text-base pb-4">{t('techDesc')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
-          {Object.entries(techStack).map(([category, technologies], index) => (
-            <Anim key={category} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-              <h2 className="text-2xl font-bold mb-4 capitalize">
-                {category.includes('_') ? category.replace('_', ' & ').toUpperCase() : category}
-              </h2>
+          {Object.entries(techStack).map(([key, { label, tech }], index) => (
+            <Anim key={key} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h2 className="text-2xl font-bold mb-4">{label}</h2>
               <div className="space-y-4">
-                {technologies.map((tech) => (
+                {tech.map((tech) => (
                   <div key={tech.name} className="flex items-center space-x-4">
                     <tech.icon className="text-4xl text-primary" />
                     <span className="text-xl font-semibold">{tech.name}</span>
