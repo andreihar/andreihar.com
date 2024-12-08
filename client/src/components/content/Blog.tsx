@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { ViewsAndLikesProvider, ViewsCounter, LikesCounter } from '@/components/widgets/ViewsAndLikes';
 import { BlogType } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp } from 'react-icons/hi';
@@ -10,6 +10,7 @@ const Blog: React.FC<{ meta: BlogType; }> = ({ meta }) => {
   const { id, title, description, tags, time, published } = meta;
   const imageUrl = generateStorageImgUrl({ header: true, blog: true, id: `${id}/banner` });
   const t = useTranslations('Values');
+  const locale = useLocale();
 
   return (
     <ViewsAndLikesProvider type="blog" id={id}>
@@ -29,7 +30,7 @@ const Blog: React.FC<{ meta: BlogType; }> = ({ meta }) => {
             <div className="relative">
               <Image alt={t('name', { f: t('f'), s: t('s') })} src={t('avatar')} width={48} height={48} className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400 mt-6 mb-4">{`${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-6 mb-4">{published.toLocaleString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
             <h1 className="block text-md font-semibold leading-tight text-gray-900 dark:text-gray-100 transition-colors duration-300 ease-in-out group-hover:text-primary">
               {title}
             </h1>
