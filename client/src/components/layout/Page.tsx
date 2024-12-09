@@ -1,6 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { BlogType, ProjectType } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
@@ -20,9 +21,9 @@ interface PageProps {
 const Page: React.FC<PageProps> = ({ post }) => {
   const { id, title, description, published, source } = post;
   const isBlog = 'tags' in post;
-  const formattedDate = `${published.getDate()} ${published.toLocaleString('default', { month: 'long' })}, ${published.getFullYear()}`;
   const t = useTranslations('BlogPage');
   const t_values = useTranslations('Values');
+  const locale = useLocale();
 
   return (
     <ViewsAndLikesProvider type={isBlog ? 'blog' : 'project'} id={id} showWords updateViewOnLoad>
@@ -76,14 +77,14 @@ const Page: React.FC<PageProps> = ({ post }) => {
           <p className="text-base text-gray-500 dark:text-gray-400 flex-grow">
             {isBlog && (
               <div className="flex items-center space-x-4">
-                <img src={t_values('avatar')} alt={t_values('name', { f: t_values('f'), s: t_values('s') })} className="w-10 h-10 rounded-full" />
+                <Image src={t_values('avatar')} alt={t_values('name', { f: t_values('f'), s: t_values('s') })} width={80} height={80} className="w-10 h-10 rounded-full" />
                 <div>
                   <p className="font-bold">{t_values('name', { f: t_values('f'), s: t_values('s') })}</p>
-                  <p className="text-sm text-gray-500">{formattedDate}</p>
+                  <p className="text-sm text-gray-500">{published.toLocaleString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
               </div>
             )}
-            {!isBlog && formattedDate}
+            {!isBlog && published.toLocaleString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
             {'builtW' in post && [{ href: post.github, icon: <SiGithub className="inline-block text-base align-middle" />, label: t('repo') }, { href: post.website, icon: <HiLink className="inline-block text-base align-middle" />, label: t('demo') }
             ].map(
               (link, index) =>
