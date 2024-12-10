@@ -22,7 +22,7 @@ const RotatingText: React.FC = () => {
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
 
   return (
     <div className="inline-block">

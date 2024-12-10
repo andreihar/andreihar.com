@@ -41,7 +41,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       setFilteredPosts(postsWithStats);
     };
     fetchStats();
-  }, [posts]);
+  }, [posts, getStats]);
 
   useEffect(() => {
     let results = postsWithStats.filter((post) =>

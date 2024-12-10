@@ -16,6 +16,7 @@ export async function generateMetadata({ title, description, images, url, sectio
   const finalTitle = title ? `${title} | ${name}` : name;
 
   const metadata: any = {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL || 'http://localhost:3000'),
     description,
     keywords: [...tags, name, t('f'), t('s')].join(', '),
     openGraph: {
