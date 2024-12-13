@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { HiSearch, HiChevronDown, HiCalendar, HiEye, HiThumbUp, HiOutlineEmojiSad } from 'react-icons/hi';
 import Blog from '@/components/content/Blog';
@@ -22,6 +22,8 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   ];
 
   const { getStats } = useMeta();
+  const getStatsRef = useRef(getStats);
+  getStatsRef.current = getStats;
   const [postsWithStats, setPostsWithStats] = useState<PostWithStats[]>(posts);
   const [search, setSearch] = useState('');
   const [filteredPosts, setFilteredPosts] = useState<PostWithStats[]>(posts);
@@ -31,17 +33,18 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const allTags = Array.from(new Set(posts.flatMap(post => 'tags' in post ? post.tags : post.builtW)));
 
+  const fetchStats = useCallback(async () => {
+    const postsWithStats = await Promise.all(posts.map(async (post) => {
+      const stats = await getStatsRef.current('tags' in posts[0] ? 'blog' : 'project', post.id);
+      return { ...post, views: stats.views, likes: stats.likes };
+    }));
+    setPostsWithStats(postsWithStats);
+    setFilteredPosts(postsWithStats);
+  }, [posts]);
+
   useEffect(() => {
-    const fetchStats = async () => {
-      const postsWithStats = await Promise.all(posts.map(async (post) => {
-        const stats = await getStats('tags' in posts[0] ? 'blog' : 'project', post.id);
-        return { ...post, views: stats.views, likes: stats.likes };
-      }));
-      setPostsWithStats(postsWithStats);
-      setFilteredPosts(postsWithStats);
-    };
     fetchStats();
-  }, [posts, getStats]);
+  }, [posts, fetchStats]);
 
   useEffect(() => {
     let results = postsWithStats.filter((post) =>
