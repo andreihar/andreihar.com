@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 
 interface ButtonProps {
   href?: string;
@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({ href, text, type = 'button', onClick, s
     case 'a':
       return <a className={className} href={href} target={target} rel={rel}>{text}</a>;
     case 'link':
-      return <Link className={className} href={href || ''}>{text}</Link>;
+      return <Link className={className} href={href as any || ''}>{text}</Link>;
     case 'submit':
       return <button type="submit" className={className} onClick={onClick}>{text}</button>;
     case 'button':

@@ -2,7 +2,7 @@
 import Giscus, { Repo, Theme } from '@giscus/react';
 import { useTheme } from 'next-themes';
 
-export default function Comments() {
+export default function Comments({ locale }: { locale: string; }) {
   const { resolvedTheme } = useTheme();
 
   return (
@@ -18,7 +18,7 @@ export default function Comments() {
         emitMetadata='0'
         inputPosition="top"
         theme={resolvedTheme as Theme}
-        lang="en"
+        lang={locale}
       />
     </div>
   );

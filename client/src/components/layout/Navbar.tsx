@@ -1,8 +1,8 @@
 'use client';
 import { useState, useEffect, startTransition } from 'react';
-import { Locale, usePathname, useRouter, routing } from '@/i18n/routing';
+import { Locale, Link, Pathnames, usePathname, useRouter, routing } from '@/i18n/routing';
+import { useParams } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
-import Link from 'next/link';
 import Logo from '@/components/Logo';
 import ThemeSwitch from '@/components/ThemeSwitch';
 
@@ -12,6 +12,7 @@ export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
   const t = useTranslations();
   const locale = useLocale() as Locale;
 
@@ -40,19 +41,17 @@ export default function Navbar() {
   const handleLocaleChange = () => {
     const nextLocale = locale === routing.locales[0] ? routing.locales[1] : routing.locales[0];
     startTransition(() => {
-      router.replace(
-        // @ts-expect-error -- TypeScript will validate that only known `params`
-        { pathname: pathname }, { locale: nextLocale }
-      );
+      // @ts-expect-error -- TypeScript will validate that only known `params`
+      router.replace({ pathname, params: params }, { locale: nextLocale });
     });
   };
 
-  const menuItems = [
+  const menuItems: { title: string; href: Pathnames; isLocaleChange?: boolean; }[] = [
     { title: t('Home.title'), href: "/" },
     { title: t('Project.title'), href: "/project" },
     { title: t('Blog.title'), href: "/blog" },
     { title: t('About.title'), href: "/about" },
-    { title: t('Values.otherLang'), href: "", isLocaleChange: true }
+    { title: t('Values.otherLang'), href: "/", isLocaleChange: true }
   ];
 
   if (!isMounted) {
@@ -80,9 +79,11 @@ export default function Navbar() {
                 return (
                   <li key={index} className="md:inline-block group">
                     {item.isLocaleChange ? (
-                      <button onClick={handleLocaleChange} className={`${className} font-medium`}>{item.title}</button>
+                      <button onClick={handleLocaleChange} data-after={item.title} className={`${className} font-medium`}>{item.title}</button>
                     ) : (
-                      <Link href={item.href} data-after={item.title} className={`${className} ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`}>{item.title}</Link>
+                      <Link href={item.href as any} data-after={item.title} className={`${className} ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`}>
+                        {item.title}
+                      </Link>
                     )}
                   </li>
                 );
@@ -98,7 +99,7 @@ export default function Navbar() {
                     {item.isLocaleChange ? (
                       <button onClick={handleLocaleChange} data-after={item.title} className={`${className} font-medium`}>{item.title}</button>
                     ) : (
-                      <Link href={item.href} data-after={item.title} className={`${className} ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`} onClick={() => setIsActive(false)}>
+                      <Link href={item.href as any} data-after={item.title} className={`${className} ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`} onClick={() => setIsActive(false)}>
                         {item.title}
                       </Link>
                     )}

@@ -119,7 +119,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
             ))}
           </div>
         </div>
-        <Comments key={id} />
+        <Comments key={id} locale={locale} />
       </Layout>
     </ViewsAndLikesProvider>
   );
