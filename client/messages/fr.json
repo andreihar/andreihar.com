@@ -79,6 +79,8 @@
 		"team": "{team, plural, one {Projet personnel} other {# personnes}}",
 		"repo": "Dépôt",
 		"demo": "Démo en direct",
+		"subject": "Regarde Ça!",
+		"body": "Je suis tombé sur {title} par {name} — un incontournable!%0A%0A",
 		"toc": "Table des matières"
 	},
 	"Filter": {

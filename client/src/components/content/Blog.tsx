@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { ViewsAndLikesProvider, ViewsCounter, LikesCounter } from '@/components/widgets/ViewsAndLikes';
@@ -14,7 +14,7 @@ const Blog: React.FC<{ meta: BlogType; }> = ({ meta }) => {
 
   return (
     <ViewsAndLikesProvider type="blog" id={id}>
-      <Link href={`/blog/${id}`} className="block group">
+      <Link href={`/blog/${id}` as any} className="block group">
         <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden group">
           <div className="relative overflow-hidden">
             <div className="flex flex-wrap gap-2 absolute top-2 left-2 z-10">

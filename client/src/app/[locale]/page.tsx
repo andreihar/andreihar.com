@@ -10,9 +10,10 @@ import Project from '@/components/content/Project';
 import Blog from '@/components/content/Blog';
 import Contact from '@/components/layout/Contact';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import { Locale } from '@/i18n/routing';
 
 type Props = {
-  params: { locale: string; };
+  params: { locale: Locale; };
 };
 
 export async function generateMetadata({ params: { locale } }: Props) {
@@ -20,6 +21,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
   const t_values = await getTranslations({ locale, namespace: 'Values' });
 
   return generateSEO({
+    locale,
     description: t('desc', { name: t_values('name', { f: t_values('f'), s: t_values('s') }) }),
     images: ['/img/hero.jpg'],
     url: '/',

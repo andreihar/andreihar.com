@@ -8,9 +8,10 @@ import Layout from '@/components/layout/Layout';
 import Contact from '@/components/layout/Contact';
 import Anim from '@/components/Anim';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import { Locale } from '@/i18n/routing';
 
 type Props = {
-  params: { locale: string; };
+  params: { locale: Locale; };
 };
 
 export async function generateMetadata({ params: { locale } }: Props) {
@@ -18,10 +19,11 @@ export async function generateMetadata({ params: { locale } }: Props) {
   const t_values = await getTranslations({ locale });
 
   return generateSEO({
+    locale,
     title: t('title'),
     description: t('desc', { name: t_values('Values.name', { f: t_values('Values.f'), s: t_values('Values.s') }) }),
     images: ['/img/studying.jpg'],
-    url: 'about',
+    url: '/about',
     section: t('title'),
     tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...t_values('Values.location').split(', ')],
   });

@@ -4,9 +4,10 @@ import Layout from '@/components/layout/Layout';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 import ItemsList from '@/components/layout/ItemsList';
+import { Locale } from '@/i18n/routing';
 
 type Props = {
-  params: { locale: string; };
+  params: { locale: Locale; };
 };
 
 export async function generateMetadata({ params: { locale } }: Props) {
@@ -14,6 +15,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: 'Project' });
 
   return generateSEO({
+    locale,
     title: t('title'),
     description: t('desc'),
     images: [generateStorageImgUrl({ header: true, id: `${metas[0].id}/banner` })],

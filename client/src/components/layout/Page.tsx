@@ -66,7 +66,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
             </div>
             <div className="lg:max-w-[35%]">
               <div className="absolute bottom-5 right-0.5">
-                <ShareButton link={`${process.env.NEXT_PUBLIC_WEBSITE_URL}${isBlog ? 'blog' : 'project'}/${id}`} title={title} />
+                <ShareButton title={title} />
               </div>
             </div>
           </div>

@@ -1,18 +1,22 @@
+'use client';
 import { FaShareAlt, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 interface ShareButtonProps {
-  link: string;
   title: string;
 }
 
-const ShareButton: React.FC<ShareButtonProps> = ({ link, title }) => {
+const ShareButton: React.FC<ShareButtonProps> = ({ title }) => {
   const t = useTranslations('Values');
+  const t_text = useTranslations('BlogPage');
+  const pathname = usePathname();
+  const link = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${pathname.substring(1)}`;
 
   const socialMedia = [
-    { name: 'Twitter', href: `https://x.com/intent/post?url=${link}&text=I came across ${title} by @${t('twitter')} — a must-read!%0A%0A`, icon: FaTwitter },
+    { name: 'Twitter', href: `https://x.com/intent/post?url=${link}&text=${t_text('body', { title, name: `@${t('twitter')}` })}`, icon: FaTwitter },
     { name: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${link}`, icon: FaLinkedin },
-    { name: 'Mail', href: `mailto:?subject=Check This Out!&body=I came across ${title} by ${t('name', { f: t('f'), s: t('s') })}  —  a must-read!%0A%0A${link}`, icon: FaEnvelope },
+    { name: 'Mail', href: `mailto:?subject=${t_text('subject')}&body=${t_text('body', { title, name: t('name', { f: t('f'), s: t('s') }) })}${link}`, icon: FaEnvelope },
   ];
 
   return (

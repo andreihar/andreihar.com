@@ -79,6 +79,8 @@
 		"team": "{team, plural, one {Personal Project} other {# people}}",
 		"repo": "Repository",
 		"demo": "Live demo",
+		"subject": "Check This Out!",
+		"body": "I came across {title} by {name} — a must-read!%0A%0A",
 		"toc": "Table of Contents"
 	},
 	"Filter": {

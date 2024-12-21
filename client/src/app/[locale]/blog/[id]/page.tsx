@@ -3,9 +3,10 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Page from '@/components/layout/Page';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import { Locale } from '@/i18n/routing';
 
 type Props = {
-  params: { locale: string; id: string; };
+  params: { locale: Locale; id: string; };
 };
 
 export async function generateStaticParams() {
@@ -18,10 +19,11 @@ export async function generateMetadata({ params: { locale, id } }: Props) {
   const t = await getTranslations({ locale, namespace: 'Blog' });
 
   return generateSEO({
+    locale,
     title: post.title,
     description: post.description,
     images: [generateStorageImgUrl({ header: true, blog: true, id: `${post.id}/banner` })],
-    url: `blog/${post.id}`,
+    url: `/blog/${post.id}`,
     section: t('title'),
     tags: post.tags,
     published: post.published

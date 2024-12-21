@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import TechIcons from '@/components/widgets/TechIcons';
 import StorageImg from '@/components/widgets/StorageImg';
 import { ProjectType } from '@/types/blog';
@@ -7,7 +7,7 @@ const Project: React.FC<{ meta: ProjectType; }> = ({ meta }) => {
   const { id, title, description, builtW } = meta;
 
   return (
-    <Link href={`/project/${id}`} className="block group">
+    <Link href={`/project/${id}` as any} className="block group">
       <div className="bg-white text-white rounded-xl shadow-md overflow-hidden relative min-h-[230px] flex flex-col justify-end">
         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out group-hover:scale-110" style={{ backgroundImage: `url(${StorageImg({ header: true, id: `${id}/banner`, alt: `Banner of ${title}` })})` }}></div>
         <div className="absolute inset-0 bg-black opacity-50 transition-opacity duration-300 ease-in-out group-hover:opacity-75"></div>
