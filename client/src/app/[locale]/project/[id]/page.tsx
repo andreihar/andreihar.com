@@ -1,17 +1,21 @@
 import { getPostBySlug, getAllPostsMeta } from '@/lib/mdx';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Page from '@/components/layout/Page';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+
+type Props = {
+  params: { locale: string; id: string; };
+};
 
 export async function generateStaticParams() {
   const projects = await getAllPostsMeta('project');
   return projects.map((project) => ({ id: project.id }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string; }; }) {
-  const post = await getPostBySlug(params.id ?? '', 'project');
-  const t = await getTranslations('Project');
+export async function generateMetadata({ params: { locale, id } }: Props) {
+  const post = await getPostBySlug(id ?? '', 'project');
+  const t = await getTranslations({ locale, namespace: 'Project' });
 
   return generateSEO({
     title: post.title,
@@ -24,8 +28,9 @@ export async function generateMetadata({ params }: { params: { id: string; }; })
   });
 }
 
-const ProjectPage = async ({ params }: { params: { id: string; }; }): Promise<JSX.Element> => {
-  const post = await getPostBySlug(params.id ?? '', 'project');
+const ProjectPage = async ({ params: { locale, id } }: Props): Promise<JSX.Element> => {
+  setRequestLocale(locale);
+  const post = await getPostBySlug(id ?? '', 'project');
   return <Page post={post} />;
 };
 

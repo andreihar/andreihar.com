@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
 import { FaJava, FaPen } from 'react-icons/fa';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import Button from '@/components/Button';
 import Layout from '@/components/layout/Layout';
@@ -9,9 +9,13 @@ import Contact from '@/components/layout/Contact';
 import Anim from '@/components/Anim';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 
-export async function generateMetadata() {
-  const t = await getTranslations('About');
-  const t_values = await getTranslations();
+type Props = {
+  params: { locale: string; };
+};
+
+export async function generateMetadata({ params: { locale } }: Props) {
+  const t = await getTranslations({ locale, namespace: 'About' });
+  const t_values = await getTranslations({ locale });
 
   return generateSEO({
     title: t('title'),
@@ -53,7 +57,8 @@ const TimelineItem: React.FC<{ title: string; date: string; institution: string;
   </li>
 );
 
-export default function About() {
+export default function About({ params: { locale } }: Props) {
+  setRequestLocale(locale);
   const t = useTranslations('About');
   const t_values = useTranslations('Values');
 

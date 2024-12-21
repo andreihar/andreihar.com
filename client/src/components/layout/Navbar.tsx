@@ -1,7 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useState, useEffect, startTransition } from 'react';
+import { Locale, usePathname, useRouter, routing } from '@/i18n/routing';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
 import ThemeSwitch from '@/components/ThemeSwitch';
@@ -10,8 +10,10 @@ export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations();
+  const locale = useLocale() as Locale;
 
   useEffect(() => {
     setIsMounted(true);
@@ -35,11 +37,22 @@ export default function Navbar() {
     };
   }, []);
 
+  const handleLocaleChange = () => {
+    const nextLocale = locale === routing.locales[0] ? routing.locales[1] : routing.locales[0];
+    startTransition(() => {
+      router.replace(
+        // @ts-expect-error -- TypeScript will validate that only known `params`
+        { pathname: pathname }, { locale: nextLocale }
+      );
+    });
+  };
+
   const menuItems = [
     { title: t('Home.title'), href: "/" },
     { title: t('Project.title'), href: "/project" },
     { title: t('Blog.title'), href: "/blog" },
-    { title: t('About.title'), href: "/about" }
+    { title: t('About.title'), href: "/about" },
+    { title: t('Values.otherLang'), href: "", isLocaleChange: true }
   ];
 
   if (!isMounted) {
@@ -63,11 +76,14 @@ export default function Navbar() {
             <ul className="hidden md:flex md:flex-row md:items-center">
               {menuItems.map((item, index) => {
                 const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                const className = `tracking-widest font-jost no-underline ${textColorClass} uppercase p-5 block group-hover:text-primary transition-colors duration-300 ease-in-out font-jest`;
                 return (
                   <li key={index} className="md:inline-block group">
-                    <Link href={item.href} data-after={item.title} className={`tracking-widest font-jost no-underline ${textColorClass} uppercase p-5 block group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'} font-jest`}>
-                      {item.title}
-                    </Link>
+                    {item.isLocaleChange ? (
+                      <button onClick={handleLocaleChange} className={`${className} font-medium`}>{item.title}</button>
+                    ) : (
+                      <Link href={item.href} data-after={item.title} className={`${className} ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`}>{item.title}</Link>
+                    )}
                   </li>
                 );
               })}
@@ -76,11 +92,16 @@ export default function Navbar() {
             <ul className={`${isActive ? 'left-0' : 'left-full'} list-none absolute bg-white dark:bg-dark w-screen h-screen top-0 flex flex-col justify-center items-center z-10 overflow-x-hidden transition-[left] duration-500 ease-in-out md:hidden`}>
               {menuItems.map((item, index) => {
                 const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
+                const className = `text-[1.8rem] text-center tracking-widest font-jost no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 group-hover:after:scale-50 group-hover:after:tracking-normal group-hover:text-primary transition-colors duration-300 ease-in-out`;
                 return (
                   <li key={index} className="group">
-                    <Link href={item.href} data-after={item.title} className={`text-[1.8rem] text-center tracking-widest font-jost no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 group-hover:after:scale-50 group-hover:after:tracking-normal group-hover:text-primary transition-colors duration-300 ease-in-out ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`} onClick={() => setIsActive(false)}>
-                      {item.title}
-                    </Link>
+                    {item.isLocaleChange ? (
+                      <button onClick={handleLocaleChange} data-after={item.title} className={`${className} font-medium`}>{item.title}</button>
+                    ) : (
+                      <Link href={item.href} data-after={item.title} className={`${className} ${isActiveRoute ? 'text-primary font-bold' : 'font-medium'}`} onClick={() => setIsActive(false)}>
+                        {item.title}
+                      </Link>
+                    )}
                   </li>
                 );
               })}

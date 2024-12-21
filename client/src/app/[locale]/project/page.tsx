@@ -1,13 +1,17 @@
 import { getAllPostsMeta } from '@/lib/mdx';
-import { getTranslations } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Layout from '@/components/layout/Layout';
 import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 import ItemsList from '@/components/layout/ItemsList';
 
-export async function generateMetadata() {
+type Props = {
+  params: { locale: string; };
+};
+
+export async function generateMetadata({ params: { locale } }: Props) {
   const metas = await getAllPostsMeta('project');
-  const t = await getTranslations('Project');
+  const t = await getTranslations({ locale, namespace: 'Project' });
 
   return generateSEO({
     title: t('title'),
@@ -19,7 +23,8 @@ export async function generateMetadata() {
   });
 }
 
-const Projects = async () => {
+const Projects = async ({ params: { locale } }: Props) => {
+  setRequestLocale(locale);
   const metas = await getAllPostsMeta('project').then((posts) => posts.map((post) => ({ ...post, views: 0, likes: 0 })));
   const t = await getTranslations('Project');
 

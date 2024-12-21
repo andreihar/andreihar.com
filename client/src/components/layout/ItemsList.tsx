@@ -56,7 +56,6 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       results = results.sort((a, b) => (b.views) - (a.views));
     } else if (selectedCategory === 'likes') {
       results = results.sort((a, b) => (b.likes) - (a.likes));
-      console.log(results);
     } else {
       results = results.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
     }
