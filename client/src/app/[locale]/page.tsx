@@ -75,7 +75,7 @@ const Home = async ({ params: { locale } }: Props) => {
         </div>
         <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }} className="flex justify-center items-end pb-10">
           <a id="scroll" href="#intro" className="relative h-10 w-6 border-2 border-white rounded-full flex flex-col items-center justify-center">
-            <span className="flex justify-center absolute bottom-[-1.5rem] w-full text-xs text-white tracking-wider font-semibold">{t('scroll')}</span>
+            <span className="flex justify-center absolute bottom-[-1.5rem] w-32 text-xs text-white tracking-wider font-semibold whitespace-nowrap">{t('scroll')}</span>
           </a>
         </Anim>
       </div>

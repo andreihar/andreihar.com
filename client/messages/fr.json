@@ -27,7 +27,7 @@
 			"4": "Résolveur de problèmes"
 		},
 		"resume": "Curriculum Vitæ",
-		"scroll": "Scroller",
+		"scroll": "Faire Défiler",
 		"about": "Bonjour, je suis Andrei! Diplômé en informatique de l'Université Simon Fraser, je suis spécialisé en intelligence artificielle et en développement web. Je programme depuis le collège et j'ai développé une véritable passion pour résoudre des problèmes complexes grâce à la technologie. Découvrez mes projets et apprenez-en plus sur mon parcours!",
 		"aboutBtn": "À propos de moi",
 		"projects": "Projets phares",
@@ -92,7 +92,7 @@
 		"nothing": "Oups ! On dirait qu'il n'y a rien ici. Essayez une autre recherche !"
 	},
 	"LikesViews": {
-		"iLike": "J'aime ça !",
+		"iLike": "J'aime ça!",
 		"view": "{count, plural, one {# vue} other {# vues}}",
 		"like": "{count, plural, one {# j'aime} other {# j'aime}}"
 	},

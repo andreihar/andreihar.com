@@ -96,7 +96,7 @@ const LikeButton: React.FC = () => {
   } as CSSProperties;
 
   return (
-    <button onClick={handleLike} className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-neutral-950 dark:bg-neutral-200 font-medium text-neutral-200 dark:text-neutral-800 transition-all duration-300 hover:w-32 active:bg-neutral-600 dark:active:bg-neutral-400" style={buttonStyle}>
+    <button onClick={handleLike} className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-neutral-950 dark:bg-neutral-200 font-medium text-neutral-200 dark:text-neutral-800 transition-all duration-300 hover:w-36 active:bg-neutral-600 dark:active:bg-neutral-400" style={buttonStyle}>
       <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100 z-10">
         {t('iLike')}
       </div>

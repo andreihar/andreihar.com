@@ -37,7 +37,7 @@ export default async function RootLayout({ children, params: { locale } }: Props
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <body className={`${inter.variable} ${jost.variable} font-inter`}>
         <NextIntlClientProvider messages={messages}>
           <Providers>

@@ -13,7 +13,7 @@ export default function Comments({ locale }: { locale: string; }) {
         repoId={process.env.NEXT_PUBLIC_GISCUS_REPO_ID || ''}
         category='General'
         categoryId={process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID || ''}
-        mapping='pathname'
+        mapping='og:title'
         reactionsEnabled='0'
         emitMetadata='0'
         inputPosition="top"
