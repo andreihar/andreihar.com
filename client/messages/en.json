@@ -112,6 +112,6 @@
 		}
 	},
 	"Footer": {
-		"rights": "@ {name}, {year}"
+		"rights": "© {name}, {year}"
 	}
 }
