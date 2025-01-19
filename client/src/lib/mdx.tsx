@@ -19,9 +19,6 @@ export const getPostBySlug = async <T extends PostType>(id: string, type: T): Pr
 
 	let content = fileContent.replace(/^---[\s\S]*?---/, '').trim();
 	const meta: InferPostType<T> = { ...frontmatter, id, published: new Date(frontmatter.published) } as InferPostType<T>;
-	if (type === 'project' && frontmatter.video) {
-		content = `# Video Demo\n\n<YouTubeEmbed video="${frontmatter.video}" />\n\n${content}`;
-	}
 	return { ...meta, source: content };
 };
 

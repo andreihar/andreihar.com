@@ -3,7 +3,6 @@ export type BaseMDX = {
 	title: string;
 	description: string;
 	published: Date;
-	video?: string;
 };
 
 export type BlogType = BaseMDX & {

@@ -1,22 +1,9 @@
 import { Children, cloneElement, isValidElement } from 'react';
 import StorageImg from '@/components/widgets/StorageImg';
+import YouTubeEmbed from '@/components/widgets/YouTubeEmbed';
 
 const generateId = (text: string): string => {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-};
-
-const YouTubeEmbed: React.FC<{ video: string; }> = ({ video }) => {
-  return (
-    <div className="relative pt-[56.25%] mb-8">
-      <iframe
-        src={`https://www.youtube.com/embed/${video}?showinfo=0&rel=0`}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        className="absolute top-0 left-0 w-full h-full"
-        allowFullScreen
-      />
-    </div>
-  );
 };
 
 const MDXComponents = {
@@ -38,10 +25,10 @@ const MDXComponents = {
     <a className="text-primary font-bold inline-block relative underline-slide transition-colors duration-300 ease-in-out" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }} {...props} />
   ),
   blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
-    <blockquote className="border-l-4 border-gray-300 pl-4 italic mb-6" {...props} />
+    <blockquote className="border-l-4 border-gray-300 ps-4 italic mb-6" {...props} />
   ),
   ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className="list-none mb-8 ml-12" {...props} />
+    <ul className="list-none mb-8 ms-12" {...props} />
   ),
   ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
     <ol className="list-decimal list-inside mb-4" {...props} />
