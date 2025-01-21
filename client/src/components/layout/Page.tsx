@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale, useFormatter } from 'next-intl';
 import { BlogType, ProjectType } from '@/types/blog';
 import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
 import { SiGithub } from 'react-icons/si';
@@ -24,6 +24,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
   const t = useTranslations('BlogPage');
   const t_values = useTranslations('Values');
   const locale = useLocale();
+  const format = useFormatter();
 
   return (
     <ViewsAndLikesProvider type={isBlog ? 'blog' : 'project'} id={id} showWords updateViewOnLoad>
@@ -31,10 +32,10 @@ const Page: React.FC<PageProps> = ({ post }) => {
         <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         <div className="relative p-8 mt-[80px]">
           <div className="flex justify-between items-start">
-            <div className="text-left text-white space-y-7 w-full lg:max-w-[65%]">
+            <div className="text-start text-white space-y-7 w-full lg:max-w-[65%]">
               {'builtW' in post && <TechIcons technologies={post.builtW} showTooltip className="text-3xl text-gray-300" />}
               {'tags' in post && post.tags.map((tag, index) => (
-                <span key={index} className="relative inline-block select-none items-center whitespace-nowrap rounded-lg bg-white bg-opacity-20 py-1 px-2 font-sans font-bold uppercase text-white dark:bg-opacity-20 dark:bg-white mr-2" style={{ fontSize: '0.625rem' }}>
+                <span key={index} className="relative inline-block select-none items-center whitespace-nowrap rounded-lg bg-white bg-opacity-20 py-1 px-2 font-sans font-bold uppercase text-white dark:bg-opacity-20 dark:bg-white me-2" style={{ fontSize: '0.625rem' }}>
                   {tag}
                 </span>
               ))}
@@ -65,7 +66,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
               </p>
             </div>
             <div className="lg:max-w-[35%]">
-              <div className="absolute bottom-5 right-0.5">
+              <div className="absolute bottom-5 end-0.5">
                 <ShareButton title={title} />
               </div>
             </div>
@@ -76,15 +77,15 @@ const Page: React.FC<PageProps> = ({ post }) => {
         <div className="my-5 flex justify-between items-center">
           <p className="text-base text-gray-500 dark:text-gray-400 flex-grow">
             {isBlog && (
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 rtl:space-x-reverse">
                 <Image src={t_values('avatar')} alt={t_values('name', { f: t_values('f'), s: t_values('s') })} width={80} height={80} className="w-10 h-10 rounded-full" />
                 <div>
                   <p className="font-bold">{t_values('name', { f: t_values('f'), s: t_values('s') })}</p>
-                  <p className="text-sm text-gray-500">{published.toLocaleString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  <p className="text-sm text-gray-500">{format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
               </div>
             )}
-            {!isBlog && published.toLocaleString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
+            {!isBlog && format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}
             {'builtW' in post && [{ href: post.github, icon: <SiGithub className="inline-block text-base align-middle" />, label: t('repo') }, { href: post.website, icon: <HiLink className="inline-block text-base align-middle" />, label: t('demo') }
             ].map(
               (link, index) =>

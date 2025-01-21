@@ -122,7 +122,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                 const selectedOption = sortOptions.find(item => item.value === selectedCategory);
                 return (
                   <>
-                    {selectedOption && <selectedOption.icon className="w-5 h-5 mr-2" />}
+                    {selectedOption && <selectedOption.icon className="w-5 h-5 me-2" />}
                     {selectedOption?.label}
                     <HiChevronDown className="w-4 h-4 ms-2.5" />
                   </>
@@ -135,7 +135,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                   {sortOptions.map((option) => (
                     <li key={option.value}>
                       <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleCategorySelect(option.value)}>
-                        <option.icon className="w-5 h-5 mr-2" />
+                        <option.icon className="w-5 h-5 me-2" />
                         {option.label}
                       </button>
                     </li>

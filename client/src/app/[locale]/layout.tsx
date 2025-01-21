@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale, getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { getLangDir } from 'rtl-detect';
 import { Inter, Jost } from "next/font/google";
 import { Providers } from "../providers";
 import Navbar from "@/components/layout/Navbar";
@@ -37,7 +38,7 @@ export default async function RootLayout({ children, params: { locale } }: Props
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={getLangDir(locale)}>
       <body className={`${inter.variable} ${jost.variable} font-inter`}>
         <NextIntlClientProvider messages={messages}>
           <Providers>

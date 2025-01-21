@@ -75,7 +75,6 @@
 	},
 	"BlogPage": {
 		"min": "{time} min",
-		"solo": "Personal Project",
 		"team": "{team, plural, one {Personal Project} other {# people}}",
 		"repo": "Repository",
 		"demo": "Live demo",

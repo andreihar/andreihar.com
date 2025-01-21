@@ -42,7 +42,7 @@ const Home = async ({ params: { locale } }: Props) => {
       <div className="min-h-screen flex flex-col justify-between bg-black font-normal text-white px-6 md:px-14 z-[-1] leading-tight bg-gradient-to-bl from-[#82C91E00] to-[#062343]">
         <div className="flex-grow flex items-center">
           <Layout className="container mx-auto px-4 md:px-6">
-            <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-left">
+            <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-start">
               <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
                 <span>
                   {t.rich('myName', {
@@ -54,20 +54,20 @@ const Home = async ({ params: { locale } }: Props) => {
                 <RotatingText />
               </Anim>
             </h1>
-            <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-left">
+            <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-start">
               <div className="text-gray-400 font-bold relative text-lg mb-6">
                 <a href={`https://github.com/${t_values('github')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                   <FaGithub className="inline-block align-middle" />
                   <span className="align-middle">{t_values('github')}</span>
                 </a>
-                <a href={`https://linkedin.com/in/${t_values('linkedin')}`} target="_blank" rel="noopener noreferrer" className="ml-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+                <a href={`https://linkedin.com/in/${t_values('linkedin')}`} target="_blank" rel="noopener noreferrer" className="ms-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                   <FaLinkedin className="inline-block align-middle" />
                   <span className="align-middle">{t_values('linkedin')}</span>
                 </a>
               </div>
             </Anim>
             <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
-              <div className="text-center md:text-left pd-30">
+              <div className="text-center md:text-start pd-30">
                 <Button type='a' text={t('resume')} href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
               </div>
             </Anim>
@@ -85,7 +85,7 @@ const Home = async ({ params: { locale } }: Props) => {
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
               {t('about')}
             </p>
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-start">
               <Button type='link' text={t('aboutBtn')} href="/about" size="text-lg px-8 py-4" />
             </div>
           </Anim>

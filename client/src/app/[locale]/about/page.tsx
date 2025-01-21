@@ -33,17 +33,17 @@ const tech = (name: string, icon: React.ComponentType<{ className?: string; }>) 
 
 const TimelineItem: React.FC<{ title: string; date: string; institution: string; desc: string; note?: string; }> = ({ title, date, institution, desc, note }) => (
   <li className="relative pb-8">
-    <span className="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
-    <div className="relative flex items-start space-x-3">
+    <span className="absolute top-5 start-5 -ms-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
+    <div className="relative flex items-start space-x-3 rtl:space-x-reverse">
       <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, scale: 0.5 }}>
         <div className="h-10 w-10 bg-primary-600 rounded-full ring-8 ring-white dark:ring-gray-800 flex items-center justify-center">
           <FaPen className="text-white h-5 w-5" />
         </div>
       </Anim>
-      <div className="min-w-0 flex-1 pl-3">
+      <div className="min-w-0 flex-1 ps-3">
         <Anim delay={0.3} duration={0.5} hidden={{ opacity: 0 }}>
           <div className="text-xl text-gray-500 dark:text-gray-400">
-            <span className="font-medium text-gray-900 dark:text-gray-100 mr-2">{title}</span>
+            <span className="font-medium text-gray-900 dark:text-gray-100 me-2">{title}</span>
             <span className="whitespace-nowrap">{date}</span>
           </div>
           {note && <span className="text-lg text-gray-500 dark:text-gray-400">{note}</span>}
@@ -104,7 +104,7 @@ export default function About({ params: { locale } }: Props) {
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
               {t('text')}
             </p>
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-start">
               <Button type='a' text={t('resume')} href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
@@ -126,7 +126,7 @@ export default function About({ params: { locale } }: Props) {
               <h2 className="text-2xl font-bold mb-4">{label}</h2>
               <div className="space-y-4">
                 {tech.map((tech) => (
-                  <div key={tech.name} className="flex items-center space-x-4">
+                  <div key={tech.name} className="flex items-center space-x-4 rtl:space-x-reverse">
                     <tech.icon className="text-4xl text-primary" />
                     <span className="text-xl font-semibold">{tech.name}</span>
                   </div>

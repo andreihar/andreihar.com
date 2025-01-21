@@ -11,7 +11,7 @@ const Project: React.FC<{ meta: ProjectType; }> = ({ meta }) => {
       <div className="bg-white text-white rounded-xl shadow-md overflow-hidden relative min-h-[230px] flex flex-col justify-end">
         <div className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out group-hover:scale-110" style={{ backgroundImage: `url(${StorageImg({ header: true, id: `${id}/banner`, alt: `Banner of ${title}` })})` }}></div>
         <div className="absolute inset-0 bg-black opacity-50 transition-opacity duration-300 ease-in-out group-hover:opacity-75"></div>
-        <div className="absolute top-4 left-4 z-10 text-lg">
+        <div className="absolute top-4 start-4 z-10 text-lg">
           <TechIcons technologies={builtW} />
         </div>
         <div className="relative p-4 flex flex-col justify-end h-full">

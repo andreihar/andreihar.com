@@ -15,9 +15,15 @@ function Anim({ children, className, style, duration = 1, delay = 0, hidden = { 
     }
   }, [controls, fadeOut, inView]);
 
+  const isRtl = typeof window !== 'undefined' && document.documentElement.dir === 'rtl';
+  const adjustedHidden = {
+    ...hidden,
+    x: isRtl ? -(hidden.x ?? 0) : hidden.x ?? 0,
+  };
+
   return (
     <motion.div ref={ref} animate={controls} initial="hidden" transition={{ duration, delay }}
-      variants={{ visible: { opacity: 1, x: 0, y: 0, scale: 1 }, hidden, fadeOut: { opacity: 0 } }}
+      variants={{ visible: { opacity: 1, x: 0, y: 0, scale: 1 }, hidden: adjustedHidden, fadeOut: { opacity: 0 } }}
       className={className} style={style} {...props}
     >
       {children}
