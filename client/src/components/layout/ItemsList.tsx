@@ -163,7 +163,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
           {filteredPosts.map((post, index) => (
-            <Anim key={post.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+            <Anim key={post.id} delay={0.2 + index * 0.1}>
               {'tags' in post ? <Blog meta={post} /> : <Project meta={post} />}
             </Anim>
           ))}

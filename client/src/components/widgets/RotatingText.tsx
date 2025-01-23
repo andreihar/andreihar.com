@@ -27,7 +27,7 @@ const RotatingText: React.FC = () => {
   return (
     <div className="inline-block">
       {t.rich('rotating.sentence', {
-        c: (chunks) => <Anim key={currentWordIndex} duration={fadeDuration} hidden={{ opacity: 0 }} fadeOut={!visible} className="transition-opacity inline-block">{chunks}</Anim>, prefix: /^[aeiou]/i.test(words[currentWordIndex]), word: words[currentWordIndex]
+        c: (chunks) => <Anim key={currentWordIndex} duration={fadeDuration} hidden={{ y: 0 }} fadeOut={!visible} className="transition-opacity inline-block">{chunks}</Anim>, prefix: /^[aeiou]/i.test(words[currentWordIndex]), word: words[currentWordIndex]
       })}
     </div>
   );

@@ -35,20 +35,20 @@ const TimelineItem: React.FC<{ title: string; date: string; institution: string;
   <li className="relative pb-8">
     <span className="absolute top-5 start-5 -ms-px h-full w-0.5 bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
     <div className="relative flex items-start space-x-3 rtl:space-x-reverse">
-      <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, scale: 0.5 }}>
+      <Anim delay={0.2} hidden={{ y: 0, scale: 0.5 }}>
         <div className="h-10 w-10 bg-primary-600 rounded-full ring-8 ring-white dark:ring-gray-800 flex items-center justify-center">
           <FaPen className="text-white h-5 w-5" />
         </div>
       </Anim>
       <div className="min-w-0 flex-1 ps-3">
-        <Anim delay={0.3} duration={0.5} hidden={{ opacity: 0 }}>
+        <Anim delay={0.3} hidden={{ y: 0 }}>
           <div className="text-xl text-gray-500 dark:text-gray-400 flex">
             <span className="font-medium text-gray-900 dark:text-gray-100 me-2">{title}</span>
             <span className="whitespace-nowrap order-2">{date}</span>
           </div>
           {note && <span className="text-lg text-gray-500 dark:text-gray-400">{note}</span>}
         </Anim>
-        <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+        <Anim delay={0.4}>
           <div className="mt-2">
             <h4 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">{institution}</h4>
             <p className="text-gray-700 dark:text-gray-300 text-lg">{desc}</p>
@@ -100,7 +100,7 @@ export default function About({ params: { locale } }: Props) {
           <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{t_values('name', { f: t_values('f'), s: t_values('s') })}</h2>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
-          <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
+          <Anim delay={0.2} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
               {t('text')}
             </p>
@@ -108,7 +108,7 @@ export default function About({ params: { locale } }: Props) {
               <Button type='a' text={t('resume')} href="/resume.pdf" size="text-lg px-8 py-4" target="_blank" rel="noopener noreferrer" />
             </div>
           </Anim>
-          <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
+          <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
               <Image src="/img/studying.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
             </div>
@@ -122,7 +122,7 @@ export default function About({ params: { locale } }: Props) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([key, { label, tech }], index) => (
-            <Anim key={key} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            <Anim key={key} delay={0.2 + index * 0.1} className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-4">{label}</h2>
               <div className="space-y-4">
                 {tech.map((tech) => (

@@ -43,18 +43,18 @@ const Home = async ({ params: { locale } }: Props) => {
         <div className="flex-grow flex items-center">
           <Layout className="container mx-auto px-4 md:px-6">
             <h1 className="hero-title text-4xl md:text-7xl font-bold mb-8 text-center md:text-start">
-              <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, x: -20 }} className="mb-10">
+              <Anim delay={0.2} hidden={{ x: -20, y: 0 }} className="mb-10">
                 <span>
                   {t.rich('myName', {
-                    c: (chunks) => <Anim delay={0.6} duration={0.5} hidden={{ opacity: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: t_values('f')
+                    c: (chunks) => <Anim delay={0.6} hidden={{ y: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: t_values('f')
                   })}
                 </span>
               </Anim>
-              <Anim delay={1.3} duration={0.5} hidden={{ opacity: 0 }} className="mt-10">
+              <Anim delay={1.3} hidden={{ y: 0 }} className="mt-10">
                 <RotatingText />
               </Anim>
             </h1>
-            <Anim delay={1.6} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="text-center md:text-start">
+            <Anim delay={1.6} className="text-center md:text-start">
               <div className="text-gray-400 font-bold relative text-lg mb-6">
                 <a href={`https://github.com/${t_values('github')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                   <FaGithub className="inline-block align-middle" />
@@ -66,14 +66,14 @@ const Home = async ({ params: { locale } }: Props) => {
                 </a>
               </div>
             </Anim>
-            <Anim delay={1.9} duration={0.5} hidden={{ opacity: 0 }}>
+            <Anim delay={1.9} hidden={{ y: 0 }}>
               <div className="text-center md:text-start pd-30">
                 <Button type='a' text={t('resume')} href="/resume.pdf" size="text-xl px-10 py-4" target="_blank" rel="noopener noreferrer" />
               </div>
             </Anim>
           </Layout>
         </div>
-        <Anim delay={2.7} duration={0.5} hidden={{ opacity: 0 }} className="flex justify-center items-end pb-10">
+        <Anim delay={2.7} hidden={{ y: 0 }} className="flex justify-center items-end pb-10">
           <a id="scroll" href="#intro" className="relative h-10 w-6 border-2 border-white rounded-full flex flex-col items-center justify-center">
             <span className="flex justify-center absolute bottom-[-1.5rem] w-32 text-xs text-white tracking-wider font-semibold whitespace-nowrap">{t('scroll')}</span>
           </a>
@@ -81,7 +81,7 @@ const Home = async ({ params: { locale } }: Props) => {
       </div>
       <Layout className="my-20 pt-14">
         <div id="intro" className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
-          <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-full md:max-w-lg mb-10 md:mb-0">
+          <Anim delay={0.2} className="w-full md:max-w-lg mb-10 md:mb-0">
             <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
               {t('about')}
             </p>
@@ -89,7 +89,7 @@ const Home = async ({ params: { locale } }: Props) => {
               <Button type='link' text={t('aboutBtn')} href="/about" size="text-lg px-8 py-4" />
             </div>
           </Anim>
-          <Anim delay={0.4} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
+          <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
               <Image src="/img/hero.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
             </div>
@@ -97,7 +97,7 @@ const Home = async ({ params: { locale } }: Props) => {
         </div>
       </Layout>
       <Layout className='my-20 pt-14'>
-        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex flex-col items-center pb-10">
+        <Anim delay={0.2} className="flex flex-col items-center pb-10">
           <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             {t('projects')}
           </h1>
@@ -105,29 +105,29 @@ const Home = async ({ params: { locale } }: Props) => {
         </Anim>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {projectMetas.map((meta, index) => (
-            <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+            <Anim key={meta.id} delay={0.2 + index * 0.1}>
               <Project meta={meta} />
             </Anim>
           ))}
         </div>
-        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex justify-center mt-6">
+        <Anim delay={0.2} className="flex justify-center mt-6">
           <Button type='link' text={t('projectsBtn')} href="/project" size="text-lg px-8 py-4" />
         </Anim>
       </Layout>
       <Layout className='my-20 pt-14'>
-        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex flex-col items-center pb-10">
+        <Anim delay={0.2} className="flex flex-col items-center pb-10">
           <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             {t('blog')}
           </h1>
         </Anim>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {blogMetas.map((meta, index) => (
-            <Anim key={meta.id} delay={0.2 + index * 0.1} duration={0.5} hidden={{ opacity: 0, y: 20 }}>
+            <Anim key={meta.id} delay={0.2 + index * 0.1} >
               <Blog meta={meta} />
             </Anim>
           ))}
         </div>
-        <Anim delay={0.2} duration={0.5} hidden={{ opacity: 0, y: 20 }} className="flex justify-center mt-6">
+        <Anim delay={0.2} className="flex justify-center mt-6">
           <Button type='link' text={t('blogBtn')} href="/blog" size="text-lg px-8 py-4" />
         </Anim>
       </Layout>
