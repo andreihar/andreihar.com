@@ -60,6 +60,7 @@ export default function Navbar() {
 
   const header = pathname === '/' || pathname.startsWith('/project/') || pathname.startsWith('/blog/');
   const textColorClass = header && !isScrolled ? 'text-white dark:text-white' : 'text-base';
+  const isRtl = typeof window !== 'undefined' && document.documentElement.dir === 'rtl';
 
   return (
     <nav className={`fixed z-50 left-0 top-0 w-screen h-16 ${header ? (isScrolled ? 'bg-white shadow-md dark:bg-dark' : 'bg-transparent') : 'bg-white shadow-md dark:bg-dark'} transition-all duration-300 ease-in-out`}>
@@ -90,7 +91,7 @@ export default function Navbar() {
               })}
             </ul>
             {/* Mobile Menu */}
-            <ul className={`${isActive ? 'left-0' : 'left-full'} list-none absolute bg-white dark:bg-dark w-screen h-screen top-0 flex flex-col justify-center items-center z-10 overflow-x-hidden transition-[left] duration-500 ease-in-out md:hidden`}>
+            <ul className={`${isActive ? 'start-0' : 'start-full'} list-none absolute bg-white dark:bg-dark w-screen h-screen top-0 flex flex-col justify-center items-center z-10 overflow-x-hidden transition-[${isRtl ? 'right' : 'left'}] duration-500 ease-in-out md:hidden`}>
               {menuItems.map((item, index) => {
                 const isActiveRoute = pathname === item.href || pathname.startsWith(`${item.href}/`);
                 const className = `text-[1.8rem] text-center tracking-widest font-jost no-underline uppercase p-5 block after:content-[attr(data-after)] after:absolute after:top-1/2 after:left-1/2 after:transform after:-translate-x-1/2 after:-translate-y-1/2 after:scale-0 after:text-[13rem] after:tracking-[50px] after:text-gray-100 dark:after:text-gray-800 after:z-[-1] after:transition-all after:duration-300 group-hover:after:scale-50 group-hover:after:tracking-normal group-hover:text-primary transition-colors duration-300 ease-in-out`;

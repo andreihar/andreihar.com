@@ -42,9 +42,9 @@ const TimelineItem: React.FC<{ title: string; date: string; institution: string;
       </Anim>
       <div className="min-w-0 flex-1 ps-3">
         <Anim delay={0.3} duration={0.5} hidden={{ opacity: 0 }}>
-          <div className="text-xl text-gray-500 dark:text-gray-400">
+          <div className="text-xl text-gray-500 dark:text-gray-400 flex">
             <span className="font-medium text-gray-900 dark:text-gray-100 me-2">{title}</span>
-            <span className="whitespace-nowrap">{date}</span>
+            <span className="whitespace-nowrap order-2">{date}</span>
           </div>
           {note && <span className="text-lg text-gray-500 dark:text-gray-400">{note}</span>}
         </Anim>
