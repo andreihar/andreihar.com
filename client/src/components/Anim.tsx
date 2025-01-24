@@ -1,19 +1,21 @@
 'use client';
+import { useTransitionState } from "next-transition-router";
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, ReactNode, CSSProperties } from 'react';
 
 function Anim({ children, className, style, duration = 0.5, delay = 0, hidden = {}, fadeOut = false, ...props }: { children: ReactNode, className?: string, style?: CSSProperties, duration?: number, delay?: number, hidden?: { opacity?: number, x?: number, y?: number, scale?: number; }, fadeOut?: boolean; }) {
+  const { isReady } = useTransitionState();
   const controls = useAnimation();
   const [ref, inView] = useInView();
 
   useEffect(() => {
-    if (fadeOut) {
+    if (isReady && fadeOut) {
       controls.start("fadeOut");
     } else if (inView) {
       controls.start("visible");
     }
-  }, [controls, fadeOut, inView]);
+  }, [controls, isReady, fadeOut, inView]);
 
   const isRtl = typeof window !== 'undefined' && document.documentElement.dir === 'rtl';
   const defaultVals = { opacity: 0, x: 0, y: 20, scale: 1 };
