@@ -42,16 +42,16 @@ const TimelineItem: React.FC<{ title: string; date: string; institution: string;
       </Anim>
       <div className="min-w-0 flex-1 ps-3">
         <Anim delay={0.3} hidden={{ y: 0 }}>
-          <div className="text-xl text-gray-500 dark:text-gray-400 flex">
+          <div className="text-2xl text-gray-500 dark:text-gray-400 flex">
             <span className="font-medium text-gray-900 dark:text-gray-100 me-2">{title}</span>
             <span className="whitespace-nowrap order-2">{date}</span>
           </div>
-          {note && <span className="text-lg text-gray-500 dark:text-gray-400">{note}</span>}
+          {note && <span className="text-xl text-gray-500 dark:text-gray-400">{note}</span>}
         </Anim>
         <Anim delay={0.4}>
           <div className="mt-2">
             <h4 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">{institution}</h4>
-            <p className="text-gray-700 dark:text-gray-300 text-lg">{desc}</p>
+            <p className="text-gray-700 dark:text-gray-300 text-xl">{desc}</p>
           </div>
         </Anim>
       </div>
@@ -101,7 +101,7 @@ export default function About({ params: { locale } }: Props) {
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} className="w-full md:max-w-lg mb-10 md:mb-0">
-            <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
+            <p className="mb-5 text-lg md:text-2xl leading-relaxed md:leading-loose">
               {t('text')}
             </p>
             <div className="text-center md:text-start">
@@ -118,7 +118,7 @@ export default function About({ params: { locale } }: Props) {
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
           <h1 className="text-4xl font-bold pb-2 text-center">{t('tech')}</h1>
-          <p className="text-center text-xl text-base pb-4">{t('techDesc')}</p>
+          <p className="text-center text-2xl pb-4">{t('techDesc')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([key, { label, tech }], index) => (
@@ -128,7 +128,7 @@ export default function About({ params: { locale } }: Props) {
                 {tech.map((tech) => (
                   <div key={tech.name} className="flex items-center space-x-4 rtl:space-x-reverse">
                     <tech.icon className="text-4xl text-primary" />
-                    <span className="text-xl font-semibold">{tech.name}</span>
+                    <span className="text-2xl font-semibold">{tech.name}</span>
                   </div>
                 ))}
               </div>

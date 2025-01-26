@@ -3,14 +3,14 @@ import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale, getMessages, getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { getLangDir } from 'rtl-detect';
-import { Inter, Jost } from "next/font/google";
+import { Zain, Cairo } from "next/font/google";
 import { Providers } from "../providers";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./../globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const jost = Jost({ subsets: ["latin"], variable: "--font-jost" });
+const inter = Zain({ subsets: ["arabic", "latin"], weight: ["400", "700"], display: 'swap', adjustFontFallback: false, variable: "--font-inter" });
+const jost = Cairo({ subsets: ["arabic", "latin"], display: 'swap', variable: "--font-jost" });
 
 type Props = {
   children: ReactNode;

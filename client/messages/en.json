@@ -10,7 +10,7 @@
 		"linkedin": "andreihar",
 		"twitter": "andrei_har",
 		"youtube": "aharba",
-		"otherLang": "Français"
+		"otherLang": "اردو"
 	},
 	"Home": {
 		"title": "Home",
@@ -102,6 +102,7 @@
 		"socials": "Socials",
 		"form": {
 			"name": "Name",
+			"placeholder": "Jane Doe",
 			"email": "Email Address",
 			"message": "Message",
 			"send": "Send message",

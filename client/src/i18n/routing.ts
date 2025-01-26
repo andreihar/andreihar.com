@@ -2,16 +2,16 @@ import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
-  locales: ['en', 'fr'],
-  defaultLocale: 'en',
+  locales: ['ur', 'en'],
+  defaultLocale: 'ur',
   localePrefix: 'as-needed',
   pathnames: {
     '/': '/',
-    '/project': { en: '/project', fr: '/projet' },
-    '/project/[id]': { en: '/project/[id]', fr: '/projet/[id]' },
-    '/blog': { en: '/blog', fr: '/blog' },
-    '/blog/[id]': { en: '/blog/[id]', fr: '/blog/[id]' },
-    '/about': { en: '/about', fr: '/a-propos' },
+    '/project': { ur: '/project', en: '/project' },
+    '/project/[id]': { ur: '/project/[id]', en: '/project/[id]' },
+    '/blog': { ur: '/blog', en: '/blog' },
+    '/blog/[id]': { ur: '/blog/[id]', en: '/blog/[id]' },
+    '/about': { ur: '/ke-baare-mein', en: '/about' },
   }
 });
 

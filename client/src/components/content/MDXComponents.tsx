@@ -3,7 +3,10 @@ import StorageImg from '@/components/widgets/StorageImg';
 import YouTubeEmbed from '@/components/widgets/YouTubeEmbed';
 
 const generateId = (text: string): string => {
-  return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\p{L}\p{N}-]+/gu, '');
 };
 
 const MDXComponents = {
@@ -19,7 +22,7 @@ const MDXComponents = {
     <h3 className="text-xl md:text-2xl font-medium py-2" {...props} />
   ),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className="text-lg leading-loose mb-8" {...props} />
+    <p className="text-xl leading-loose mb-8" {...props} />
   ),
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a className="text-primary font-bold inline-block relative underline-slide transition-colors duration-300 ease-in-out" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }} {...props} />
@@ -36,7 +39,7 @@ const MDXComponents = {
   li: (props: React.LiHTMLAttributes<HTMLLIElement>) => (
     <li>
       {Children.map(props.children, child =>
-        isValidElement(child) ? cloneElement(child as React.ReactElement<any>, { className: `${child.props.className || ''} text-lg leading-loose mb-4` }) : child
+        isValidElement(child) ? cloneElement(child as React.ReactElement<any>, { className: `${child.props.className || ''} text-xl leading-loose mb-4` }) : child
       )}
     </li>
   ),
