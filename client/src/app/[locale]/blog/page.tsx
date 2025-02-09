@@ -36,7 +36,7 @@ const Blogs = async ({ params: { locale } }: Props) => {
         <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
           {t('title')}
         </h1>
-        <p className="text-center text-2xl">{t('desc')}</p>
+        <p className="text-center text-xl text-base">{t('desc')}</p>
       </div>
       <ItemsList posts={metas} />
     </Layout>

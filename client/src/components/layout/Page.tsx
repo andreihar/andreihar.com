@@ -41,7 +41,7 @@ const Page: React.FC<PageProps> = ({ post }) => {
               ))}
               <h1 className="text-3xl leading-[1.5] md:text-5xl md:leading-[1.5] font-bold">{title}</h1>
               <h2 className="text-lg leading-[1.5] md:text-xl md:leading-[1.5] text-gray-200">{description}</h2>
-              <p className="text-lg text-gray-300 flex flex-wrap items-center">
+              <p className="text-sm text-gray-300 flex flex-wrap items-center">
                 {'tags' in post ? (
                   <span className="inline-flex items-center gap-1">
                     <HiOutlineClock className="inline-block text-base" />
@@ -80,8 +80,8 @@ const Page: React.FC<PageProps> = ({ post }) => {
               <div className="flex items-center space-x-4 rtl:space-x-reverse">
                 <Image src={t_values('avatar')} alt={t_values('name', { f: t_values('f'), s: t_values('s') })} width={80} height={80} className="w-10 h-10 rounded-full" />
                 <div>
-                  <p className="font-bold text-lg">{t_values('name', { f: t_values('f'), s: t_values('s') })}</p>
-                  <p className="text-m text-gray-500">{format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  <p className="font-bold">{t_values('name', { f: t_values('f'), s: t_values('s') })}</p>
+                  <p className="text-sm text-gray-500">{format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
               </div>
             )}

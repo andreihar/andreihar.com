@@ -58,21 +58,21 @@ export default function Contact() {
       <div className="absolute inset-0 bg-gray-900 md:w-1/3"></div>
       <div className="relative grid grid-cols-1 md:grid-cols-3 mx-auto max-w-[1100px]">
         <div className="bg-gray-900 md:col-span-1 p-10 pb-0 text-white">
-          <p className="mt-4 text-m leading-7 font-regular uppercase">{t('title')}</p>
+          <p className="mt-4 text-sm leading-7 font-regular uppercase">{t('title')}</p>
           <h3 className="text-3xl sm:text-4xl leading-normal font-extrabold capitalize tracking-tight">
             {t.rich('touch', { c: (chunks) => <span className="text-primary">{chunks}</span> })}
           </h3>
-          <p className="text-xl mt-4 leading-7 text-gray-200">
+          <p className="mt-4 leading-7 text-gray-200">
             {t('desc')}
           </p>
           <div className="mt-8">
             <a href={`mailto:${t_values('email')}`} className="me-4 mb-4 inline-flex text-2xl items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
               <FaEnvelope className="inline-block align-middle text-primary" />
-              <span className="align-middle ms-2 text-xl">{t_values('email')}</span>
+              <span className="align-middle ms-2 text-lg">{t_values('email')}</span>
             </a>
             <p className="mb-4 inline-flex text-2xl items-center gap-1 align-middle">
               <FaMapMarkerAlt className="inline-block align-middle text-primary" />
-              <span className="align-middle ms-2 text-xl">{t_values('location')}</span>
+              <span className="align-middle ms-2 text-lg">{t_values('location')}</span>
             </p>
             <h4 className="text-xl font-bold my-4">{t('socials')}</h4>
             <div className="flex space-x-4 rtl:space-x-reverse mb-6">
@@ -87,19 +87,19 @@ export default function Contact() {
         <form onSubmit={handleSubmit} className="md:col-span-2 p-10 pb-0">
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6">
-              <label className="block uppercase tracking-wide text-gray-700 text-m font-bold mb-2" htmlFor="name">{t('form.name')}</label>
-              <input id="name" name="name" type="text" placeholder={t('form.placeholder')} value={formData.name} onChange={handleChange} className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.name ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} />
-              {errors.name && <p className="text-red-500 text-m italic">{errors.name}</p>}
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">{t('form.name')}</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" value={formData.name} onChange={handleChange} className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.name ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} />
+              {errors.name && <p className="text-red-500 text-xs italic">{errors.name}</p>}
             </div>
             <div className="w-full px-3 mb-6">
-              <label className="block uppercase tracking-wide text-gray-700 text-m font-bold mb-2" htmlFor="email">{t('form.email')}</label>
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">{t('form.email')}</label>
               <input id="email" name="email" type="email" placeholder="********@*****.**" value={formData.email} onChange={handleChange} className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.email ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} />
-              {errors.email && <p className="text-red-500 text-m italic">{errors.email}</p>}
+              {errors.email && <p className="text-red-500 text-xs italic">{errors.email}</p>}
             </div>
             <div className="w-full px-3 mb-6">
-              <label className="block uppercase tracking-wide text-gray-700 text-m font-bold mb-2" htmlFor="message">{t('form.message')}</label>
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">{t('form.message')}</label>
               <textarea id="message" name="message" value={formData.message} rows={10} onChange={handleChange} className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.message ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} />
-              {errors.message && <p className="text-red-500 text-m italic">{errors.message}</p>}
+              {errors.message && <p className="text-red-500 text-xs italic">{errors.message}</p>}
             </div>
             <div className="flex justify-between w-full px-3 mb-6">
               <Button text={t('form.send')} type="submit" size="text-lg px-8 py-4" />

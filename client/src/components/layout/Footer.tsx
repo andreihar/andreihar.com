@@ -37,7 +37,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <span className="block text-xl text-gray-600 text-center dark:text-gray-300">{t('rights', { name: t_values('name', { f: t_values('f'), s: t_values('s') }), year: displayYear })}</span>
+      <span className="block text-gray-600 text-center dark:text-gray-300">{t('rights', { name: t_values('name', { f: t_values('f'), s: t_values('s') }), year: displayYear })}</span>
     </footer>
   );
 }

@@ -19,7 +19,7 @@ const Project: React.FC<{ meta: ProjectType; }> = ({ meta }) => {
             <h1 className="block text-lg font-semibold leading-tight pb-2">
               {title}
             </h1>
-            <p className="text-lg opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+            <p className="text-sm opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
               {description}
             </p>
           </div>

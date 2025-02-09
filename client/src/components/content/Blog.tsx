@@ -30,14 +30,14 @@ const Blog: React.FC<{ meta: BlogType; }> = ({ meta }) => {
             <div className="relative">
               <Image alt={t('name', { f: t('f'), s: t('s') })} src={t('avatar')} width={48} height={48} className="absolute top-0 transform -mt-10 w-12 h-12 rounded-full border-2 border-white z-10" />
             </div>
-            <div className="text-s text-gray-500 dark:text-gray-400 mt-6 mb-4">{format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-6 mb-4">{format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}</div>
             <h1 className="block text-md font-semibold leading-tight text-gray-900 dark:text-gray-100 transition-colors duration-300 ease-in-out group-hover:text-primary">
               {title}
             </h1>
-            <p className="text-m mt-2 text-black dark:text-gray-300">
+            <p className="text-sm mt-2 text-black dark:text-gray-300">
               {description}
             </p>
-            <div className="flex justify-end gap-4 mt-6 text-gray-500 dark:text-gray-400 text-s">
+            <div className="flex justify-end gap-4 mt-6 text-gray-500 dark:text-gray-400 text-xs">
               <div className="flex items-center">
                 <HiOutlineClock className="w-5 h-5 me-1" />
                 {time}

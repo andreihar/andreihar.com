@@ -55,7 +55,7 @@ const Home = async ({ params: { locale } }: Props) => {
               </Anim>
             </h1>
             <Anim delay={1.6} className="text-center md:text-start">
-              <div className="text-gray-400 font-bold relative text-2xl mb-6">
+              <div className="text-gray-400 font-bold relative text-lg mb-6">
                 <a href={`https://github.com/${t_values('github')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                   <FaGithub className="inline-block align-middle" />
                   <span className="align-middle">{t_values('github')}</span>
@@ -75,14 +75,14 @@ const Home = async ({ params: { locale } }: Props) => {
         </div>
         <Anim delay={2.7} hidden={{ y: 0 }} className="flex justify-center items-end pb-10">
           <a id="scroll" href="#intro" className="relative h-10 w-6 border-2 border-white rounded-full flex flex-col items-center justify-center">
-            <span className="flex justify-center absolute bottom-[-1.5rem] w-32 text-s text-white tracking-wider font-semibold whitespace-nowrap">{t('scroll')}</span>
+            <span className="flex justify-center absolute bottom-[-1.5rem] w-32 text-xs text-white tracking-wider font-semibold whitespace-nowrap">{t('scroll')}</span>
           </a>
         </Anim>
       </div>
       <Layout className="my-20 pt-14">
         <div id="intro" className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} className="w-full md:max-w-lg mb-10 md:mb-0">
-            <p className="mb-5 text-lg md:text-2xl leading-relaxed md:leading-loose">
+            <p className="mb-5 text-lg md:text-xl leading-relaxed md:leading-loose">
               {t('about')}
             </p>
             <div className="text-center md:text-start">
@@ -101,7 +101,7 @@ const Home = async ({ params: { locale } }: Props) => {
           <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             {t('projects')}
           </h1>
-          <p className="text-center text-2xl">{t('projectsDesc')}</p>
+          <p className="text-center text-xl text-base">{t('projectsDesc')}</p>
         </Anim>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {projectMetas.map((meta, index) => (

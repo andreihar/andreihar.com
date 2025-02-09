@@ -87,7 +87,7 @@ const TableOfContents = () => {
   return (
     <nav>
       <h2 className="text-xl font-bold mb-4">{t('toc')}</h2>
-      <div className="lg:max-h-[55vh] text-xl overflow-y-auto">
+      <div className="lg:max-h-[55vh] overflow-y-auto">
         {renderHeadings(headings)}
       </div>
     </nav>
