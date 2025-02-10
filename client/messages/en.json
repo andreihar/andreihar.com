@@ -102,6 +102,7 @@
 		"socials": "Socials",
 		"form": {
 			"name": "Name",
+			"placeholder": "Jane Doe",
 			"email": "Email Address",
 			"message": "Message",
 			"send": "Send message",

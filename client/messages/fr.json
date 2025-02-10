@@ -102,6 +102,7 @@
 		"socials": "Réseaux sociaux",
 		"form": {
 			"name": "Nom",
+			"placeholder": "Marie Dupont",
 			"email": "Adresse email",
 			"message": "Message",
 			"send": "Envoyer le message",

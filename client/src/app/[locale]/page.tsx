@@ -101,7 +101,7 @@ const Home = async ({ params: { locale } }: Props) => {
           <h1 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">
             {t('projects')}
           </h1>
-          <p className="text-center text-xl text-base">{t('projectsDesc')}</p>
+          <p className="text-center text-xl">{t('projectsDesc')}</p>
         </Anim>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {projectMetas.map((meta, index) => (

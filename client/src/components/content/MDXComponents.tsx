@@ -3,7 +3,10 @@ import StorageImg from '@/components/widgets/StorageImg';
 import YouTubeEmbed from '@/components/widgets/YouTubeEmbed';
 
 const generateId = (text: string): string => {
-  return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\p{L}\p{N}-]+/gu, '');
 };
 
 const MDXComponents = {

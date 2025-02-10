@@ -118,7 +118,7 @@ export default function About({ params: { locale } }: Props) {
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
           <h1 className="text-4xl font-bold pb-2 text-center">{t('tech')}</h1>
-          <p className="text-center text-xl text-base pb-4">{t('techDesc')}</p>
+          <p className="text-center text-xl pb-4">{t('techDesc')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto px-5">
           {Object.entries(techStack).map(([key, { label, tech }], index) => (

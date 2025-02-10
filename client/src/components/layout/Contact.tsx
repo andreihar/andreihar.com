@@ -88,7 +88,7 @@ export default function Contact() {
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full px-3 mb-6">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">{t('form.name')}</label>
-              <input id="name" name="name" type="text" placeholder="Jane Doe" value={formData.name} onChange={handleChange} className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.name ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} />
+              <input id="name" name="name" type="text" placeholder={t('form.placeholder')} value={formData.name} onChange={handleChange} className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.name ? 'border-red-500' : 'border-gray-200'} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} />
               {errors.name && <p className="text-red-500 text-xs italic">{errors.name}</p>}
             </div>
             <div className="w-full px-3 mb-6">
