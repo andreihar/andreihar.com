@@ -1,16 +1,15 @@
-import Image from 'next/image';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { getAllPostsMeta } from '@/lib/mdx';
-import Button from '@/components/Button';
-import Layout from '@/components/layout/Layout';
 import Anim from '@/components/Anim';
-import RotatingText from '@/components/widgets/RotatingText';
-import Project from '@/components/content/Project';
+import Button from '@/components/Button';
 import Blog from '@/components/content/Blog';
+import Project from '@/components/content/Project';
 import Contact from '@/components/layout/Contact';
+import Layout from '@/components/layout/Layout';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import RotatingText from '@/components/widgets/RotatingText';
 import { Locale } from '@/i18n/routing';
+import { getAllPostsMeta } from '@/lib/mdx';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 type Props = {
   params: { locale: Locale; };
@@ -89,11 +88,11 @@ const Home = async ({ params: { locale } }: Props) => {
               <Button type='link' text={t('aboutBtn')} href="/about" size="text-lg px-8 py-4" />
             </div>
           </Anim>
-          <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
+          {/* <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
               <Image src="/img/hero.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
             </div>
-          </Anim>
+          </Anim> */}
         </div>
       </Layout>
       <Layout className='my-20 pt-14'>
