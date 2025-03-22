@@ -88,11 +88,11 @@ const Home = async ({ params: { locale } }: Props) => {
               <Button type='link' text={t('aboutBtn')} href="/about" size="text-lg px-8 py-4" />
             </div>
           </Anim>
-          {/* <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
+          <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
               <Image src="/img/hero.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
             </div>
-          </Anim> */}
+          </Anim>
         </div>
       </Layout>
       <Layout className='my-20 pt-14'>
