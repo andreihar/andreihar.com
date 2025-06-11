@@ -9,6 +9,7 @@ import RotatingText from '@/components/widgets/RotatingText';
 import { Locale } from '@/i18n/routing';
 import { getAllPostsMeta } from '@/lib/mdx';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import Image from 'next/image';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 type Props = {
