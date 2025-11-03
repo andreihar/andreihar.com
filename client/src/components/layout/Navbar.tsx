@@ -1,10 +1,10 @@
 'use client';
-import { useState, useEffect, startTransition } from 'react';
-import { Locale, Link, Pathnames, usePathname, useRouter, routing } from '@/i18n/routing';
-import { useParams } from 'next/navigation';
-import { useTranslations, useLocale } from 'next-intl';
 import Logo from '@/components/Logo';
 import ThemeSwitch from '@/components/ThemeSwitch';
+import { Link, Locale, Pathnames, routing, usePathname, useRouter } from '@/i18n/routing';
+import { useLocale, useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
+import { startTransition, useEffect, useState } from 'react';
 
 export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
@@ -15,6 +15,8 @@ export default function Navbar() {
   const params = useParams();
   const t = useTranslations();
   const locale = useLocale() as Locale;
+  const nextLocale = locale === routing.locales[0] ? routing.locales[1] : routing.locales[0];
+  const languageDisplayName = new Intl.DisplayNames([nextLocale], { type: 'language' }).of(nextLocale) || nextLocale;
 
   useEffect(() => {
     setIsMounted(true);
@@ -39,7 +41,6 @@ export default function Navbar() {
   }, []);
 
   const handleLocaleChange = () => {
-    const nextLocale = locale === routing.locales[0] ? routing.locales[1] : routing.locales[0];
     startTransition(() => {
       // @ts-expect-error -- TypeScript will validate that only known `params`
       router.replace({ pathname, params: params }, { locale: nextLocale });
@@ -51,7 +52,7 @@ export default function Navbar() {
     { title: t('Project.title'), href: "/project" },
     { title: t('Blog.title'), href: "/blog" },
     { title: t('About.title'), href: "/about" },
-    { title: t('Values.otherLang'), href: "/", isLocaleChange: true }
+    { title: languageDisplayName, href: "/", isLocaleChange: true }
   ];
 
   if (!isMounted) {
