@@ -1,6 +1,7 @@
 'use client';
 import Button from '@/components/Button';
-import { email, github, linkedin, location, youtube } from '@/data/values';
+import { email, github, linkedin, youtube } from '@/data/values';
+import { getLocation } from '@/lib/location';
 import emailjs from '@emailjs/browser';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, FormEvent, useState } from 'react';
@@ -72,7 +73,7 @@ export default function Contact() {
             </a>
             <p className="mb-4 inline-flex text-2xl items-center gap-1 align-middle">
               <FaMapMarkerAlt className="inline-block align-middle text-primary" />
-              <span className="align-middle ms-2 text-lg">{location}</span>
+              <span className="align-middle ms-2 text-lg">{getLocation()}</span>
             </p>
             <h4 className="text-xl font-bold my-4">{t('socials')}</h4>
             <div className="flex space-x-4 rtl:space-x-reverse mb-6">

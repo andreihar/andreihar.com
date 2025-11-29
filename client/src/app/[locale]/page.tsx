@@ -6,8 +6,9 @@ import Contact from '@/components/layout/Contact';
 import Layout from '@/components/layout/Layout';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 import RotatingText from '@/components/widgets/RotatingText';
-import { forename, github, linkedin, location, surname } from '@/data/values';
+import { forename, github, linkedin, surname } from '@/data/values';
 import { Locale } from '@/i18n/routing';
+import { getLocationArray } from '@/lib/location';
 import { getAllPostsMeta } from '@/lib/mdx';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
@@ -27,7 +28,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     images: ['/img/hero.jpg'],
     url: '/',
     section: t('title'),
-    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...location],
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...getLocationArray(locale)],
   });
 }
 

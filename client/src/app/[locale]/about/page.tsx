@@ -3,8 +3,9 @@ import Button from '@/components/Button';
 import Contact from '@/components/layout/Contact';
 import Layout from '@/components/layout/Layout';
 import { generateMetadata as generateSEO } from '@/components/SEO';
-import { forename, location, surname } from '@/data/values';
+import { forename, surname } from '@/data/values';
 import { Locale } from '@/i18n/routing';
+import { getLocationArray } from '@/lib/location';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
@@ -26,7 +27,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     images: ['/img/studying.jpg'],
     url: '/about',
     section: t('title'),
-    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...location],
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...getLocationArray(locale)],
   });
 }
 
