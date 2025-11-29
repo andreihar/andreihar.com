@@ -1,9 +1,9 @@
 'use client';
-import { useState, ChangeEvent, FormEvent } from 'react';
-import { useTranslations } from 'next-intl';
-import { FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import emailjs from 'emailjs-com';
 import Button from '@/components/Button';
+import emailjs from '@emailjs/browser';
+import { useTranslations } from 'next-intl';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaYoutube } from 'react-icons/fa';
 
 export default function Contact() {
   const t_values = useTranslations('Values');
