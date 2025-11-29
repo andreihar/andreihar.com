@@ -1,7 +1,8 @@
 'use client';
-import { FaShareAlt, FaTwitter, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { forename, surname, twitter } from '@/data/values';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import { FaEnvelope, FaLinkedin, FaShareAlt, FaTwitter } from 'react-icons/fa';
 
 interface ShareButtonProps {
   title: string;
@@ -14,9 +15,9 @@ const ShareButton: React.FC<ShareButtonProps> = ({ title }) => {
   const link = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${pathname.substring(1)}`;
 
   const socialMedia = [
-    { name: 'Twitter', href: `https://x.com/intent/post?url=${link}&text=${t_text('body', { title, name: `@${t('twitter')}` })}`, icon: FaTwitter },
+    { name: 'Twitter', href: `https://x.com/intent/post?url=${link}&text=${t_text('body', { title, name: `@${twitter}` })}`, icon: FaTwitter },
     { name: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${link}`, icon: FaLinkedin },
-    { name: 'Mail', href: `mailto:?subject=${t_text('subject')}&body=${t_text('body', { title, name: t('name', { f: t('f'), s: t('s') }) })}${link}`, icon: FaEnvelope },
+    { name: 'Mail', href: `mailto:?subject=${t_text('subject')}&body=${t_text('body', { title, name: t('name', { f: forename, s: surname }) })}${link}`, icon: FaEnvelope },
   ];
 
   return (

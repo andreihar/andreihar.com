@@ -1,19 +1,19 @@
 'use client';
 import Button from '@/components/Button';
+import { email, github, linkedin, location, youtube } from '@/data/values';
 import emailjs from '@emailjs/browser';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaYoutube } from 'react-icons/fa';
 
 export default function Contact() {
-  const t_values = useTranslations('Values');
   const t = useTranslations('Contact');
 
   const socialMediaLinks = [
-    { href: `mailto:${t_values('email')}`, icon: FaEnvelope, name: 'Email' },
-    { href: `https://github.com/${t_values('github')}`, icon: FaGithub, name: 'GitHub' },
-    { href: `https://linkedin.com/in/${t_values('linkedin')}`, icon: FaLinkedinIn, name: 'LinkedIn' },
-    { href: `https://youtube.com/@${t_values('youtube')}`, icon: FaYoutube, name: 'YouTube' },
+    { href: `mailto:${email}`, icon: FaEnvelope, name: 'Email' },
+    { href: `https://github.com/${github}`, icon: FaGithub, name: 'GitHub' },
+    { href: `https://linkedin.com/in/${linkedin}`, icon: FaLinkedinIn, name: 'LinkedIn' },
+    { href: `https://youtube.com/@${youtube}`, icon: FaYoutube, name: 'YouTube' },
   ];
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '', newsletter: false });
@@ -66,13 +66,13 @@ export default function Contact() {
             {t('desc')}
           </p>
           <div className="mt-8">
-            <a href={`mailto:${t_values('email')}`} className="me-4 mb-4 inline-flex text-2xl items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+            <a href={`mailto:${email}`} className="me-4 mb-4 inline-flex text-2xl items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
               <FaEnvelope className="inline-block align-middle text-primary" />
-              <span className="align-middle ms-2 text-lg">{t_values('email')}</span>
+              <span className="align-middle ms-2 text-lg">{email}</span>
             </a>
             <p className="mb-4 inline-flex text-2xl items-center gap-1 align-middle">
               <FaMapMarkerAlt className="inline-block align-middle text-primary" />
-              <span className="align-middle ms-2 text-lg">{t_values('location')}</span>
+              <span className="align-middle ms-2 text-lg">{location}</span>
             </p>
             <h4 className="text-xl font-bold my-4">{t('socials')}</h4>
             <div className="flex space-x-4 rtl:space-x-reverse mb-6">

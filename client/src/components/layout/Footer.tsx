@@ -1,15 +1,16 @@
-import { FaGithub, FaLinkedinIn, FaYoutube, FaEnvelope } from 'react-icons/fa';
-import { useTranslations } from 'next-intl';
 import Logo from '@/components/Logo';
+import { email, forename, github, linkedin, surname, youtube } from '@/data/values';
+import { useTranslations } from 'next-intl';
+import { FaEnvelope, FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 
 export default function Footer() {
   const t = useTranslations('Footer');
   const t_values = useTranslations('Values');
   const socialMediaLinks = [
-    { href: `mailto:${t_values('email')}`, icon: FaEnvelope, name: 'Email' },
-    { href: `https://github.com/${t_values('github')}`, icon: FaGithub, name: 'GitHub' },
-    { href: `https://linkedin.com/in/${t_values('linkedin')}`, icon: FaLinkedinIn, name: 'LinkedIn' },
-    { href: `https://youtube.com/@${t_values('youtube')}`, icon: FaYoutube, name: 'YouTube' },
+    { href: `mailto:${email}`, icon: FaEnvelope, name: 'Email' },
+    { href: `https://github.com/${github}`, icon: FaGithub, name: 'GitHub' },
+    { href: `https://linkedin.com/in/${linkedin}`, icon: FaLinkedinIn, name: 'LinkedIn' },
+    { href: `https://youtube.com/@${youtube}`, icon: FaYoutube, name: 'YouTube' },
   ];
 
   const startingYear = 2024;
@@ -27,7 +28,7 @@ export default function Footer() {
 
       <div className="flex flex-col items-center justify-between sm:flex-row">
         <div className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-          <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{t_values('name', { f: t_values('f'), s: t_values('s') })}</h1>
+          <h1 className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{t_values('name', { f: forename, s: surname })}</h1>
         </div>
         <div className="mb-6 flex justify-center space-x-3 md:space-x-6 rtl:space-x-reverse">
           {socialMediaLinks.map(({ href, icon: Icon, name }, index) => (
@@ -37,7 +38,7 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <span className="block text-gray-600 text-center dark:text-gray-300">{t('rights', { name: t_values('name', { f: t_values('f'), s: t_values('s') }), year: displayYear })}</span>
+      <span className="block text-gray-600 text-center dark:text-gray-300">{t('rights', { name: t_values('name', { f: forename, s: surname }), year: displayYear })}</span>
     </footer>
   );
 }

@@ -1,18 +1,19 @@
-import React from 'react';
-import Image from 'next/image';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { useTranslations, useLocale, useFormatter } from 'next-intl';
-import { BlogType, ProjectType } from '@/types/blog';
-import { HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser, HiLink } from 'react-icons/hi';
-import { SiGithub } from 'react-icons/si';
-import { ViewsAndLikesProvider, ViewsCounter, LikesCounter, LikeButton } from '@/components/widgets/ViewsAndLikes';
-import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
-import TechIcons from '@/components/widgets/TechIcons';
-import Comments from '@/components/widgets/Comments';
-import Layout from '@/components/layout/Layout';
 import MDXComponents from '@/components/content/MDXComponents';
 import TableOfContents from '@/components/content/TableOfContents';
+import Layout from '@/components/layout/Layout';
 import ShareButton from '@/components/ShareButton';
+import Comments from '@/components/widgets/Comments';
+import { generateStorageImgUrl } from '@/components/widgets/StorageImg';
+import TechIcons from '@/components/widgets/TechIcons';
+import { LikeButton, LikesCounter, ViewsAndLikesProvider, ViewsCounter } from '@/components/widgets/ViewsAndLikes';
+import { avatar, forename, surname } from '@/data/values';
+import { BlogType, ProjectType } from '@/types/blog';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import Image from 'next/image';
+import React from 'react';
+import { HiLink, HiOutlineClock, HiOutlineEye, HiOutlineThumbUp, HiOutlineUser } from 'react-icons/hi';
+import { SiGithub } from 'react-icons/si';
 
 interface PageProps {
   post: BlogType & { source: any; } | ProjectType & { source: any; };
@@ -78,9 +79,9 @@ const Page: React.FC<PageProps> = ({ post }) => {
           <p className="text-base text-gray-500 dark:text-gray-400 flex-grow">
             {isBlog && (
               <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                <Image src={t_values('avatar')} alt={t_values('name', { f: t_values('f'), s: t_values('s') })} width={80} height={80} className="w-10 h-10 rounded-full" />
+                <Image src={avatar} alt={t_values('name', { f: forename, s: surname })} width={80} height={80} className="w-10 h-10 rounded-full" />
                 <div>
-                  <p className="font-bold">{t_values('name', { f: t_values('f'), s: t_values('s') })}</p>
+                  <p className="font-bold">{t_values('name', { f: forename, s: surname })}</p>
                   <p className="text-sm text-gray-500">{format.dateTime(published, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
               </div>

@@ -1,14 +1,15 @@
-import Image from 'next/image';
-import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiMysql, SiPython, SiTensorflow, SiPytorch, SiAndroid, SiAngular, SiBootstrap, SiExpress, SiFirebase, SiFlask, SiKeras, SiZalando, SiMui, SiNumpy, SiPostgresql, SiUnity, SiC, SiCplusplus, SiCsharp, SiPandas } from 'react-icons/si';
-import { FaJava, FaPen } from 'react-icons/fa';
-import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
-import Button from '@/components/Button';
-import Layout from '@/components/layout/Layout';
-import Contact from '@/components/layout/Contact';
 import Anim from '@/components/Anim';
+import Button from '@/components/Button';
+import Contact from '@/components/layout/Contact';
+import Layout from '@/components/layout/Layout';
 import { generateMetadata as generateSEO } from '@/components/SEO';
+import { forename, location, surname } from '@/data/values';
 import { Locale } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import Image from 'next/image';
+import { FaJava, FaPen } from 'react-icons/fa';
+import { SiAndroid, SiAngular, SiBootstrap, SiC, SiCplusplus, SiCsharp, SiExpress, SiFirebase, SiFlask, SiKeras, SiMui, SiMysql, SiNextdotjs, SiNodedotjs, SiNumpy, SiPandas, SiPostgresql, SiPython, SiPytorch, SiReact, SiTailwindcss, SiTensorflow, SiTypescript, SiUnity, SiZalando } from 'react-icons/si';
 
 type Props = {
   params: { locale: Locale; };
@@ -21,11 +22,11 @@ export async function generateMetadata({ params: { locale } }: Props) {
   return generateSEO({
     locale,
     title: t('title'),
-    description: t('desc', { name: t_values('Values.name', { f: t_values('Values.f'), s: t_values('Values.s') }) }),
+    description: t('desc', { name: t_values('Values.name', { f: forename, s: surname }) }),
     images: ['/img/studying.jpg'],
     url: '/about',
     section: t('title'),
-    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...t_values('Values.location').split(', ')],
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...location],
   });
 }
 
@@ -97,7 +98,7 @@ export default function About({ params: { locale } }: Props) {
       <Layout className="my-20 pt-14">
         <div className="flex flex-col items-center pb-10">
           <h1 className="text-4xl font-bold pb-2 text-center">{t('title')}</h1>
-          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{t_values('name', { f: t_values('f'), s: t_values('s') })}</h2>
+          <h2 className="text-5xl font-bold pb-4 text-center bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{t_values('name', { f: forename, s: surname })}</h2>
         </div>
         <div className="flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto px-5">
           <Anim delay={0.2} className="w-full md:max-w-lg mb-10 md:mb-0">
@@ -110,7 +111,7 @@ export default function About({ params: { locale } }: Props) {
           </Anim>
           <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/studying.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
+              <Image src="/img/studying.jpg" alt={t_values('name', { f: forename, s: surname })} fill className="object-cover" />
             </div>
           </Anim>
         </div>

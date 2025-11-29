@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { getPathname, Locale } from '@/i18n/routing';
+import {forename, surname, twitter} from '@/data/values'
 
 type GenerateMetadataProps = {
   locale: Locale;
@@ -14,7 +15,7 @@ type GenerateMetadataProps = {
 
 export async function generateMetadata({ locale, title, description, images, url, section, tags = [], published }: GenerateMetadataProps) {
   const t = await getTranslations('Values');
-  const name = t('name', { f: t('f'), s: t('s') });
+  const name = t('name', { f: forename, s: surname });
   const finalTitle = title ? `${title} | ${name}` : name;
   const localisedPathname = getPathname({ locale, href: url as any });
   url = localisedPathname.substring(1);
@@ -22,7 +23,7 @@ export async function generateMetadata({ locale, title, description, images, url
   const metadata: any = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL || 'http://localhost:3000'),
     description,
-    keywords: [...tags, name, t('f'), t('s')].join(', '),
+    keywords: [...tags, name, forename, surname].join(', '),
     openGraph: {
       type: 'article',
       url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}${url}`,
@@ -40,8 +41,8 @@ export async function generateMetadata({ locale, title, description, images, url
     },
     twitter: {
       card: 'summary_large_image',
-      site: `@${t('twitter')}`,
-      creator: `@${t('twitter')}`,
+      site: `@${twitter}`,
+      creator: `@${twitter}`,
       url,
       title: finalTitle,
       description,

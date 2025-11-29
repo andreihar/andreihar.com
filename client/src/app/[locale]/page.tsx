@@ -6,6 +6,7 @@ import Contact from '@/components/layout/Contact';
 import Layout from '@/components/layout/Layout';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 import RotatingText from '@/components/widgets/RotatingText';
+import { forename, github, linkedin, location, surname } from '@/data/values';
 import { Locale } from '@/i18n/routing';
 import { getAllPostsMeta } from '@/lib/mdx';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -22,11 +23,11 @@ export async function generateMetadata({ params: { locale } }: Props) {
 
   return generateSEO({
     locale,
-    description: t('desc', { name: t_values('name', { f: t_values('f'), s: t_values('s') }) }),
+    description: t('desc', { name: t_values('name', { f: forename, s: surname }) }),
     images: ['/img/hero.jpg'],
     url: '/',
     section: t('title'),
-    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...t_values('location').split(', ')],
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...location],
   });
 }
 
@@ -46,7 +47,7 @@ const Home = async ({ params: { locale } }: Props) => {
               <Anim delay={0.2} hidden={{ x: -20, y: 0 }} className="mb-10">
                 <span>
                   {t.rich('myName', {
-                    c: (chunks) => <Anim delay={0.6} hidden={{ y: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: t_values('f')
+                    c: (chunks) => <Anim delay={0.6} hidden={{ y: 0, scale: 0.75 }} className="inline-block bg-gradient-to-r from-primary-600 to-orange-600 bg-clip-text text-transparent">{chunks}</Anim>, name: forename
                   })}
                 </span>
               </Anim>
@@ -56,13 +57,13 @@ const Home = async ({ params: { locale } }: Props) => {
             </h1>
             <Anim delay={1.6} className="text-center md:text-start">
               <div className="text-gray-400 font-bold relative text-lg mb-6">
-                <a href={`https://github.com/${t_values('github')}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+                <a href={`https://github.com/${github}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                   <FaGithub className="inline-block align-middle" />
-                  <span className="align-middle">{t_values('github')}</span>
+                  <span className="align-middle">{github}</span>
                 </a>
-                <a href={`https://linkedin.com/in/${t_values('linkedin')}`} target="_blank" rel="noopener noreferrer" className="ms-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
+                <a href={`https://linkedin.com/in/${linkedin}`} target="_blank" rel="noopener noreferrer" className="ms-4 inline-flex items-center gap-1 align-middle relative underline-slide transition-colors duration-300 ease-in-out hover:text-primary">
                   <FaLinkedin className="inline-block align-middle" />
-                  <span className="align-middle">{t_values('linkedin')}</span>
+                  <span className="align-middle">{linkedin}</span>
                 </a>
               </div>
             </Anim>
@@ -91,7 +92,7 @@ const Home = async ({ params: { locale } }: Props) => {
           </Anim>
           <Anim delay={0.4} className="w-64 h-90 mx-auto md:mx-0 relative" style={{ height: '360px' }}>
             <div className="about-img relative w-full h-full border-10 border-white">
-              <Image src="/img/hero.jpg" alt={t_values('name', { f: t_values('f'), s: t_values('s') })} fill className="object-cover" />
+              <Image src="/img/hero.jpg" alt={t_values('name', { f: forename, s: surname })} fill className="object-cover" />
             </div>
           </Anim>
         </div>

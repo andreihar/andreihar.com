@@ -1,12 +1,13 @@
-import { ReactNode } from 'react';
-import { NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale, getMessages, getTranslations } from 'next-intl/server';
-import { routing } from '@/i18n/routing';
-import { getLangDir } from 'rtl-detect';
-import { Inter, Jost } from "next/font/google";
-import { Providers } from "../providers";
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
+import { forename, surname } from '@/data/values';
+import { routing } from '@/i18n/routing';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
+import { Inter, Jost } from "next/font/google";
+import { ReactNode } from 'react';
+import { getLangDir } from 'rtl-detect';
+import { Providers } from "../providers";
 import "./../globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -23,7 +24,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata() {
   const t = await getTranslations('Values');
-  const name = t('name', { f: t('f'), s: t('s') });
+  const name = t('name', { f: forename, s: surname });
   return {
     title: {
       default: name,
