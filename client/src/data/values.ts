@@ -1,6 +1,6 @@
 export const forename = "Andrei";
 export const surname = "Harbachov";
-export const location = ["Vancouver", "BC", "CA"];
+export const location = ["London", "GB"];
 export const avatar = "https://avatars.githubusercontent.com/u/95883512?v=4";
 export const email = "andreihar@mail.com";
 export const github = "andreihar";
