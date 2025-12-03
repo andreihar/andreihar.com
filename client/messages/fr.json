@@ -1,7 +1,8 @@
 {
 	"Values": {
 		"name": "{f} {s}",
-		"otherLang": "English"
+		"otherLang": "English",
+		"London": "Londres"
 	},
 	"Home": {
 		"title": "Accueil",

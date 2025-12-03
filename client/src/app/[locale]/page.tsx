@@ -21,6 +21,7 @@ type Props = {
 export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: 'Home' });
   const t_values = await getTranslations({ locale, namespace: 'Values' });
+  const locationArray = await getLocationArray(locale);
 
   return generateSEO({
     locale,
@@ -28,7 +29,7 @@ export async function generateMetadata({ params: { locale } }: Props) {
     images: ['/img/hero.jpg'],
     url: '/',
     section: t('title'),
-    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...getLocationArray(locale)],
+    tags: [t('title'), ...t('tags').split(', '), ...Array.from({ length: 100 }, (_, i) => i + 1).map(i => t_values.has(`Home.rotating.${i}`) ? t_values(`Home.rotating.${i}`) : null).filter((word): word is string => word !== null), ...locationArray],
   });
 }
 
