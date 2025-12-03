@@ -79,7 +79,7 @@
 		"date": "Date",
 		"views": "Vues",
 		"likes": "J'aime",
-		"nothing": "Oups ! On dirait qu'il n'y a rien ici. Essayez une autre recherche !"
+		"nothing": "Oups! On dirait qu'il n'y a rien ici. Essayez une autre recherche!"
 	},
 	"LikesViews": {
 		"iLike": "J'aime ça!",
@@ -89,7 +89,7 @@
 	"Contact": {
 		"title": "Contact",
 		"touch": "Entrer en <c>contact</c>",
-		"desc": "N'hésitez pas à me contacter pour des demandes de projets, des opportunités de collaboration ou toute question. Je suis toujours ouvert aux nouvelles connexions dans la technologie et l'informatique. Envoyez-moi un email ou connectez-vous avec moi sur les réseaux sociaux !",
+		"desc": "N'hésitez pas à me contacter pour des demandes de projets, des opportunités de collaboration ou toute question. Je suis toujours ouvert aux nouvelles connexions dans la technologie et l'informatique. Envoyez-moi un email ou connectez-vous avec moi sur les réseaux sociaux!",
 		"socials": "Réseaux sociaux",
 		"form": {
 			"name": "Nom",
@@ -98,7 +98,7 @@
 			"message": "Message",
 			"send": "Envoyer le message",
 			"require": "{value} est requis",
-			"success": "Message envoyé avec succès !",
+			"success": "Message envoyé avec succès!",
 			"error": "Une erreur s'est produite. Veuillez réessayer."
 		}
 	},
