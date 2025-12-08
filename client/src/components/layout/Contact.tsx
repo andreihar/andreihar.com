@@ -1,11 +1,11 @@
 import ContactForm from '@/components/layout/ContactForm';
 import { email, github, linkedin, youtube } from '@/data/values';
 import { getLocation } from '@/lib/location';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaYoutube } from 'react-icons/fa';
 
 export default async function Contact({ locale }: { locale: string; }) {
-  const t = useTranslations('Contact');
+  const t = await getTranslations('Contact');
   const locationArray = await getLocation(locale);
   const locationString = locationArray.join(', ');
 
