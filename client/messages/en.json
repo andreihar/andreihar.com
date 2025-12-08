@@ -1,7 +1,6 @@
 {
 	"Values": {
-		"name": "{f} {s}",
-		"London": "London"
+		"name": "{f} {s}"
 	},
 	"Home": {
 		"title": "Home",
