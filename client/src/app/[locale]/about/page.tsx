@@ -5,7 +5,7 @@ import Layout from '@/components/layout/Layout';
 import { generateMetadata as generateSEO } from '@/components/SEO';
 import { forename, surname } from '@/data/values';
 import { Locale } from '@/i18n/routing';
-import { getLocationArray } from '@/lib/location';
+import { getLocation } from '@/lib/location';
 import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
@@ -19,7 +19,7 @@ type Props = {
 export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: 'About' });
   const t_values = await getTranslations({ locale });
-  const locationArray = await getLocationArray(locale);
+  const locationArray = await getLocation(locale);
 
   return generateSEO({
     locale,
@@ -153,7 +153,7 @@ export default function About({ params: { locale } }: Props) {
           </ul>
         </div>
       </Layout>
-      <Contact />
+      <Contact locale={locale} />
     </main>
   );
 }

@@ -8,7 +8,7 @@ import { generateMetadata as generateSEO } from '@/components/SEO';
 import RotatingText from '@/components/widgets/RotatingText';
 import { forename, github, linkedin, surname } from '@/data/values';
 import { Locale } from '@/i18n/routing';
-import { getLocationArray } from '@/lib/location';
+import { getLocation } from '@/lib/location';
 import { getAllPostsMeta } from '@/lib/mdx';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ type Props = {
 export async function generateMetadata({ params: { locale } }: Props) {
   const t = await getTranslations({ locale, namespace: 'Home' });
   const t_values = await getTranslations({ locale, namespace: 'Values' });
-  const locationArray = await getLocationArray(locale);
+  const locationArray = await getLocation(locale);
 
   return generateSEO({
     locale,
@@ -134,7 +134,7 @@ const Home = async ({ params: { locale } }: Props) => {
           <Button type='link' text={t('blogBtn')} href="/blog" size="text-lg px-8 py-4" />
         </Anim>
       </Layout>
-      <Contact />
+      <Contact locale={locale} />
     </main>
   );
 };
